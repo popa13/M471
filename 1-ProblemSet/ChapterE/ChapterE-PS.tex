@@ -1,0 +1,128 @@
+\input{../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Problems Set} \\
+Chapter E
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{5}
+
+\subsection{Bivariate Distributions}
+
+\begin{problem}
+Let $(X, Y)$ be a random vector with joint distribution $F_{X, Y}$. Prove that, for any $a < c$ and $b < d$,
+    \[
+        P (a < X \leq b , c < Y \leq d ) = F(b, d) + F(a, c) - F (a, d) - F(b, c) .
+    \]
+\end{problem}
+
+\subsection{Continuous Random Vectors}
+
+\begin{problem}
+If $(X, Y)$ are continuous random vector with joint probability density function $f_{X, Y}$. Prove that
+    \[
+        P (a \leq X \leq b , c \leq Y \leq d ) = P (a < X < b , c < Y < d) .
+    \]
+\end{problem}
+
+\begin{problem}
+If a radioactive particle is randomly located in a square of unit length, a reasonable model for the joint density function for $X$ and $Y$ (the coordinates of the location of the radioactive particle) is
+    \[
+        f_{X, Y} (x, y) = \left\lbrace \begin{matrix} k x y & \text{if } (x, y) \in [0, 1] \times [0, 1] \\
+        0 & \text{elsewhere} \end{matrix} \right. 
+    \]
+\begin{enumerate}[label=\alph*)]
+\item Find the value $k$ that makes this a probability density function.
+\item Find the joint distribution function for $X$ and $Y$.
+\item Find $P (X \leq 0.5 , Y \leq 0.75)$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $(X, Y)$ denote the coordinates of a point chosen at random inside a unit circle whose center is at the origin. Their joint probability density function is
+    \[
+        f_{X, Y} (x, y) = \left\lbrace \begin{matrix} 1/ \pi & \text{if } x^2 + y^2 \leq 1 \\
+        0 & \text{elsewhere.} \end{matrix} \right.
+    \]
+Find $P (X \leq Y)$. 
+\end{problem}
+
+\subsection{Marginals and Independence}
+
+\begin{problem}
+Let $(X, Y)$ be a continuous random vector with joint probability differentiable density function $f_{X, Y}$. Show that
+    \begin{enumerate}[label=\alph*)]
+        \item $f_X (x) = \displaystyle\int_{-\infty}^\infty f_{X, Y} (x, y) \, dy$.
+        \item $f_Y (y) = \displaystyle\int_{-\infty}^\infty f_{X, Y} (x, y) \, dx$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $X$ and $Y$ be two random variable with joint probability density function
+    \[
+        f_{X, Y} (x, y) = \left\lbrace \begin{matrix} 2 & 0 \leq y \leq x \leq 1 \\
+                            0 & \text{elsewhere} \end{matrix} \right. 
+    \]  
+    \begin{enumerate}[label=\alph*)]
+        \item Sketch $f_{X, Y}$.
+        \item Are $X$, $Y$ independent?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $X$ and $Y$ be two random variable with joint probability density function
+    \[
+        f_{X, Y} (x, y) = \left\lbrace \begin{matrix} (2y+ 1)/2 & (x, y) \in [0, 1] \times [0, 1] \\
+                            0 & \text{elsewhere} \end{matrix} \right. 
+    \]  
+    \begin{enumerate}[label=\alph*)]
+        \item Sketch $f_{X, Y}$.
+        \item Are $X$, $Y$ independent?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+A bus arrives at a bus stop at a uniformly distributed time over the interval $0$ to $1$ hour. A passenger also arrives at the bus stop at a uniformly distributed time over the interval $0$ to $1$ hour. Assume that the arrival times of the bus and passenger are independent of one another and that the passenger will wait for up to $1/4$ hour for the bus to arrive. What is the probability that the passenger will catch the bus?
+\end{problem}
+
+\subsection{Important Measurements}
+
+\begin{problem}
+Prove that if $X$ and $Y$ are two independent random variables with average $\mu_X$ and $\mu_Y$, then $\mathrm{Cov} (X, Y) = 0$. 
+\end{problem}
+
+\begin{problem}
+Prove that if $X$ and $Y$ are two random variables with averages $\mu_X$ and $\mu_Y$ and standard deviation $\sigma_X$ and $\sigma_Y$, then $\rho (X, Y) \in [-1, 1]$.
+\end{problem}
+
+\begin{problem}
+Let $X$ and $Y$ be random variables with means $\mu_X$ and $\mu_Y$ and with variance $\sigma_X^2$ and $\sigma_Y^2$. Use the definition of the covariance to show that
+    \begin{enumerate}[label=\alph*)]
+        \item $\mathrm{Cov} (X, Y) = \mathrm{Cov} (Y, X)$.
+        \item $\mathrm{Var} (aX + bY) = a^2 \sigma_X^2 + b^2 \sigma_Y^2 + 2 ab \mathrm{Cov} (X, Y)$. 
+        \item $\mathrm{Cov} (X, X) = \sigma_X^2$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+The random variables $X$ and $Y$ are such that $\mathrm{Exp} (X) = 4$, $\mathrm{Exp} (Y) = -1$, $\sigma_X^2 = 2$ and $\sigma_Y^2 = 8$.
+    \begin{enumerate}[label=\alph*)]
+            \item What is $\mathrm{Cov} (X, X)$?
+            \item What is the largest possible value for $\mathrm{Cov} (X, Y)$?
+    \end{enumerate}
+\end{problem}
+
+\end{document}

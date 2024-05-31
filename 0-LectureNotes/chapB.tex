@@ -1,0 +1,672 @@
+\chapter{Conditional Probability and Independence}
+
+
+\section{Conditional Probabilities}
+
+\begin{example}\label{Ex:DiceConditional}
+Suppose two dice are tossed and each of the 36 outcomes are equally likely to occur. If the first die landed on a \epsdice{3}, then, given this information, what is the probability that the sum of the $2$ dice equals $8$?
+
+Let $A$ be the event ``sum of the two dice equals 8''. Let $B$ be the event ``the first die landed on \epsdice{3}''. Then 
+	\begin{align*}
+	A &= \{ (\epsdice{2} , \epsdice{6} ) , (\epsdice{3} , \epsdice{5} ) , (\epsdice{4} , \epsdice{4} ) , (\epsdice{5} , \epsdice{3} ) , (\epsdice{6} , \epsdice{2} ) \}\\
+	B &= \{ (\epsdice{3}, \epsdice{1} ) , (\epsdice{3} , \epsdice{2}) , (\epsdice{3},\epsdice{3}) , (\epsdice{3}, \epsdice{4}) , (\epsdice{3}, \epsdice{5}) , (\epsdice{3}, \epsdice{6}) \} .
+	\end{align*}
+Knowing that $B$ has occurred, then the probability for $A$ to occur within $B$ is
+	\begin{align*}
+	P (A \text{ knowing } B) = \frac{|A \cap B|}{|B|} = \frac{| \{ (\epsdice{3} , \epsdice{5} ) \}|}{6} = \frac{1}{6} .
+	\end{align*}
+If we want to compute the probability from the complete sample space, 
+	\begin{align*}
+	P ( A \text{ knowing } B ) = \frac{|A \cap B| / |S|}{|B| / |S|} = \frac{P (A \cap B )}{P (B)}.	\tag*{$\triangle$}
+	\end{align*}
+\end{example}
+
+\begin{definition}
+Let $(S , \mathcal{A} , P )$ be a probability space and $A$, $B$ be events such that $P (B) > 0$. The \underline{conditional probability} of $A$ given that $B$ has occurred\footnote{We also say the probability of $A$ conditional to $B$.} is denoted by $P (A | B )$ and is given by the following formula:
+	\begin{align}
+	P (A | B ) = \frac{P (A \cap B )}{P ( B)} . \label{Eq:ConditionalFormula}
+	\end{align}
+\end{definition}
+
+\begin{example}
+An urn contains $10$ blue balls, $5$ red balls, and $10$ green balls. A ball is chosen at random from the urn and it is noted that it is not one of the green balls. What is the probability that it is red?
+\end{example}
+
+\begin{sol*}
+\begin{enumerate}[label=\Circled{\arabic*}]
+\item The sample space is $S = \{ b, r, g \}$, where $b$ stands for blue, $r$ stands for red and $g$ stands for green.
+\item We have $P (\{ b \} ) = \frac{10}{25} = 0.4$, $P (\{ r \} ) = \frac{5}{25} = 0.2$ and $P (\{ g \} ) = 0.4$.
+\item Let $A$ be the event ``the ball picked is red'' and let $B$ be the event ``the ball picked is green''. The probability we are looking for is $P (A | \overline{B} )$. By the formula, we have
+	\begin{align*}
+	 P (A | \overline{B}) = \frac{P (A \cap \overline{B})}{P (\overline{B})} = \frac{P (A)}{1 - P (B)} = \frac{1/5}{3/5} = \frac{1}{3} . \tag*{$\triangle$}
+	\end{align*}
+\end{enumerate}
+\end{sol*}
+
+\underline{\textbf{Note:}} Instead of applying \eqref{Eq:ConditionalFormula}, it is sometimes easier to work with the \underline{reduced sample space} as in \cref{Ex:DiceConditional}. \textit{[Show them with the last example.]}
+
+\begin{corollary}\label{Cor:MultiplicationRule}
+If $(S, \mathcal{A} , P )$ is a probability space and $A, B$ are events, then
+	\begin{align*}
+	P (A \cap B ) = P (B) P (A|B ) .
+	\end{align*}
+\end{corollary}
+
+\begin{example}
+Celine is undecided as to whether to take a French or a Chemistry class. The probability of obtaining an $A$ grade if Celine takes French is $1/2$ and if Celine takes Chemistry is $2/3$. If Celine decides to base her course choice on a flip of a fair coin, what is the probability that Celine gets an $A$ in Chemistry?
+\end{example}
+
+\begin{sol*}
+\begin{enumerate}[label=\Circled{\arabic*}]
+\item Let $f$ stands for ``French class'' and $c$ stands for ``Chemistry class''. We combine this with $A$ which stands for an $A$ grade and $O$ which stands for other grades. So the sample space is $S = \{ (f, A ) , (f, O ) , (c, A) , (c, O ) \}$. 
+\item Let $F$ be the event ``Celine takes French'' and $C$ be the event ``Celine takes Chemistry''. Then, we have $P (F) = P (C) = 1/2$. We can still recover the probabilities of each atomic event because we know the conditional probabilities!
+\item Let $H$ be the event that Celine receives an $A$ grade in whatever class she takes. We try to find the probability of $\{ (c, A ) \} = H \cap C$. We know that $P (H | C ) = 2/3$, so we have
+	\begin{align*}
+	P (H \cap C) = P (C) P (H | C) = (1/2) (2/3) = \frac{1}{3} . \tag*{$\triangle$}
+	\end{align*}
+\end{enumerate}
+\end{sol*}
+
+\section{Bayes' Formula}
+
+\begin{theorem}
+If $(S, \mathcal{A} , P )$ is a probability space and $A, B$ are events with $P (B) > 0$, then
+	\begin{align}
+	P (A) = P (A|B) P (B) + P (A|\overline{B}) P (\overline{B}) . \label{Eq:BayesFormula}
+	\end{align}
+\end{theorem}
+\begin{proof}
+We know that $P (A | B) = P (A \cap B) / P (B)$ and $P (A | \overline{B}) = P (A \cap \overline{B}) / P (B)$. Therefore,
+	\begin{align*}
+	P (A | B) P (B) + P (A | \overline{B}) P (\overline{B}) = P (A \cap B) + P (A \cap \overline{B}) .
+	\end{align*}
+But $(A \cap B) \cup (A \cap \overline{B}) = A$ and $A \cap B$, $A \cap \overline{B}$ are mutually exclusive. This implies
+	\begin{align*}
+	P (A \cap B) + P (A \cap \overline{B}) = P (A) .
+	\end{align*}
+This completes the proof.
+\end{proof}
+
+\begin{example}
+An insurance company believes that people can be divided into two classes: those who are accident prone and those who are not. Their statistics show that:
+	\begin{itemize}
+	\item If a person is accident-prone, this person will have an accident at some time within a fixed $1$-year period with probability $.4$.
+	\item If a person is non-accident-prone, this person will have an accident at some time within a fixed $1$-year period with probability $.2$.
+	\end{itemize}
+We assume that $30\%$ of the population is accident prone.
+	\begin{enumerate}[label=\alph*)]
+	\item What is the probability that a new policyholder will have an accident within a year of purchasing a policy?
+	\item If a new policyholder has an accident within a year of purchasing a policy, what is the probability that the person is accident prone?
+	\end{enumerate}
+\end{example}
+ 
+\begin{sol*}
+\begin{enumerate}[label=\alph*)]
+\item Let $A$ denote the event ``new policyholder will have an accident within a year''. Let $B$ be the event ``new policyholder is accident-prone''. Using \eqref{Eq:BayesFormula}, we have
+	\begin{align*}
+	P (A) &= P (B) P (A|B) + P (\overline{B}) P (A | \overline{B}) \\
+	&= (0.3)(0.4) + (0.7)(0.2) = 0.26 .
+	\end{align*}
+\item We are looking for the probability $P (B|A)$. Using the definition, we have
+	\begin{align*}
+	P (B|A) = \frac{P (A \cap B)}{P (A)} = \frac{P (B) P (A|B)}{P (A)} = \frac{(0.3)(0.4)}{(0.26)} = \frac{6}{13} \approx 0.4615 . \tag*{$\triangle$}
+	\end{align*}
+\end{enumerate}
+\end{sol*}
+
+\begin{theorem}
+Let $(S , \mathcal{A} , P )$ be a probability space. If $B$ is an event with $P (B) > 0$, then the function $Q : \mathcal{A} \ra \mR$ defined by
+	\begin{align*}
+	Q (A) = P (A | B)
+	\end{align*}
+is a probability measure.
+\end{theorem}
+\begin{proof}
+\begin{enumerate}[label=\alph*)]
+\item We first show that $0 \leq P (A) \leq 1$. If $A$ and $B$ are events, then $A \cap B \subset B$ and therefore $Q (A) = P (A|B) = P (A \cap B) / P (B) \leq 1$.
+\item We then show that $P (S) = 1$. Since $S \cap B = B$, we have $Q(S) = P (S|B) = P (B)/P (B) = 1$.
+\item Finally we show that $Q$ is $\sigma$-additivity. Let $A_1$, $A_2$, $\ldots$ be mutually exclusive events. Then $A_1 \cap B$, $A_2 \cap B$, $\ldots$ are also mutually exclusive events and $\big( \cup_{i = 1}^\infty A_i \big) \cap B = \cup_{i = 1}^\infty (A_i \cap B )$. Therefore,
+	\begin{align*}
+	Q \Big( \bigcup_{i = 1}^\infty A_i \Big) = P \Big( \bigcup_{i = 1}^\infty A_i \Big| B \Big) = \frac{P \Big( \bigcup_{i = 1}^\infty (A_i \cap B) \Big)}{P (B)} &= \frac{\sum_{i = 1}^\infty P (A_i \cap B)}{P (B)} \\
+	&= \sum_{i = 1}^\infty \frac{P (A_i \cap B)}{P (B)} \\
+	&= \sum_{i = 1}^\infty P (A_i | B) = \sum_{i = 1}^\infty Q (A_i) .
+	\end{align*}
+This completes the proof. \qedhere
+\end{enumerate}
+
+\end{proof}
+
+\begin{example}
+In a show, you are asked to choose between three doors disposed in front of you at random. Behind one of the door is a big money price and behind the other two, nothing... You choose to open the first door, but before the game host opens the door, he opens at random one of the other two doors, say door 3, to show you there is nothing behind it. He then asks you: Do you want to switch door? What should you do, switch door or not?
+\end{example}
+
+\begin{sol*}
+Let $A$ be the event ``Door 1 has \textbf{the price behind it}.'' and let $B$ be the event ``the host shows a door \textbf{with nothing behind} it''. The probability we are looking for is $P (A | B)$. Notice that $P (A) = 1/3$.
+
+We have
+	\begin{align*}
+	P (A |B) = \frac{P (A \cap B)}{P (B)} = \frac{P (B | A) P (A)}{P (B)} .
+	\end{align*} 
+We get $P (B |A) = 1 / 2$ because the host will have the choice to show one of the door with no price behind. Also, we have $P (B | \overline{A}) = 1$ because the host will show the other door with nothing behind it given that nothing is behind door $1$. Now, using Bayes' formula,
+	\begin{align*}
+	P (B) = P (B | A) P (A) + P (B |\overline{A}) P (\overline{A}) = (1/2) (1/3) + (1) (2/3) = 1/2 .
+	\end{align*}
+Therefore,
+	\begin{align*}
+	P (A | B) = \frac{(1/2) (1/3)}{(1/2)} = \frac{1}{3} .
+	\end{align*}
+Since conditional probability is a probability measure, we have $P (\overline{A} | B) = 1 - 1/3 = 2/3$. So there is a $2/3$ chance that the price is behind door 2 or door 3 with the new information (not $1/2$). \hfill $\triangle$
+\end{sol*}
+
+The Monty Hall's Problem has attracted a lot of attention from mathematicians and, especially a brilliant woman, Marilyn Vos Savant. The following website \url{https://www.statisticshowto.com/probability-and-statistics/monty-hall-problem/#Bayes} explains clearly the history behind the problem and its different solutions.
+
+\subsubsection*{Partition Theorem}
+
+Bayes' Formula generalizes to more than one event. 
+
+\begin{theorem}
+If $B_1$, $B_2$, $\ldots$ are mutually exclusive events such that $\cup_{i = 1}^\infty B_i = S$ and $A$ is an event, then
+	\begin{align*}
+	P (A) = \sum_{i = 1}^\infty P (A | B_i) P (B_i ) .
+	\end{align*}
+\end{theorem}
+
+\textbf{\underline{Note:}} A consequence of this last result is that 
+	\begin{align*}
+	P (A) = \sum_{i = 1}^N P (A | B_i) P (B_i )
+	\end{align*}
+where $B_1$, $B_2$, $\ldots$, $B_N$ are mutually exclusive events with $\cup_{i = 1}^N B_i = S$.
+	
+\begin{example}
+Suppose that we have $3$ cards identical in form. They each have the following characteristics:
+	\begin{description}
+	\item[1st card] Both sides are red.
+	\item[2st card] Both sides are colored black.
+	\item[3rd card] One side is colored red and the other side black.
+	\end{description}
+The three cards are mixed up in a hat, and 1 card is randomly selected and put down on the ground. If the upper side of the chosen card is colored red, what is the probability that the other side is colored black?
+\end{example}
+
+\begin{sol*}
+The sides of the cards are important. Denote by $RR$ the event that the card is all red, by $BB$ the card is all black, and by $RB$ the card is red-black.
+
+Let $A$ be the event that the upperside of the card is red. Then,
+	\begin{align*}
+	P (RB|R) = \frac{P (RB \cap R)}{P(R)} &= \frac{P (RB) P(R|RB)}{P(R|RR)P(RR) + P(R|BB)P(BB) + P(R|RB)P(RB)} \\
+	&= \frac{(1/3) (1/2)}{(1) (1/3) + (0) (1/3) + (1/2) (1/3)} \\
+	&= \frac{1/6}{1/2} = \frac{1}{3} . \tag*{$\triangle$}
+	\end{align*}
+\end{sol*}
+
+\subsubsection*{Odd Ratio}
+
+\begin{definition}
+Let $(S , \mathcal{A} , P )$ be a probability space. The \underline{odds ratio} of an event $A$ is defined by $P (A)/ P (\overline{A})$
+\end{definition}
+
+\underline{\textbf{Note:}} 
+\begin{itemize}
+\item If the odds ratio is equal to $\alpha$, then it is common to say that the odds are $\alpha$ to $1$ ($\alpha : 1$) in favor of the event $A$. 
+\item If we know that an event $B$ has occured, then the new odds ratio of an event $A$, knowing $B$, is
+	\begin{align}
+	\frac{P (A|B)}{P (\overline{A}|B)} = \frac{P (A)}{P (\overline{A})} \frac{P (B|A)}{P (B|\overline{A})} . \label{Eq:NewOddRatio}
+	\end{align}
+\end{itemize}
+
+\begin{example}
+If coin $X$ is flipped, it comes up heads with probability $1/4$, whereas if coin $Y$ is flipped it comes up heads with probability $3/4$. Suppose that one of these coins is randomly chosen and is flipped twice. If both flips land heads, what is the probability that coin $Y$ was the one flipped?
+\end{example}
+
+\begin{sol}
+Intuitively, it should be coin $B$ that was flipped because it has a higher chance to land heads. The odds ratio makes this intuition more mathematically rigorous.
+
+Let $A$ denote the event ``coin $Y$ is flipped''. Let $B$ be the event ``both flips land heads''. We have that
+	\begin{align*}
+	\frac{P (A|B)}{P (\overline{A} | B)} = \frac{P (A)}{P (\overline{A})} \frac{P (B|A)}{P (\overline{B} | A )} = \frac{P (B|A)}{P (\overline{B} | A )}
+	\end{align*}
+because $P (A) = P (\overline{A}) = 1/2$. We have $P (B|A) = 9/16$ and $P (\overline{B} |A) = 1/16$. Therefore,
+	\begin{align*}
+	 \frac{P (B|A)}{P (\overline{B} | A )} = 9 ,
+	\end{align*}
+and there is a $9:1$ chance that coin $Y$ was flipped. So $P (A|B) = \frac{9}{10}$.
+\end{sol}
+
+\section{Independent Events}
+
+\begin{definition}
+Let $(S , \mathcal{A} , P )$ be a probability space and let $A, B$ be two events with $P (A) > 0$ and $P (B) > 0$. We say that $A$ and $B$ are \underline{independent} if
+	\begin{align*}
+	P (A | B ) = P (A) .
+	\end{align*}
+Otherwise, $A$ and $B$ are called \underline{dependent}.
+\end{definition}
+
+\underline{\textbf{Note:}} 
+	\begin{itemize}
+	\item So $A$ and $B$ are independent if the information that the event $B$ has occurred does not influence the probability that the event $A$ occurs. 
+	\item Since $P (A | B) P (B) = P (A \cap B)$, then $A$ and $B$ are independent when $P (A) P (B) = P (A \cap B)$.
+	\end{itemize}
+
+\vspace*{16pt}
+
+\begin{example}
+A card is selected at random from an ordinary deck of $52$ playing cards. If $A$ is the event that the selected card is an ace and $B$ is the event that it is a spade, then show that $A$ and $B$ are independent.
+\end{example}
+
+\begin{sol}
+Every card is supposed to be equally likely. Then $P (A) = \frac{4}{52} \approx 0.0769$. We have $P (A \cap B) = \frac{1}{52} \approx 0.0192$ and $P (B) = \frac{1}{4} = 0.25$. Therefore,
+	\begin{align*}
+	P (A | B) = \frac{1/52}{1/4} = \frac{4}{52} = P (A).
+	\end{align*}
+So $A$ and $B$ are independent.
+\end{sol}
+
+\begin{example}\label{Ex:IndependentEventDice}
+Suppose that we toss $2$ fair dice. Let $A$ denote the event that the sum of the dice is $6$ and $B$ denote the event that the first die equals $3$. Are $A$ and $B$ independent?
+\end{example}
+
+\begin{sol}
+Since the dice is fair, we have $P (A) = \frac{5}{36}$, $P (B) = \frac{6}{36}$ and $P (A \cap B) = \frac{1}{36}$. Therefore,
+	\begin{align*}
+	P (A | B) = \frac{P (A \cap B)}{P (B)} = \frac{1/36}{6/36} = \frac{1}{6} \neq \frac{5}{36} = P (A) .
+	\end{align*}
+So $A$ and $B$ are dependent.
+\end{sol}
+
+\vspace*{16pt}
+
+\begin{example}
+Two fair dice are thrown. Let $A$ denote the event that the sum of the dice is $7$. Let $B$ denote the event that the first die equals $4$ and let $C$ be the event that the second die equals $3$. From \cref{Ex:IndependentEventDice}, we know that $A$ and $B$ are independent. We can also show that $A$ and $C$ are independent. However, $A$ and $B \cap C$ are not independent.  
+\end{example}
+
+\underline{\textbf{Note:}} If an event $A$ is independent of an event $B$ and of an event $C$, then we can't conclude that $A$ is independent of $B \cap C$.
+
+\begin{definition}
+Three events $A$, $B$, $C$ are said to be \underline{independent} if
+	\begin{enumerate}[label=\alph*)]
+	\begin{multicols}{2}
+	\item $P (A) P (B) = P (A \cap B)$;
+	\item $P (A) P( C) = P (A \cap C)$;
+	\item $P (B )P (C ) = P (B) P (C)$;
+	\item $P (A \cap B \cap C ) = P (A) P (B) P (C)$.
+	\end{multicols}
+	\end{enumerate}
+\end{definition}
+
+\underline{\textbf{Note:}}
+	\begin{itemize}
+	\item A group of events $A_1$, $A_2$, $\ldots$, $A_n$ is said to be independent if for each subgroup of $r$ events $A_{i_1}$, $A_{i_2}$, $\ldots$, $A_{i_r}$ 
+		\begin{align*}
+		P \Big( \bigcap_{j = 1}^r A_{i_j} \Big) = \prod_{j = 1}^r P (A_{i_j} ) .
+		\end{align*}
+	\item An infinite group of events is said to be independent if every finite subgroups are independent.
+	\end{itemize}
+
+\subsubsection*{Experiments Made Up From Sub-experiments}
+
+\begin{example}
+An experiment consists of continually tossing a coin, where each toss are independent from each other. The coin lands on head with probability $p$ and on tail with probability $1 - p$. What is the probability that
+	\begin{enumerate}[label=\alph*)]
+	\item at least $1$ head occurs in the first $n$ tosses;
+	\item exactly $k$ heads occur in the first $n$ tosses;
+	\item all tosses result in heads?
+	\end{enumerate}
+\end{example}
+\begin{sol*}
+\begin{enumerate}[label=\alph*)]
+\item Let $A_i$ be the event ``the $i$-th toss is head. The probability that at least one head occurs is represented by $A = \cup_{i = 1}^n A_i$. However, it is easier to compute the complement, which is $\overline{A} = \cap_{i = 1}^n \overline{A}_i$. By independence, we have
+	\begin{align*}
+	P \Big( \bigcap_{i = 1}^n \overline{A}_i \Big) = P (\overline{A}_1) P (\overline{A}_2) \cdots P (\overline{A}_n) = (1 - p)^n .
+	\end{align*}
+Since $P (A) + P (\overline{A}) = 1$, we get
+	\begin{align*}
+	P (A) = 1 - (1 - p)^n .
+	\end{align*}
+\item Let $B$ be the event ``$k$ heads occur in the first $n$ tosses''. There are $\frac{(n - k)!}{j! (n - k - j)!}$ ways of getting $j$ heads in the last $n - k$ tosses. Therefore, 
+	\begin{align*}
+	P (B) = \sum_{j = 0}^{n - k} \frac{(n - k)!}{j! (n - k - j)!} p^{n - j} (1 - p )^{j} .
+\end{align*} 
+For example, if $p = 1/2$, $n= 3$ and $k = 1$, then
+	\begin{align*}
+	P (B) = \sum_{j = 0}^2 \frac{2!}{j! (2 - j)!} (0.5)^{3 - j} (0.5)^{j} = 0.5 .
+	\end{align*}
+\item If $C$ denotes the event ``all tosses are head'', then we have $C = \cap_{i = 1}^\infty A_i$. Notice that the complement is $\cup_{i = 1}^\infty \overline{A}_i$, which is the event ``the coin lands on tail at least once''. Based on the calculations from a), we have that $P (\cup_{i = 1}^n \overline{A}_i ) = 1 - p^n$. Since $\cup_{i = 1}^{n} \overline{A}_i \subset \cup_{i = 1}^{n + 1} \overline{A}_i$, we can use the continuity property of probability measure and get
+	\begin{align*}
+	P ( \overline{C} ) = P \Big( \bigcup_{i= 1}^\infty \overline{A}_i \Big) = \lim_{n \ra \infty} P \Big( \bigcup_{i= 1}^n \overline{A}_i \Big) = \lim_{n \ra \infty} 1 - p^n = 1.
+	\end{align*}
+Therefore, $P (C) = 1 - P (\overline{C}) = 0$. So, it's unlikely that all tosses will land on head! \textit{[Ask them if this means impossible.]} \hfill $\triangle$
+\end{enumerate}
+\end{sol*}
+
+\underline{\textbf{Note:}} 
+\begin{itemize}
+\item It is useful to see an event as the completion of successive independent smaller steps, called \underline{subexperiments}.
+\item If all the subexperiments are the same, then they are called \underline{trials}.
+\end{itemize}
+
+
+\begin{comment}
+\section{Problems Set}
+
+\subsection*{Conditional Probabilities}
+	
+	\begin{problem}
+	Let $(S, \mathcal{A} , P )$ be a probability space. Suppose two events $A$ and $B$ are given such that $P (A) = 0.5$, $P(B) = 0.3$, and $P (A \cap B) = 0.1$. Find
+		\begin{enumerate}[label=\alph*)]
+		\begin{multicols}{3}
+		\item $P(A|B)$.
+		\item $P (A | A \cup B)$.
+		\item $P (A \cap B | A \cup B )$.
+		\end{multicols}
+		\end{enumerate}			
+	\end{problem}
+
+	\begin{problem}
+	A balanced die is tossed once. What is the probability the die lands on a $1$, given that an odd number was obtained?
+	\end{problem}
+
+	\begin{problem}
+	Two fair dice are rolled. What is the probability that at least one lands on 6 given that the dice land on different numbers?
+	\end{problem}
+
+	\begin{problem}
+	Let $(S , \mathcal{A} , P)$ be a probability space. Suppose that two events $A$ and $B$ are given such that $P (A) > 0$, $P (B) > 0$. Prove that if $P (A) < P (A | B)$, then $P (B) < P (B | A)$.
+	\end{problem}
+	
+	\begin{problem}
+	Suppose that $A \subset B$ and that $P (A) > 0$ and $P (B) > 0$. Show that $P (B | A) = 1$ and $P (A | B) = P (A) / P (B)$.
+	\end{problem}
+	
+	\begin{problem}
+	If $A$ and $B$ are mutually exclusive events and $P (B) > 0$, show that
+	\begin{align*}
+	P (A | A \cup B) = \frac{P (A)}{P (A) + P (B)} .
+	\end{align*}
+	\end{problem}
+	
+	\begin{problem}
+	Let $(S, \mathcal{A}, P )$ be a probability space. If $A, B$ are events with $P (A) > 0$ and $P (B) > 0$, then show that
+		\begin{align*}
+		\frac{P (A|B)}{P (\overline{A} | B)} = \frac{P (A)}{P (\overline{A})} \frac{P (B|A)}{P (B|\overline{A})} .
+		\end{align*}
+	\end{problem}
+	
+	\subsection*{Bayes' Formula}
+	
+	\begin{problem}
+	A laboratory blood test is 95\% effective in detecting a certain disease when it is, in fact, present. However, the test also yields a ``false positive'' result for 1\% of the healthy people tested\footnote{That is, if a healthy person is tested, then, with probability 0.01, the test result will imply the person has the disease.}. If 0.5\% of the population actually have the disease, what is the probability a person has the disease given that the test result is positive?
+	\end{problem}
+
+	\begin{problem}
+	A total of 46\% of the voters in a certain city classify themselves as Independents, whereas 30\% classify themselves as Liberals and 24\% as Conservative. In a recent local election, 35\% of the Independents, 62\% of the Liberals, and 58\% of the Conservatives voted. A voter is chosen at random. Given that this person voted in the local election, what is the probability that the person is a) an Independent? b) a Liberal? c) a Conservative?
+	\end{problem}
+	
+	\begin{problem}
+	When a dice $x$ is tossed it lands on \epsdice{2} with probability $1/2$ and all the other outcomes are equally likely to happen. When a dice $y$ is tossed, it lands on \epsdice{3} with probability $1/2$ and all the other outcomes are equally likely to happen. Suppose that one of these dice is randomly chosen and then tossed. What is the probability that dice $x$ was tossed, if the die landed on \epsdice{2}?
+	\end{problem}
+	
+	\subsection*{Independent Events}
+	
+	\begin{problem}
+	Three brands of coffee, $x$, $y$, and $z$, are to be ranked according to taste by a judge. Define the following events. $A$: ``Brand $x$ is preferred to $y$, $B$: ``Brand $x$ is ranked best'', $C$: ``Brand $x$ is ranked second best'' and $D$: ``Brand $x$ is ranked third best''. If the judge actually has no taste preference and randomly assigns ranks to the brands, is event $A$ independent of (a) event $B$? (b) event C? (c) event $D$?
+	\end{problem}
+	
+	\begin{problem}
+	Cards are dealt, one at a time, from a standard 52-card deck. If $A_i$ denotes the event ``the $i$-th card dealt is a spade''. Are $A_1$ and $A_2$ independent?
+	\end{problem}	
+
+	\begin{problem}
+	A system composed of $5$ separate components is said to be a parallel system if it functions when at least one of the components functions. For such a system, if component $i$, independent of other components, functions with probability $p_i$, $i = 1, 2, \ldots , 5$, what is the probability that the system functions?
+	\end{problem}
+	
+	\begin{problem}
+	Let $(S , \mathcal{A} , P )$ be a probability space. Prove that 
+		\begin{enumerate}[label=\alph*)]
+		\item If $A$ and $B$ are independent events with $0 < P (A), P (B) < 1$, then $A$ and $\overline{B}$ are independent.
+		\item If $A$ and $B$ are independent events with $0 < P (A) , P (B) < 1$, then $\overline{A}$ and $\overline{B}$ are independent.
+		\end{enumerate}
+	\end{problem}
+
+
+
+\section{Solutions to Problems Set}
+\setcounter{problem}{0} 
+
+\subsection*{Conditional Probabilities}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item $P (A |B) = \frac{P (A \cap B)}{P (B)} = 0.1 / 0.3 = 1/3$.
+	\item We have
+		$$
+		P (A | A \cup B) = \frac{P (A \cap (A \cup B))}{P (A \cup B)} = \frac{P (A)}{P (A \cup B)}.
+		$$
+	But, we have
+		\begin{align*}
+		P (A \cup B) = P (A) + P (B) - P (A \cap B) = 0.5 + 0.3 - 0.1 = 0.7 .
+		\end{align*}
+	Therefore, $P (A | A \cup B) = 0.5 / 0.7 = 5/7$.
+	\item We have
+		\begin{align*}
+		P (A \cap B | A \cup B) = \frac{P ((A \cap B) \cap (A \cup B)}{P (A \cup B)}. 
+		\end{align*}
+	But, $A \cap B \subset A \cup B$, so $(A \cap B) \cap (A \cup B) = A \cap B$. Therefore, 
+		\begin{align*}
+		P (A \cap B | A \cup B) = \frac{0.1}{0.7} = \frac{1}{7} . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}		
+	\end{problem}
+
+	\begin{problem}
+	The sample space is $S = \{ \epsdice{1} , \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}$ and each single outcome are equally likely. So, $P (A) = 1/6$ for each atomic event $A$. Let $A$ be the event ``dice lands on a $1$'' and $B$ the event ``dice lands on a odd number''. Then we have
+		\begin{align*}
+		P (A |B ) = \frac{P (A \cap B)}{P (B)} = \frac{P (\{ \epsdice{1} \})}{P (\{ \epsdice{1} , \epsdice{3} , \epsdice{5} \})} = \frac{1/6}{1/2} = \frac{1}{3} . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+
+	\begin{problem}
+	The sample space $S$ is all pairs of rolled dice. Every outcome is equally likely, so $P (S) = 1/36$, for every atomic event $A$.
+	
+	Let $A$ denote the event ``at least one die lands on $6$'' and let $B$ denote the event ``both dice landed on different numbers''. We have $P (A) = 11/36$ because $|A| = 11$, $P (B) = 30/36$ because $|B| = 30$ and $P (A \cap B ) = 10 / 36$ because $A \cap B$ is all pairs containing a six except the pair $( \epsdice{6} , \epsdice{6} )$. Therefore,
+		\begin{align*}
+		P (A | B) = \frac{10/36}{30/36} = \frac{1}{3} .
+		\end{align*}
+	We see that $P (A | B) > P (A)$, which means knowing $B$ makes $A$ more likely to happen. \hfill $\triangle$
+	\end{problem}
+
+	\begin{problem}
+	Assume that $P (A) < P (A |B)$. By definition of the conditional probability, we have
+		\begin{align*}
+		P (B |A) = \frac{P (B \cap A)}{P (A)}
+		\end{align*}
+	According to Corollary 1 in the lecture notes, we have $P (B \cap A ) = P (A \cap B) = P (B) P (A | B)$. Therefore, we obtain a new expression for $P (B | A)$:
+		\begin{align}
+		P (B | A) = \frac{P (B) P (A | B)}{P (A)}
+		\end{align} 
+	Now, $P (A) < P (A | B)$ implies that
+		\begin{align}
+		\frac{P (B) P (A | B)}{P (A)} > \frac{P (B) P (A)}{P (A)} = P (B) .
+		\end{align} 
+	Therefore, we obtain $P (B |A) >  P(B)$, or $P (B) < P (B |A)$. \hfill $\triangle$
+	\end{problem}
+	
+	\begin{problem}
+	Assume that $A \subset B$ and $P (A) > 0$, $P (B) > 0$. Since $A \subset B$, we have $A \cap B = A$ and therefore
+		\begin{align*}
+		P (B |A) = \frac{P (B \cap A)}{P (A)} = \frac{P (A)}{P (A)} = 1 .
+		\end{align*}
+	Also, we have
+		\begin{align*}
+		P (A | B) = \frac{P (A \cap B)}{P (A)} = \frac{P (A)}{P (B)}. \tag*{$\triangle$}
+		\end{align*} 
+	\end{problem}
+	
+	\begin{problem}
+	Assume that $A$ and $B$ are mutually exclusive events with $P (B) > 0$. Then we have
+		\begin{align*}
+		P (A | A \cup B) = \frac{P (A \cap (A \cup B))}{P (A \cup B)} .
+		\end{align*}
+	We have $A \cap (A \cup B) = (A \cap A) \cup (A \cap B) = A \cup (A \cap B )$. Since $A$ and $B$ are mutually exclusive, we know that $A \cap B = \varnothing$ and therefore 
+		$$
+		A \cap (A \cup B) = A \cup \varnothing = A.
+		$$
+	Plugging that into the equation for $P (A | A \cup B)$, we obtain
+		\begin{align}
+		P (A | A \cup B) = \frac{P (A)}{P (A \cup B)} .
+		\end{align} 
+	Also, $P (A \cup B) = P (A) + P (B)$ because $A$ and $B$ are mutually exclusive. Replacing in the last equation, we see that
+		\begin{align*}
+		P (A | A \cup B) = \frac{P (A)}{P (A ) + P (B)} . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+	
+	\subsection*{Bayes' Formula}
+	
+	\begin{problem}
+	Let $A$ denotes the event ``a person has the desease'' and let $E$ be the event ``the test detects the desease''. From the information in the problem, we have
+		\begin{align*}
+		P (E | A) = 0.95 , \quad P (E | \overline{A}) = 0.01 \quad \text{ and } \quad P (A ) = 0.005 .
+		\end{align*}
+	We are searching for $P (A|E)$. We have
+		\begin{align*}
+		P (A | E) = \frac{P (A \cap E )}{P (E)} = \frac{ P (E | A)P (A)}{P (E)} .
+		\end{align*}
+	To find $P (E)$, we use Bayes' formula:
+		\begin{align*}
+		P (E) = P (E |A) P (A) + P (E | \overline{A}) P (\overline{A}) = 0.95 \cdot 0.005 + 0.01 \cdot 0.995 = 0.0147 .
+		\end{align*}
+	Therefore, we get
+		\begin{align*}
+		P (A | E ) = \frac{ 0.95 \cdot 0.005}{0.0147} \approx 0.3231 . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+
+	\begin{problem}
+	Let $I$ denotes the event ``A voter is independent'', $L$ denotes the event ``A voter is liberal'', and $C$ denotes the event ``A voter is conservative''. We have $P (I) = 0.46$, $P (L ) = 0.30$, and $P (C) = 0.24$.
+	\begin{enumerate}[label=\alph*)]
+	\item Let $B$ denotes the event ``A voter went voting at the local at the local election''. We have
+		\begin{align*}
+		P (I | B) = \frac{P (I \cap B)}{P (B)} = \frac{P (I) P (B | I)}{P (B)} .
+		\end{align*}
+	From the information in the problem, we have $P (B | I ) = 0.35$, $P (B|L) = 0.62$, $P (B|C) = 0.58$. From Bayes' formula with three events, we have
+		\begin{align*}
+		P (B) &= P (B | I ) P (I) + P (B | L )P (L) + P (B | C) P (C) \\
+		&= 0.35 \cdot 0.46 + 0.62 \cdot 0.30 + 0.58 \cdot 0.24 \\
+		&= 	0.4862 
+		\end{align*}
+	and
+		\begin{align*}
+		P (I | B) = \frac{0.46 \cdot 0.35}{0.4862} \approx 0.3311 .
+		\end{align*}
+	\item We have
+		\begin{align*}
+		P (L | B) = \frac{P (L \cap B)}{P (B)} = \frac{P (L) P (B | L)}{P (B)} = \frac{0.30 \cdot 0.62}{0.4862} \approx 0.3826 .
+		\end{align*}
+	\item We have
+		\begin{align*}
+		P (C | B) = \frac{P (C \cap B)}{P (B)} = \frac{P (B) P (B|C)}{P (B)} = \frac{0.24 \cdot 0.58}{0.4862} \approx 0.2863 .
+		\end{align*}
+	[Notice that $P (I |B) + P (L | B) + P (C | B) = 1$ (this comfirms that the mapping $Q (A) = P (A | B)$ is a probability measure.] \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	Let $X$ be the event ``the die $x$ is tossed'' and let $Y$ be the event ``the die $y$ is tossed''. We have $P (X) = P (Y) = 1/2$ because the dice are chosen randomly.
+	
+	Let $A$ be the event ``The die tossed was a \epsdice{2}''. We have $P (A | X) = 1/2$ from the hypothesis and $P (A | Y) = 1/10$ because there is $1/2$ chance that it lands on \epsdice{3}, so $1/10$ chance it lands on any other outcomes. We are looking for $P (X | A)$. We have
+		\begin{align*}
+		P (X | A) = \frac{P (X \cap A)}{P (A)} = \frac{P (X) P (A | X)}{P (A)} .
+		\end{align*}
+	We use Bayes' formula to find that
+		\begin{align*}
+		P (A) = P (X) P (A | X) + P (Y) P (A | Y) = 0.5 \cdot 0.5 + 0.5 \cdot 0.1 = 0.3 .
+		\end{align*}
+	Therefore, 
+		\begin{align*}
+		P (X | A) = \frac{0.5 \cdot 0.5}{0.3} \approx 0.8333 . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+
+\begin{problem}
+	Let $(S, \mathcal{A}, P )$ be a probability space. If $A, B$ are events, then show that
+		\begin{align*}
+		\frac{P (A|B)}{P (\overline{A} | B)} = \frac{P (A)}{P (\overline{A})} \frac{P (B|A)}{P (B|\overline{A})} .
+		\end{align*}
+
+	We have $P (A | B) = \frac{P (A \cap B)}{P (B)}$ and $P (\overline{A} | B) = \frac{P (\overline{A} \cap B)}{P (B)}$. Therefore,
+		\begin{align*}
+		\frac{P (A | B)}{P (\overline{A} | B)} = \frac{P (A \cap B)}{P (\overline{A} \cap B)} .
+		\end{align*}
+	We also have $P (A \cap B) = P (A) P (B |A)$ and $P (\overline{A} \cap B) = P (\overline{A}) P (B | \overline{A})$. Replacing this into the last equation of the quotient, we obtain
+		\begin{align*}
+		\frac{P (A |B)}{P (\overline{A} | B)} = \frac{P (A) P (B | A)}{P (\overline{A}) P (B | \overline{A})} . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+	
+	\subsection*{Independent Events}
+	
+	\begin{problem}
+	The sample space is given by the different rankings of the brands: 
+		\begin{align*}
+		S = \{ xyz, xzy, yxz, yzx, zxy, zyx \}
+		\end{align*}
+	where, for example, $xyz$ means brand $x$ is the best and brand $z$ is the worst. For atomic event, the probability to occur is $1/6$.
+	
+	\begin{enumerate}[label=\alph*)]
+	\item We have $A = \{ xyz, xzy, zxy \}$, $B = \{ xyz, xzy \}$, and $A \cap B = \{ xyz , xzy \}$. Therefore,
+		\begin{align*}
+		P (A | B) = \frac{P (A \cap B)}{P (B)} = \frac{1/3}{1/3} = 1 \neq \frac{1}{2} = P (A) .
+		\end{align*}
+	We get $P (A | B) \neq P (A)$ and the events $A$ and $B$ are dependent. Notice that $B \subset A$ and this is why $P (A | B) = 1$.
+	\item We have $C = \{ yxz , zxy \}$ and so $P (C) = 1/3$. We have $A \cap C = \{ zxy \}$ and $P (A \cap C) = \frac{1}{6}$. Since $P (A \cap C) = P (A) P (C)$, the event $A$ and $C$ are independent.
+	
+	\item We have $D = \{ yzx , zyx \}$ and so $P (D) = \frac{1}{3}$. We have $A \cap D = \varnothing$ and so $P (A \cap D ) = 0$. Since $P (A \cap D) \neq P (A) P (D)$, the event $A$ and $D$ are dependent. \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	We have $P (A_1) = 1/4$, because there are four suites in a regular deck of 52 cards. However, given $A_1$, we have that $P (A_2 | A_1) = 12 / 51 = 4 / 17$ because there are $12$ spades left and $51$ cards left in total. Also, we have $P (A_2 | \overline{A}_1 ) = \frac{13}{51}$ because there are $13$ spades left if we now that the first card dealt was not a spade and there are $51$ cards left in total. Therefore,
+		\begin{align*}
+		P (A_2) = P (A_1) P (A_2 | A_1) + P (\overline{A}_1) P (A_2 | \overline{A}_1) = \Big( \frac{1}{4} \Big) \Big( \frac{4}{17} \Big) + \Big( \frac{3}{4} \Big) \Big( \frac{13}{51} \Big) = 0.25 .
+		\end{align*}
+	Therefore, we see that $P (A_2) \neq P (A_2 | A_1 )$. This means $A_1$ and $A_2$ are not independent. \hfill $\triangle$
+	\end{problem}
+
+	\begin{problem}
+	Let $A_i$ be the event ``The component $i$ is functional''. From the assumptions, $A_1$, $A_2$, $A_3$, $A_4$, and $A_5$ are independent events. From Problem \ref{Prob:IndependenceOfComplement}, we also know that $\overline{A}_1$, $\overline{A}_2$, $\overline{A}_3$, $\overline{A}_4$, and $\overline{A}_5$ are independent events. Let $A$ be the event ``The system functions''. Then $A = \cup_{i = 1}^5 A_i$. It is easier to compute $P (\overline{A})$ because of the independence. We have $\overline{A} = \cap_{i = 1}^5 \overline{A}_i$ by de Morgan's law. Therefore, by independence, we have
+		\begin{align*}
+		P (\overline{A}) &= P (\overline{A}_1) P (\overline{A}_2) P (\overline{A}_3) P (\overline{A}_4) P (\overline{A}_5) \\
+		&= (1 - p_1) (1 - p_2) (1 - p_3) (1 - p_4) (1 - p_5) . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+	
+	\begin{problem}\label{Prob:IndependenceOfComplement}
+	Let $A$ and $B$ be independent events. 
+	\begin{enumerate}[label=\alph*)]
+	\item We want to show that $P (A | \overline{B}) = P (A)$, so that $A$ and $\overline{B}$ are independent. From the definition of conditional probabilities, we have
+		\begin{align*}
+		P (A | \overline{B}) = \frac{P (A \cap \overline{B})}{P (\overline{B})} .
+		\end{align*} 
+	But, we know from Chapter $A$ that $P (A \cap \overline{B}) = P (A) - P (A \cap B)$. Therefore,
+		\begin{align*}
+		P (A | \overline{B}) = \frac{P (A) - P (A \cap B)}{P (\overline{B})} .
+		\end{align*} 
+	But $A$ and $B$ are independent, which means $P (A \cap B) = P (A) P (B)$ and plugging this in the last equation gives
+		\begin{align*}
+		P (A | \overline{B}) = \frac{P (A) (1 - P (B))}{\overline{B}} .
+		\end{align*} 
+	Using the fact that $P (\overline{B}) = 1 - P (B)$,
+		\begin{align*}
+		P (A) P (\overline{B}) = \frac{P (A) P (\overline{B})}{P (\overline{B})}
+		\end{align*}
+	which simplifies to
+		\begin{align*}
+		P (A | \overline{B})  = P (A)
+		\end{align*}
+	since $P (\overline{B}) > 0$.
+	Therefore, $A$ and $\overline{B}$ are independent. 
+	\item We want to show that $\overline{A}$ and $\overline{B}$ are independent. From Part a), we know that $A$ and $\overline{B}$ are independent. Therefore, using Part a) with the event $\overline{B}$ in place of $A$ and the event $A$ in place of $B$, we deduce $\overline{B}$ and $\overline{A}$ are independent. This is what we wanted to prove. \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+
+\end{comment}

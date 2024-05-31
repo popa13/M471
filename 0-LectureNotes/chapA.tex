@@ -1,0 +1,692 @@
+\chapter{Basic Probability}
+
+\section{Sample Space}
+
+\begin{definition}
+All possible outcomes of an experiment is called the \underline{sample space}. It is denoted by $S$.
+\end{definition}
+
+\begin{example}\label{Ex:MoreSampleSpaces}
+\begin{enumerate}[label=\alph*)]
+\item\label{Ex:SampleSpaceFlip2Coins} Say we flip a coin twice. The result of a flip is head (``h'') or is tail (``t''). Then, the possible outcomes are $S = \{ (t, t), (t, h), (h, t), (h, h) \}$. Notice that we could also write $S = \{ tt, th, ht, hh \}$ to record all the possible outcomes.
+\item\label{Ex:SampleSpaceChemist} Suppose we are interested in the number of reactions in a chemical process. Then the sample space will be $S = \{ \text{All non-negative integers} \} = \{1 , 2 , \ldots \}$.
+\item\label{Ex:WaveSampleSpace} If the outcome of an experiment is the height of the waves in Waikiki, then $S = [0, \infty )$ with the measurements in feet. \textit{[Hopefully, it is not negative!]}
+\end{enumerate}
+\end{example}
+
+\underline{Note:}
+	\begin{itemize}
+	\item A sample space is \underline{finite} if the number of outcomes in the sample space is finite.
+	\item A sample space is \underline{discrete} (or \underline{countable}) if the outcomes in $S$ can be listed. So a finite sample space is a discrete sample space.
+	\item Otherwise, the sample space is \underline{uncountable}.
+	\end{itemize}
+	
+\section{Event Space}
+
+\begin{example}
+\begin{enumerate}[label=\alph*)]
+\item Taking the experiment from \cref{Ex:MoreSampleSpaces}.\ref{Ex:SampleSpaceFlip2Coins}, if $A = \{ (h, h) , (h, t) \}$, then $A$ can be seen as the realization of the event that a head occurs on the first coin.
+\item Based on the experiment from \cref{Ex:MoreSampleSpaces}.\ref{Ex:SampleSpaceChemist}, if $A = \{ 200 , 201 , 202, 203, 204, 205 \}$, then $A$ is the event that the number of reactions in a chemical process is between $200$ and $205$. If $A_i = \{ i \}$, for some $i \geq 0$, then the event ``There are $200$ or more reactions'' is an (infinite) combination of the events $A_i$, for $i \geq 200$, written as $\cup_{i = 200}^\infty A_i$.
+\end{enumerate}
+\end{example}
+
+Unfortunately, in the uncountable case, the notion of an event is way more delicate. An intuitive fact would be that the probability of a single real number to occur is zero (in \cref{Ex:MoreSampleSpaces}.\ref{Ex:WaveSampleSpace}, that the wave height will be exactly $2$ feet is almost impossible!). If we allow the family of events to be all subsets, Banach and Kuratowski proved in 1929 that there is no notion of probability, call it $P$, defined on \underline{all} subsets of the interval $[0, 1]$ satisfying $P (\{ a \} ) = 0$ for every $0 \leq a \leq 1$. For this reason, we have to restrict the family of events and there will be events for which we can't attach a notion of probability.
+
+\begin{definition}\label{D:EventSpace}
+If $S$ is a sample space which is finite, then the \underline{event space} $\mathcal{A}$ is a family of subsets of $S$ satisfying the following axioms:
+	\begin{enumerate}[label=\alph*)]
+	\item $\mathcal{A}$ contains $\varnothing$ or $\mathcal{A}$ contains $S$.
+	\item If $A$ is an event (belongs to $\mathcal{A}$), then its complement $\overline{A}$ is also an event.
+	\item If $A$ and $B$ are two events, then $A \cup B$ is also an event.
+	\end{enumerate}
+\end{definition}
+
+\underline{\textbf{Note:}}
+	\begin{itemize}
+	\item The elements of an event $A$ are called \underline{outcomes}.
+	\item An \underline{event $A$ occurs} if one of its outcomes is observed.
+	\item We will see later how to modify \cref{D:EventSpace}  to incorporate uncountable sample space.
+	\end{itemize}
+	
+	\vspace*{16pt}
+	
+	\begin{example}
+	We toss a regular 6-faced dice. We observe the number of dots on the upper face of the die.
+		\begin{enumerate}[label=\alph*)]
+		\item $S = \{ \epsdice{1}, \epsdice{2}, \epsdice{3}, \epsdice{4}, \epsdice{5}, \epsdice{6} \}$.
+		\item $\mathcal{A} = \{ \varnothing , \{ \epsdice{1} \} , \{ \epsdice{2} \} , \ldots , \{ \epsdice{1}, \epsdice{2} \} , \ldots , \{ \epsdice{1} , \epsdice{2} , \epsdice{3} \} , \ldots , S \}$ is an event space (all subsets).
+		\item Let $A = \{ \epsdice{1} , \epsdice{2} \}$, $B = \{ \epsdice{1} , \epsdice{3} \}$, and $C = \{ \epsdice{2}, \epsdice{4}, \epsdice{6} \}$. Then, $A \cup B = \{ \epsdice{1} , \epsdice{2}, \epsdice{3} \}$, $A \cap B = \{ \epsdice{1} \}$, and $\overline{A} = \{\epsdice{3}, \epsdice{4}, \epsdice{5}, \epsdice{6} \}$ are all events.
+		\item $B \cap C = \varnothing$, so $B$ and $C$ are mutually exclusive. $A$ and $B$ are not mutually exclusive because $A \cap B = \{ \epsdice{1} \}$. $A$ and $C$ are not mutually exclusive because $A \cap C = \{ \epsdice{2} \}$.
+		\end{enumerate}
+	\end{example}
+	
+	\underline{\textbf{Note:}}
+	
+	\begin{itemize}
+	\item If $S$ is finite, then the family $\mathcal{A}$ of all subsets of $S$ is an event space. In this case, this will be the default event space and all possible subsets of $S$ will be considered events. 
+	\item In particular, every subset with one outcome will be events. They are called \underline{atomic events} or \underline{simple events}. They can be used to decompose more complicated events.
+	\end{itemize}
+	
+%\newpage
+
+\section{Axioms of Probability}
+%\addcontentsline{toc}{subsection}{\thesection \,\,\,\, Axioms of Probability}
+
+\begin{example}\label{Ex:DiceProbability}
+We throw a 6-faced dice, so $S = \{ \epsdice{1}, \epsdice{2}, \epsdice{3}, \epsdice{4}, \epsdice{5} , \epsdice{6} \}$. The dice is fair, meaning it is equally likely the die will land on any face. We define a function $P : 2^S \ra \mR$ such that
+	\begin{align*}
+	P (A) = \frac{|A|}{6} \quad (A \subset S).
+	\end{align*}
+We notice that
+	\begin{enumerate}[label=\alph*)]
+	\item For any event $A \subset S$, then $|A| \leq 6$ and so $0 \leq P (A) \leq 1$.
+	\item In particular, we have $P(S) = 1$.
+	\item\label{Ex:DiceProbDecompositionAtomic} Finally, if $A = \{ \text{the outcome is divisible by 3} \}$, then $A = \{ \epsdice{3} , \epsdice{6} \}$ and
+		\begin{align*}
+		P (A) = P (\{ \epsdice{3} \} ) + P (\{ \epsdice{6} \}) .
+		\end{align*}
+	In other words, if $A$ and $B$ are two events with $A \cap B = \varnothing$, then $P (A \cup B ) = P (A) + P (B)$.
+	\end{enumerate}
+We call $P$ a probability measure because it satisfies the three axioms of a probability. \hfill $\triangle$
+\end{example}
+
+\vspace*{16pt}
+
+\begin{definition}
+Let $S$ be a sample space and $\mathcal{A}$ be an event space. A function $P : \mathcal{A} \ra \mR$ is a \underline{probability measure} if
+	\begin{enumerate}[label=\alph*)]
+	\item\footnote{Part a) states that the probability of an outcome to be in $A$ is a number $P (E)$ between $0$ and $1$.} For any event $A$, $0 \leq P (A) \leq 1$. 
+	\item\footnote{Part b) states that, with probability $1$, the outcome will be in the sample space $S$.} We have $P(S) = 1$.
+	\item\footnote{Part c) states that, for a sequence of mutually exclusive events the probability of at least one of these events occurring is just the sum of their respective probabilities.} If $A$ and $B$ are events that are mutually exclusive (meaning $A \cap B = \varnothing$), then
+		\begin{align*}
+		P ( A \cup B ) = P (A) + P (B) .
+		\end{align*}
+	\end{enumerate}
+\end{definition}
+\underline{Note:}
+	\begin{itemize}
+	\item The Axioms of Probability were introduced by Andrei Kolmogorov in 1933 in his book \textit{Foundations of the Theory of Probability}.
+	\item A \underline{probability space} is a triplet $(S, \mathcal{A} , P )$, where $S$ is a sample space, $\mathcal{A}$ is an event space, and $P$ is a probability measure.
+	\item If $A$, $B$, $C$ are three mutually exclusive events, then $P (A \cup B \cup C ) = P (A ) + P (B) + P (C)$.
+	\end{itemize}
+
+	\begin{theorem}
+	If $(S , \mathcal{A} , P)$ is a probability space and $A$ is an event, then $P (\overline{A}) = 1 - P (A)$. In particular, $P (\varnothing)= 0$.
+	\end{theorem}
+	\begin{proof}
+	Assume that $(S, \mathcal{A}, P)$ is a probability space and that $A$ is an event. We can write $S = A \cup \overline{A}$, with $A \cap \overline{A} = \varnothing$. From property b) in the definition of a probability measure, we have $P (S) = 1$. But from property c) of a probability measure, we have
+		\begin{align*}
+		1 = P (A \cup \overline{A}) = P (A) + P (\overline{A})
+		\end{align*}
+	and therefore $P (\overline{A}) = 1 - P (A)$. Since $\varnothing = \overline{S}$ and $P (S) = 1$, we have $P (\varnothing) = 1 - P (S) = 0$.
+	\end{proof}
+
+%\newpage
+
+
+\section{Computing Probabilities in the Finite Case}
+%\addcontentsline{toc}{subsection}{\thesection \,\,\,\, Computing Probabilities in the Finite Case}
+We assume that the event space, in the examples below, is the family of all subsets of the sample space.
+
+\begin{example}
+A manufacturer has five seemingly identical computer terminals available for shipping. Unknown to her, two of the five are defective. A particular order calls for two of the terminals and is filled by \underline{randomly} selecting two of the five that are available. Let $A$ denote the event that the order is filled with two non-defective terminals. Find $P(A)$.
+\end{example}
+
+\begin{sol*}
+\begin{enumerate}[label=\Circled{\arabic*}]
+\item \underline{Define the sample space.} Let $D_1$ and $D_2$ stand for defective terminals and $F_1$, $F_2$ and $F_3$ stand for functioning terminals. Then, the sample space
+	\begin{align*}
+	S =& \{ \{D_1 , D_2 \}, \{D_2 , F_1 \}, \{F_1 , F_2 \}, \{F_2 , F_3\}, \{D_1 , F_1 \}, \{D_2 , F_2 \}, \{F_1 , F_3\}, \\
+	& \quad \{D_1 , F_2 \}, \{D_2 , F_3\}, \{D_1 , F_3 \} \} \text{.}
+	\end{align*}
+\item \underline{Define the probability measure.} Since all terminals are chosen at random, each terminal is selected equally likely. Therefore, we define the value of the probability measure $P$ on the atomic events: 
+	\begin{align*}
+	P ( \{ D_1 , D_2 \} ) = P ( \{ D_2 , F_1 \} ) = \cdots = P (\{ D_1 , F_3 \} ) = \frac{1}{|S|} = \frac{1}{10} .
+	\end{align*}
+We can check that this definition gives rise to a probability measure.
+\item \underline{Decompose the event into atomic events.} We see that 
+	\begin{align*}
+	A = \{ \{ F_1 , F_2 \} , \{ F_2 , F_3 \} , \{ F_1 , F_3 \} \} .
+	\end{align*}
+Therefore, using the third property of the probability measure, we get
+	\begin{align*}
+	P (A) = P (\{ F_1 , F_2 \}) + P (\{ F_2 , F_3 \} ) + P (\{ F_1 , F_3 \} ) = \frac{3}{10} = 0.3 . \tag*{$\triangle$}
+	\end{align*}
+\end{enumerate}
+\end{sol*}
+
+\underline{\textbf{Note:}}
+	\begin{itemize}
+	\item When every outcome in a finite sample space $S$ is equally likely to occur, then each atomic event $A$ has $P (A) = 1/ |S|$.
+	\item Therefore, we have $P (A) = |A| / |S|$ for any $A \subset S$.
+	\item When $S$ is finite, finding the probability of an event is usually recast as a counting problem.
+	\end{itemize}
+	
+\subsubsection{Combinatorial Tools for Counting}
+
+\begin{example}
+Consider 20 randomly selected people in a room. Ignoring leap years and assuming that there are only 365 possible distinct birthdays that are equiprobable, what is the probability that each person in the 20 has a different birthday?
+\end{example}
+
+\begin{sol*}
+\begin{enumerate}[label=\Circled{\arabic*}]
+\item If the person are given an order, starting from $1$ and ending at $20$, then an outcome will be a list of $20$ numbers ranging from $1$ to $365$. Therefore, using the product rule, we have $|S| = (365)^{20}$. 
+\item Since each birthday are equally likely, then the value of the probability measure $P$ on an atomic event $A$ (a list of $20$ numbers ranging from $1$ to $365$) is
+	\begin{align*}
+	P (A) = \frac{1}{(365)^{20}}
+	\end{align*}
+\item We won't list all the outcomes of $A$, but we will find $|A|$ instead. The first person can have his birthday on one of the 365 days, the second person can have his birthday on one of the 364 remaining days, $\ldots$, the $20$th person can have his birthday on one of the 346 remaining days. So,
+	\begin{align*}
+	|A| = 365 \times 364 \times \cdots \times 346
+	\end{align*}
+and therefore, using the Property c) of a probability measure:
+	\begin{equation*}
+	P (A) = \frac{365 \times 364 \times \cdots \times 346}{(365)^{20}} \approx 0.5885 . \tag*{$\triangle$}
+	\end{equation*}
+\end{enumerate}
+\end{sol*}
+
+\underline{\textbf{Product Rule:}} If $G_1$, $G_2$, $\ldots$, $G_N$ are sets of objects with $|G_1|$, $|G_2|$, $\ldots$, $|G_N|$ elements, then it is possible to form $|G_1| \times |G_2| \times \cdots \times |G_N|$ lists of objects containing one element from each set.
+
+\vspace*{10pt}
+
+\begin{example}
+Seven horses identified by the numbers $1$, $2$, $3$, $4$, $5$, $6$, and $7$ are in a race and any of the horses have an equal chance to win the race. What is the probability that the horse \#3 wins the race?
+\end{example}
+
+\begin{sol*}
+\begin{enumerate}[label=\Circled{\arabic*}]
+\item The sample space is formed for all list of $7$ horses, representing the positions of the horses at the finish line. There are $P_7^7 = 7!$ such lists.
+\item Since every horse is equally likely to win, the probability of each possible list is $1 / 7!$.
+\item Let $A$ be the event that the horse \#3 wins the race. This means $A = \{ (3, a, b, c, d, e, f) \, : \, a, b, c, d, e, f \text{ is the number of the 6 remaining horses} \}$. Since the first horse in every outcome from $A$ is fixed, there are only six remaining horses. Therefore, $|A| = 6!$. Therefore, $P (A) = 6! / 7! = 1/7 \approx 0.1429$. \hfill $\triangle$
+\end{enumerate}
+\end{sol*}
+
+\underline{\textbf{Permutation}} is an ordered arrangement of $r$ distinct objects taken from $n$ objects. The number of ways of ordering $n$ distinct objects taken $r$ at a time will be designated by the symbol $P_r^n$. We have
+	$$
+	P_r^n = n (n - 1) (n - 2) \cdots (n - r + 1) = \frac{n!}{(n - r)!}.
+	$$
+
+\underline{\textbf{Multinomial Coefficients}} gives the number of ways of partitioning $n$ distinct objects into $k$ distinct groups containing $n_1$, $n_2$, $\ldots$, $n_k$ objects, respectively, where each object appears in exactly one group and $n_1 + n_2 + \cdots + n_k = n$, is
+	\begin{align*}
+	\binom{n}{n_1 n_2 \cdots n_k} = \frac{n!}{n_1! n_2! \cdots n_k!} .
+	\end{align*}
+	
+\vspace*{16pt}
+
+\begin{example}
+A company wants to select two applicants for a job out of $5$. These applicants are ranked according to their competency, $1$ is the most competent, and $5$ is the most incompetent. This ranking is unknown to the company and the company assume that it is equally likely to select a candidate. Let $A$ denote the event that exactly one of the two best applicants appears in a selection of two applicants. Find $P(A)$.
+\end{example}
+
+\begin{sol*}
+\begin{enumerate}[label=\Circled{\arabic*}]
+\item Denote $c_1$, $c_2$, $c_3$, $c_4$, and $c_5$ the ranking of the candidates. Then $S$ is composed of $\binom{5}{2} = 10$ elements. We can list them
+	\begin{align*}
+	S = \{ \{ c_1 , c_2 \} , \{ c_1 , c_3 \} , \{ c_1 , c_4 \} , \{ c_1 , c_5 \} , \{ c_2 , c_3 \} , \{ c_2 , c_4 \} , \{ c_2 , c_5 \} , \{ c_3 , c_4 \} , \{ c_3 , c_5 \} , \{ c_4 , c_5 \} \} .
+	\end{align*}
+\item Since every candidate is equally likely to be selected, this means that the probability of two candidates to be selected is $1/ \binom{5}{2} = 1/10$.
+\item Let's count the number of elements in the event $A$. One candidate should be selected from the best $2$, and the second one should be selected from the three others, so $|A| = \binom{2}{1} \binom{3}{1} = 2 \times 3 = 6$. Therefore, $P (A) = \frac{6}{10} = 0.6$. \hfill $\triangle$
+\end{enumerate}
+\end{sol*}
+
+\underline{\textbf{Combinations}} are an arrangement, where the order of the group of $r$ objects is unimportant. We use the symbol $C_r^n$ or $\binom{n}{r}$. We have
+	\begin{align*}
+	C_r^n = \binom{n}{r} = \frac{n!}{r! (n - r)!} .
+	\end{align*}
+
+
+
+\subsubsection{When The Odds are not Equally Likely}
+
+\begin{example}
+The odds are two to one that, when $A$ and $B$ play tennis, $A$ wins. Suppose that $A$ and $B$ play two matches. What is the probability that $A$ wins at least one match?
+\end{example}
+
+\begin{sol*}
+\begin{enumerate}[label=\Circled{\arabic*}]
+\item The sample space will be the pairs of letters $A$ and $B$. For example, $(A, A)$ means that $A$ won match one and two. So, the sample space $S$ has $4$ elements 
+	\begin{align*}
+	S = \{ (A, A) , (A, B) , (B, A) , (B, B) \} .
+	\end{align*}
+\item The odds are $2:1$ that $A$ wins over $B$. So, this means
+	\begin{align*}
+	P ( \{ (A , A) \} ) = \frac{4}{9} , P ( \{ (A, B) \} ) = P ( \{ (B, A) \} ) = \frac{2}{9} , P ( \{ (B, B) \} ) = \frac{1}{9} .
+	\end{align*}
+\item We see that $A = \{ (A, A) , (A, B) , (B, A) \}$. Therefore,
+	\begin{align*}
+	P (A) = P ( \{ (A, A) \} ) + P (\{ (A, B) \} ) + P (\{ (B, A) \}) = \frac{4}{9} + \frac{4}{9} = \frac{8}{9} \approx 0.89 . \tag*{$\triangle$}
+	\end{align*}
+\end{enumerate}
+\end{sol*}
+
+\begin{theorem}
+Given the probability space $(S, 2^S , P )$ is a probability space, where $S$ is finite, there exists $p_1$, $p_2$, $\ldots$, $p_N$, with $N = |S|$, such that
+	\begin{align*}
+	P (A_i) = p_i
+	\end{align*}
+for every atomic even $A_i$, $i = 1 , 2, \ldots , N$ and
+	\begin{align*}
+	p_1 + p_2 + \cdots + p_N = 1 .
+	\end{align*}
+\end{theorem}
+\begin{proof}
+Let $S = \{ s_1 , s_2, \ldots , s_N \}$. Therefore, each atomic event is $A_i = \{ s_i \}$, for $i = 1 , 2, \ldots , N$. From the properties of a probability, we know that $p_i := P (A_i)$ is between $0$ and $1$, for $i = 1 , 2, \ldots , N$. Since $\cup_{i = 1}^N A_i = S$, $A_i \cap A_j = \varnothing$ when $i \neq j$ and $P (S) = 1$, we obtain the desire conclusion.
+\end{proof}
+
+\underline{\textbf{Note:}} 
+\begin{itemize}
+\item The converse is also true. Given $N \geq 1$ numbers $p_1$, $p_2$, $\ldots$, $p_N$ between $0$ and $1$, there is a finite probability space $(S , \mathcal{A} , P )$ such that $|S| = N$ and $P (A_i ) = p_i$, for every atomic event $A_i$, $i = 1 , 2, \ldots , N$. Moreover, $\mathcal{A}$ can be taken to be the family of all subsets of $S$.
+\item This means, in the case of a finite sample space $S$, it is not necessary to construct explicitly the probability space.
+\end{itemize}
+
+
+\section{Probability Space For Infinite Sample Spaces}
+%\addcontentsline{toc}{subsection}{\thesection \,\,\,\, Probability Space For Infinite Sample Spaces}
+
+\begin{example}
+A coin is tossed infinitely many times so that $S$ is the set of infinite strings of the letter t's (tail) and h's (head). For example, the string $hhthh\cdots$ means that the coin landed on head, head, tail, head, head, etc. Let $A_i$ be the event that the coin lands on head on the $i$-th toss. Then the event $A = \cup_{i = 1}^\infty A_i$ means the coin lands head for at least one toss.
+\end{example}
+
+In the previous example:
+	\begin{itemize}
+	\item If $A_1$, $A_2$, $\ldots$ are sets, then the new set $\cup_{i = 1}^\infty A_i$ is defined to be the set for which at least one element is in some $A_i$, that is 
+		\[
+			\cup_{i = 1}^\infty A_i = \{ x \in S \, : \, \exists i \text{ such that } x \in A_i \} .
+		\]
+	\item If $A_1$, $A_2$, $\ldots$ are sets, then the new set $\cap_{i = 1}^\infty A_i$ is defined to be the set of all common elements of every $A_i$, that is
+		\[
+			\cap_{i = 1}^\infty A_i = \{ x \in S \, : \, \forall i , \, x \in A_i \} .
+		\]
+	\end{itemize}
+
+For infinite sample space, the definition of an event space must be modified to allow infinite unions of events.
+
+\begin{definition}
+Let $S$ be a sample space and let $\mathcal{A}$ be a family of subsets of $S$. Then $\mathcal{A}$ is called an event space if
+	\begin{enumerate}[label=\alph*)]
+	\item $\varnothing \in \mathcal{A}$ (or $S \in \mathcal{A}$).
+	\item If $A$ is an event (so an element of $\mathcal{A}$), then $\overline{A}$ is also an event.
+	\item If $A_1$, $A_2$, $\ldots$ are events, then $\cup_{i = 1}^\infty A_i$ is also an event.
+	\end{enumerate}
+\end{definition}
+
+Therefore, for a function to be a probability measure, finite unions must be replaced by infinite unions.
+
+\begin{definition}
+Let $S$ be a sample space and let $\mathcal{A}$ be an event space. A function $P : \mathcal{A} \ra \mR$ is a probability measure if
+	\begin{enumerate}[label=\alph*)]
+	\item For any event $A$, $0 \leq P (A) \leq 1$;
+	\item $P (S) = 1$;
+	\item If $A_1$, $A_2$, $\ldots$ are mutually disjoint events (meaning that $A_i \cap A_j = \varnothing$, for $i \neq j$), then
+		\begin{align*}
+		P \Big( \bigcup_{i = 1}^\infty A_i \Big) = \sum_{i = 1}^\infty P (A_i ) .
+		\end{align*}
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+Let $S = \{ 1 , 2, 3, \ldots \}$ the set of natural numbers and let $\mathcal{A} = 2^S$. Let $p_1$, $p_2$, $\ldots$ be a sequence of numbers in $[0, 1]$ such that $\sum_{i = 1}^\infty p_i = 1$. Definite the function $P$ by
+	\begin{align*}
+	P (A) = \sum_{i \in A} p_i \quad (A \subset S ).
+	\end{align*}
+Then $P$ is a probability measure and $(S, \mathcal{A} , P )$ is a probability space. Examples of concrete $p_i$'s would be $p_i = \frac{1}{i (i + 1)}$.
+\end{example}
+
+\underline{\textbf{Note:}} 
+	\begin{itemize}
+		\item When $S$ is a discrete space, the family $2^S$ can be used to create a probability space $(S, 2^S , P)$, for some probability measure $P$.
+		\item The third axiom is called, in the literature, $\sigma$-additivity of the probability measure.
+	\end{itemize}
+
+\begin{theorem}\label{T:ProbBMinusA}
+If $A$ and $B$ are events from a probability space $(S, \mathcal{A} , P)$ and $A \subset B$, then $P (B \cap \overline{A}) = P (B) - P (A)$.
+\end{theorem}
+
+\textit{Proof.}
+Assume that $(S, \mathcal{A} , P)$ is a probability space and that $A$ and $B$ are two events with $A \subset B$. Then $B = A \cup (B \cap \overline{B})$ and $A \cap B \cap \overline{A} = \varnothing$. Therefore, with $A_1 = A$, $A_2 = B \cap \overline{A}$, and $A_i = \varnothing$, for $i = 3, 4, \ldots$, we obtain
+	\begin{align}
+	P (B) = P (A) + P (B \cap \overline{A}) \quad \Rightarrow \quad P (B) - P (A) = P (B \cap \overline{A}) . \tag*{$\square$} 
+	\end{align}
+
+\subsubsection{Continuity of Probability Measures}
+
+\begin{theorem}
+Let $(S , \mathcal{A} , P )$ be a probability space. Let $A_1$, $A_2$, $\ldots$ be events such that $A_i \subset A_{i + 1}$, for every $i \geq 1$. Then
+	\begin{align*}
+	P \Big( \bigcup_{i = 1}^\infty A_i \Big) = \lim_{n \ra \infty} P (A_n ) .
+	\end{align*}
+\end{theorem}
+\begin{proof}
+Define a list of events as followed: $B_1 = A_1$, $B_2 = A_2 \cap \overline{A}_1$, $B_3 = A_3 \cap \overline{A}_2$, $\ldots$, $B_i = A_i \cap \overline{A}_{i - 1}$, for $i \geq 2$. Then, $B_i \cap B_j = \varnothing$ for $i \neq j$ and
+	\begin{align*}
+	\bigcup_{i = 1}^\infty A_i = \bigcup_{i = 1}^\infty B_i .
+	\end{align*}
+Therefore,
+	\begin{align*}
+	P \Big( \bigcup_{i = 1}^\infty A_i \Big) = P \Big( \bigcup_{i = 1}^\infty B_i \Big) = \sum_{i = 1}^\infty P (B_i ) .
+	\end{align*}
+But $B_1 = A_1$ so that $P (B_1) = P (A_1)$ and $B_i = A_i \cap \overline{A}_{i-1}$ when $i \geq 2$, so that $P (B_i) = P (A_i) - P (A_{i -1})$, by Theorem \ref{T:ProbBMinusA}. From the definition of series:
+	\begin{align*}
+	\sum_{i = 1}^\infty P (B_i ) = \lim_{n \ra \infty} \sum_{i = 1}^n P (B_i) &= \lim_{n \ra \infty} P (B_1) + P (B_2) + \ldots + P (B_n ) \\
+	&= \lim_{n \ra \infty} P (A_1 ) + P (A_2) - P (A_1) + \ldots + P (A_n) - P (A_{n-1}) \\
+	&= \lim_{n \ra \infty} P (A_n) .
+	\end{align*}
+This ends the proof.
+\end{proof}
+
+\begin{comment}
+
+\section{Problems Set}
+
+\subsection*{Sample Space}
+
+	\begin{problem}
+	Write down the sample space for each of the following experiments and write if it is finite, discrete, or continuous.
+		\begin{enumerate}[label=\alph*)]
+		\item Number of committees of $2$ people taken from a group of $3$ people.
+		\item Number of people at the beach every day.
+		\item The magnitude of the wind speed on a given day.
+		\end{enumerate}
+	\end{problem}
+	
+	\subsection*{Event Space}
+	
+	\begin{problem}
+	Suppose three 2-sided fair coins are flipped. 
+		\begin{enumerate}[label=\alph*)]
+		\item Describe the sample space $S$ of this experiment.
+		\item Let $A = \{ \text{the first two tosses are head} \}$. Express $A$ in terms of atomic events.
+		\item Let $B = \{ \text{ the last two tosses are head} \}$. Express $A$ in terms of atomic events.
+		\item Find $A \cap B$ and interpret it.
+		\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	Let $S = \{ \epsdice{1} , \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}$ be the sample space from the experiment of tossing a $6$-faced die. Construct an event space with exactly $4$ events. Can you construct an event space with $6$ events?
+	\end{problem}
+	
+	\begin{problem} % This one
+	Let $S$ be the sample space and let $\mathcal{A}$ be an event space for $S$.
+		\begin{enumerate}[label=\alph*)]
+		\item If $A$, $B$ and $C$ are events, show that $A \cup B \cup C$ is an event.
+		\item If $A$ and $B$ are events, then show that $A \cap B$ is an event. \textit{[Hint: Use de Morgan's laws to rewrite $A \cap B$.]}
+		\end{enumerate}
+	\end{problem}
+	
+	\subsection*{Axioms of Probability}
+	\begin{problem}
+	 An unfair coin is tossed two times. So $S = \{ (h, h) , (h, t) , (t, t) , (t, h) \}$ and assume $\mathcal{A}$ is all the subsets of $S$. Assume that a probability measure $P$ is defined by
+		\begin{align*}
+		P ( \{ (h, h) \} ) = \frac{1}{9} , P ( \{ (h, t) \} ) = P ( \{ (t, h) \} = \frac{2}{9} , P ( \{ (t, t) \}) = \frac{4}{9} .
+		\end{align*}
+		\begin{enumerate}[label=\alph*)]
+		\item Let $A = \{ \text{The result of the first toss is tail} \}$. Find $P (A)$.
+		\item Let $A = \{ \text{At least one of the tosses is tail} \}$. Find $P (A)$.
+		\end{enumerate}
+	\end{problem}
+	 
+	\begin{problem} % This one
+	Let $(S, \mathcal{A} , P )$ be a probability space. Show the following assertions:
+		\begin{enumerate}[label=\alph*)]
+		\item If $A$, $B$, and $C$ are events such that $A \cap B = A \cap C = B \cap C = \varnothing$, then $P (A \cup B \cup C ) = P (A ) + P (B) + P (C)$.
+		\item If $A$ and $B$ are events with $A \subset B$, then $P (A) \leq P (B)$.
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+	Let $(S, \mathcal{A}, P )$ be a probability space. If $A$ and $B$ are two events, then show that
+	\begin{align*}
+	P (A \cup B) = P (A) + P (B) - P (A \cap B) .
+	\end{align*}
+	\end{problem}
+	
+	\begin{problem}
+	Let $S$ be a non-empty set and let $A$ be a non-empty subset of $S$ such that $A$ is not all of $S$. If $\mathcal{A} = \{ \varnothing , A , \overline{A} , S \}$, then show that all probability measures on $\mathcal{A}$ have the form
+	\begin{align*}
+	P (\varnothing ) = 0 & & P (A ) = p \\
+	P (\overline{A}) = 1 - p && P (S) = 1 
+	\end{align*}
+	for some number $p$ satisfying $0 \leq p \leq 1$.
+	\end{problem}
+	
+	\begin{problem}
+	Let $S = \{ s_1 , s_2 , \ldots , s_N \}$ be a sample space with exactly $N$ outcomes, and let $\mathcal{A}$ be the family of all subsets of $S$. Show that the function $P : \mathcal{A} \ra \mR$ defined by
+	\begin{align*}
+	P (A) = \frac{|A|}{N} \quad (A \text{ is an event})
+	\end{align*}
+	is a probability measure.
+	\end{problem}
+	
+	\subsection*{Computing Probabilities in the Finite Case}
+	
+	\begin{problem}
+	If two dice are rolled, what is the probability that the sum of the upturned faces will equal $7$?
+	\end{problem}
+	
+	\begin{problem}
+	If $3$ balls are ``randomly drawn'' from a bowl containing $6$ orange balls and $5$ blue balls, what is the probability that one of the drawn balls is orange and the other two blue?
+	\end{problem}
+
+	\begin{problem} % This one
+	A boxcar contains six complex electronic systems. Two of the six are to be randomly selected for thorough testing and then classified as defective or not defective. Two of the six systems are defective. Find the probability that one of the two systems selected will be defective.
+	\end{problem}
+	
+	\subsection*{Probability Space For Infinite Sample Spaces}
+	
+	\begin{problem}
+	Suppose we toss a fair coin infinitely many times. Let $B_i$ denote the event ``the $i$-th toss lands heads''. Interpret the event $B = \cup_{i = 1}^\infty B_i$ and find $P (B)$. \textit{[Hint: Use the continuity of probability measures.]}
+	\end{problem}
+
+	\begin{problem} % This one
+	Let $B_1$, $B_2$, $\ldots$ be the list of events defined in the proof of Theorem 1. Show that
+	\begin{align*}
+	\bigcup_{i = 1}^\infty A_i = \bigcup_{i = 1}^\infty B_i .
+	\end{align*}
+	\end{problem}
+
+
+
+
+	\section{Solutions to Problems Set}
+\setcounter{problem}{0} 
+
+\subsection*{Sample Space}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item If the people are labeled $a$, $b$ and $c$, then
+		\begin{align*}
+		S = \{ \{ a , b \} , \{ a , c \} , \{ b , c \} \} .
+		\end{align*}
+	\item $S = \{ 0 , 1, 2, \ldots \}$ (all non-negative integers). Here since the human population is constantly changing, it is safer to assume that any positive integer is plausible (hopefully not zero, otherwise it would mean the end of our kind...)
+	\item $S = [0, \infty )$ (only the magnitude of the wind speed).\hfill$\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\subsection*{Event Space}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item Let $h$ stands for ``head'' and $t$ stands for ``tail''. Then
+		\begin{align*}
+		S = \{ hhh, hht, hth, thh, htt, tht, tth, ttt \} .
+		\end{align*}
+	\item $A = \{ hhh \} \cup \{ hht \}$.
+	\item $B = \{ hhh \} \cup \{ thh \}$.
+	\item $A \cap B = \{ hhh \}$. This means all tosses were head.\hfill$\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	Here is an example of an event space with $4$ events:
+		\begin{align*}
+		\mathcal{A} = \{ \varnothing , \{ \epsdice{1} \} , \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}, S \} .
+		\end{align*}
+	The family $\mathcal{A}$ contains $\varnothing$. Also, $\overline{\varnothing} = S$ which is in $\mathcal{A}$, $\overline{\{ \epsdice{1} \}} = \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}$ which is in $\mathcal{A}$, $\overline{\{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}} = \{ \epsdice{1} \}$ which is in $\mathcal{A}$, and $\overline{S} = \varnothing$ which is in $\mathcal{A}$. Therefore, it satisfies property b). Finally, we can see that 
+		\begin{itemize}
+		\item $\varnothing \cup \{ \epsdice{1} \} = \epsdice{1}$, $\varnothing \cup \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} = \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}$ and $\varnothing \cup S = S$ are all in $\mathcal{A}$.
+		\item $\{ \epsdice{1} \} \cup \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} = S$ and $\{ \epsdice{1} \} \cup S = S$ are all in $\mathcal{A}$.
+		\item $\{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} \cup S = S$ is in $\mathcal{A}$. 
+		\end{itemize}
+	Therefore, it satisfies property c). Since $\mathcal{A}$ satisfies the requirements in the definition of an event space, it is an event space.
+	
+	Suppose that $\mathcal{A}$ contains six events, say
+		\begin{align*}
+		\mathcal{A} = \{ \varnothing , \{ \epsdice{1} \} , \{ \epsdice{2} \} , \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} , \{ \epsdice{1} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} , S \} .
+		\end{align*}
+	The family $\mathcal{A}$ cannot be an event space because it does not satisfy property c) of the definition of an event space. Indeed, if $A = \{ \epsdice{1} \}$ and $B = \{ \epsdice{2} \}$, then $A, B$ are events, but $A \cup B = \{ \epsdice{1} , \epsdice{2} \}$ is not an event because it does not belong to $\mathcal{A}$. \hfill$\triangle$
+	\end{problem}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item Since $A$ and $B$ are events, then $A \cup B$ is also an event (by b) in the definition). Since $A \cup B$ is an event and $C$ is an event, then $(A \cup B) \cup C$ is also an event (again by b) in the definition). 
+	\item Applying de Morgan's laws, we have $A \cap B = \overline{\overline{A} \cup \overline{B}}$. Since $A$ and $B$ are events, then $\overline{A} \cup \overline{B}$ is also an event (by b) and c) in the definition). Applying b) from the definition, we see that $\overline{ \overline{A} \cup \overline{B}}$ is an event. Therefore, $A \cap B$ is an event. \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\subsection*{Axioms of a Probability}
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item We have $A = \{ (t, h) , (t, t) \} = \{ (t, h) \} \cup \{ (t, t \}$. Since $\{ (t, h) \} \cap \{ (t, t) \} = \varnothing$, from the properties of a probability measure, we have
+		\begin{align*}
+		P (A) = P (\{ (t, h) \}) + P (\{ (t, t) \}) = \frac{2}{9} + \frac{4}{9} = \frac{2}{3} .
+		\end{align*}
+	\item We have $A = \{ (h, t) , (t, h) , (t, t) \}$. Using the properties of a probability measure twice, we get
+		\begin{align*}
+		P (A) = P (\{ (h, t) \}) + P (\{ (t, h) \}) + P (\{ (t, t) \}) = \frac{2}{9} + \frac{2}{9} + \frac{4}{9} = \frac{8}{9} . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item We have
+		\begin{align*}
+		(A \cup B) \cap C = (A \cap C) \cup (B \cap C) = \varnothing \cup \varnothing = \varnothing .
+		\end{align*}
+	Therefore, $A \cup B$ and $C$ are mutually exclusive and
+		\begin{align*}
+		P (A \cup B \cup C) = P (A \cup B ) + P (C) .
+		\end{align*}
+	Since $A$ and $B$ are mutually exclusive, we have $P (A \cup B) = P (A) + P (B)$. Therefore,
+		\begin{align*}
+		P (A \cup B \cup C) = P (A) + P (B) + P (C) .
+		\end{align*}
+	\item We have $B = A \cup (B \cap \overline{A})$. Therefore
+		\begin{align*}
+		A \cap (B \cap \overline{A}) = A \cap \overline{A} \cap B = \varnothing \cap B = \varnothing
+		\end{align*}
+	so that $A$ and $B \cap \overline{A}$ are mutually exclusive. From the properties of a probability measure, we have
+		\begin{align*}
+		P (B) = P (A) + P (B \cap \overline{A}) .
+		\end{align*}
+	Since $P (B \cap \overline{A}) \geq 0$, then 
+		\begin{align*}
+		P (A) \leq P (A) + P (B \cap \overline{A}) = P (B) . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+	We can rewrite $A \cup B$ as
+		\begin{align*}
+		A \cup B = (A \cap \overline{B}) \cup (A \cap B) \cup (\overline{A} \cap B ) .
+		\end{align*}
+	The three sets on the right hand-side are all mutually exclusive, so from b) in the Definition of a probability measure, we have
+		\begin{align*}
+		P (A \cup B) = P(A \cap \overline{B}) + P (A\cap B) + P (\overline{A} \cap B ) .
+		\end{align*}
+	However, $A = (A \cap \overline{B}) \cup (A \cap B)$ with $A \cap \overline{B} \cap A \cap B = \varnothing$, so that
+		\begin{align*}
+		P (A) = P (A \cap \overline{B}) + P (A \cap B)
+		\end{align*}
+	and similarly,
+		\begin{align*}
+		P (B) = P (\overline{A} \cap B) + P (A \cap B) .
+		\end{align*}
+	So, adding the last two quantities together and subtracting $P (A \cap B)$, we get
+		\begin{align*}
+		P (A) + P (B) - P (A \cap B) & = P (A \cap \overline{B}) + P (\overline{A} \cap B) + 2 P (A \cap B) - P (A \cap B) \\
+		&= P (A \cap \overline{B}) + P (\overline{A} \cap B) - P (A \cap B) . \tag*{$\triangle$}
+		\end{align*}		
+	\end{problem}
+
+	\begin{problem}
+	Let $P : \mathcal{A} \ra \mR$ be a probability measure. In particular, we have $P (S) = 1$. From Definition \ref{T:ProbBMinusA}, we also have $P (\varnothing ) = 0$. It remains to show that $P (A) = p$ and $P (\overline{A}) = 1 - p$, for some $0 \leq p \leq 1$. 
+	
+	Set $p = P (A)$ which is a number between $0$ and $1$ because $P (A)$ is between $0$ and $1$. Since $A \cap \overline{A} = \varnothing$, we have $P (A) + P (\overline{A}) = 1$ and therefore $P (\overline{A}) = 1 - p$. This completes the proof. \hfill$\triangle$
+	\end{problem}
+	
+	\begin{problem}
+	We will show that $P$ satisfies the three conditions of a probability measure.
+	\begin{enumerate}[label=\alph*)]
+	\item Let $A \subset S$. Since $|A| \leq |S| = N$, then $P (A) = |A| / N \leq 1$.
+	\item We have $|S| = N$, so that $P (S) = N / N = 1$.
+	\item Let $A \subset S$ and $B \subset S$ such that $A \cap B = \varnothing$. Since $A$ and $B$ are disjoint, we have $|A \cup B| = |A| + |B|$. Therefore,
+		\begin{align*}
+		P (A \cup B) = \frac{|A \cup B|}{N} = \frac{|A|}{N} + \frac{|B|}{N} = P (A) + P (B) .
+		\end{align*}
+	\end{enumerate}
+	Therefore, the three conditions in the definition of a probability measure are satisfied and $P$ as defined is indeed a probability measure.\hfill$\triangle$
+	\end{problem}
+	
+	\subsection*{Computing Probabilities in the Finite Case}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\Circled{\arabic*}]
+	\item The sample space $S$ has $36$ outcomes. The outcome is a pair of faces from a regular $6$-faced die. For example $(\epsdice{1} , \epsdice{2})$ belongs to $S$.
+	\item Assuming each outcome are equally likely, we have that each atomic event has probability $1/36$ of occuring.
+	\item Let $A$ denote the event ``the sum of the upturned faces equals $7$''. Then we have
+		\begin{align*}
+		A = \{ (\epsdice{1} , \epsdice{6}) , (\epsdice{2} , \epsdice{5}) , (\epsdice{3} , \epsdice{4}) , (\epsdice{4} , \epsdice{3}) , (\epsdice{5} , \epsdice{2}) , (\epsdice{6} , \epsdice{1}) \} .
+		\end{align*}
+	We have $|A| = 6$ and therefore $P (A) = \frac{6}{36} = \frac{1}{6}$. \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\Circled{\arabic*}]
+	\item If $o$ stands for the color orange and $b$ stands for the color blue, then the outcomes of $S$ are strings formed from the letters $o$ and $b$. For example, $oob$ is a possible outcome and it means the first and second balls are orange and the third ball is blue. The sample space is then
+		\begin{align*}
+		S = \{ ooo, oob, obo, boo, obb, bob, bbo, bbb \}
+		\end{align*}
+	which means $|S| = 8$.
+	\item The probability of getting an orange ball is $6/11$ and of getting a blue ball is $5/11$. Therefore,
+		\begin{align*}
+		P (\{ ooo \}) = \frac{216}{1331} , \quad  P (\{ oob \}) = P ( \{ obo \}) = P (\{ boo \}) = \frac{180}{1331}, \\
+		 P (\{ obb \}) = P (\{ bob \}) = P (\{ bbo \}) = \frac{150}{1331} , \quad P (\{ bbb \}) = \frac{125}{1331} .
+		\end{align*}
+	\item Let $A$ denote the event ``one ball is orange and two balls are blue''. Then, we have $A = \{ obb , bob, bbo \}$. Therefore, we get
+		\begin{align*}
+		P (A) = P (\{ obb \}) + P (\{ bob \}) + P (\{ bbo \}) = 3 \times \frac{150}{1331} = \frac{450}{1331} \approx 0.3381 . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\Circled{\arabic*}]
+	\item Let $d_1$, $d_2$ be the defective systems and let $n_1$, $n_2$, $n_3$, $n_4$ be the non defective systems. An example of a possible outcome is $\{ d_1 , n_2 \}$ which means one of the systems selected is defective and the other is not. Let $S$ be the sample space. Then there are $\binom{6}{2} = 15$ combinations of two systems out of the six. Therefore, $|S| = 15$.
+	\item Each system are equally likely, so $P (A) = \frac{1}{15}$, where $A$ is an atomic event. Hence, for any event $A$, we have $P (A) = |A| / 15$.
+	\item Let $A$ be the event ``one of the two systems is defective''. There are $2$ defective system and then $4$ non defective systems. Therefore, $|A| = 2 \times 4 = 8$ possible outcomes in $A$ and 
+		\begin{align*}
+		P (A) = \frac{8}{15} . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}
+	\end{problem}
+	
+	\subsection*{Probability Space for Infinite Sample Spaces}
+	
+	\begin{problem}
+	The event $B$ can be interpreted in the following way: at least one toss lands heads. Let $A_n := \cup_{i = 1}^n B_i$. It is easier to compute the probability of the complement $\overline{A}_n$. The event $\overline{A}_n$ can be interpreted as ``all tosses lands tails''. Since there is $n$ tosses and each of them has a probability $1/2$ of landing tails, we see that $P (\overline{A}_n) = (1/2)^n$. Therefore, $P (A_n) = 1 - (1/2)^n$. Since $A_n \subset A_{n + 1}$ and $B = \cup_{n = 1}^\infty A_n$, using the continuity of probability measures, we see that
+		\begin{align*}
+		P (B) = \lim_{n \ra \infty} P (A_n) = \lim_{n \ra \infty} 1 - (1/2)^n = 1 . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+
+	\begin{problem}
+	By definition $B_1 = A_1$ and $B_i = A_{i} \cap \overline{B}_{i - 1}$, for $i \geq 2$. Using the property that if $C$ and $D$ are two subsets of a bigger set $S$, then $C \cap D \subset C$, we see that $B_i \subset A_i$ for every $i \geq 1$. If an outcome $x$ is in $\cup_{i = 1}^\infty B_i$, then it should be in at least one $B_i$. But $B_i \subset A_i$, so the outcome $x$ should be in $A_i$. Therefore the outcome should be in $\cup_{i = 1}^\infty A_i$.
+	
+	On the other hand, if an outcome $x$ is in $\cup_{i = 1}^\infty A_i$, then it should be in one $A_i$ for some $i \geq 1$. If $i = 1$, then $A_1 = B_1$ and $x$ belongs to $B_1$. In this case, $x$ belongs to $\cup_{i = 1}^\infty B_i$. Assume $i \geq 2$. Then Either $x$ belongs to $A_{i-1}$ or $x$ belongs to $A_{i} \cap \overline{A}_{i-1}$ because $A_{i-1} \subset A_{i}$. If $x$ belongs to $A_{i} \cap \overline{A}_{i=1}$, then $x$ belongs to $B_{i}$ and so $x$ belongs to $\cup_{i = 1}^\infty B_i$ in this case. Otherwise, $x$ belongs to $A_{i-1}$. If $i -1 = 1$, then we're done because $x$ belongs to $B_1$. Otherwise, split again in two cases: either $x$ belongs to $A_{i - 2}$ or $x$ belongs to $A_{i - 1} \cap \overline{A}_{i -2}$. If $x$ belongs to $A_{i - 1} \cap \overline{A}_{i - 2}$, then $x$ belongs to $B_{i - 1}$ and therefore in $\cup_{i = 1}^\infty B_i$. Otherwise, $x$ belongs to $A_{i - 2}$. If $i - 2 = 1$, then we are done because $A_{i - 2} = B_1$. Otherwise, split again in two cases: either $x$ belongs to $A_{i - 3}$ or $x$ belongs to $A_{i - 2} \cap \overline{A}_{i - 3}$. This process will eventually terminate because $i$ is a finite integer. Therefore, the outcome $x$ will be in some $B_j$, for some $j \geq 1$ and this means it will belong to $\cup_{j = 1}^\infty B_j$. \hfill$\triangle$
+	\end{problem}
+
+\end{comment}

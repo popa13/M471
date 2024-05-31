@@ -1,0 +1,91 @@
+\input{../../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Solutions to Problems} \\
+Chapter F
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{6}
+
+\subsection{Moments}
+
+\begin{problem}
+From the definition of the $k$-th moment, we compute
+    \[
+        \mathrm{Exp} (X^k) = \int_{-\infty}^\infty x^k f_X (x) \, dx = \int_a^b \frac{x^k}{b - a} \, dx .
+    \]
+After integrating $x^k$, we obtain the answer:
+    \[
+        \mathrm{Exp} (X^k) = \frac{b^{k + 1} - a^{k + 1}}{(k + 1) (b - a)} . \tag*{$\triangle$}
+    \]
+\end{problem}
+
+\subsection{Moment Generating Function}
+
+\begin{problem}
+The moment generating function of the normal distribution is
+    \[
+        M_X (t) = e^{\mu_X t + \frac{1}{2}\sigma_X^2 t^2} .
+    \]
+Since $\mu_X = 0$ and $\sigma_X^2 = 1$, we then get $M_X (t) = e^{t^2/2}$. From Theorem F.1, we know that
+    \[
+        \mathrm{Exp} (X^3 ) = M_X^{(3)} (0) .
+    \]
+We have
+    \[
+        M_X^{(3)} (t) = e^{t^2/2} t (t^2 + 3) \quad \Rightarrow \quad \mathrm{Exp} (X^3) = 0 .\tag*{$\triangle$}
+    \]
+\end{problem}
+
+\begin{problem}
+We will identify the moment generating function of $aX + b$. From the definition of the moment generating function, we have
+    \[  
+        M_{aX + b} (t) = \mathrm{Exp} (e^{t(aX + b)}) = e^{tb} \mathrm{Exp} (e^{taX}) = e^{tb} M_X (at ) .
+    \]
+Since $X \sim N (\mu_X , \sigma_X )$, we know that $M_X (t) = e^{\mu_X t + \frac{1}{2} \sigma_X^2 t^2}$. Substituting this into the equation for $M_{aX + b} (t)$, we find that
+    \[
+        M_{aX + b} (t) = e^{tb} e^{\mu_X at + \frac{1}{2} \sigma_X^2 a^2 t^2} = e^{(b + \mu_X a) t + \frac{1}{2} \sigma_X^2 a^2 t^2} .
+    \]
+The moment generating function of $aX + b$ is then the moment generating function of a normal distribution with average $b + \mu_X a$ and variance $\sigma_X^2 a^2$. Hence, $aX + b \sim N (b + \mu_X a , \sigma_X^2 a^2 )$. \hfill $\triangle$
+\end{problem}
+
+\begin{problem}
+    \begin{enumerate}[label=\alph*)]
+        \item Since $X$ is an exponential distribution and $\lambda = 1/\theta$, we find that
+            \[
+                M_X (t) = \frac{1/\theta}{1/\theta - t} = \frac{1}{1 - \theta t} , 
+            \]
+        for $t < 1/\theta$.
+        \item We know that
+            \[
+                \mathrm{Exp} (X) = M'_X (0) \quad \text{ and } \quad \mathrm{Var} (X) = \mathrm{Exp} (X^2) - (\mathrm{Exp} (X))^2 = M''_X (0) - (M'_X(0))^2 .
+            \]
+        We compute
+            \[
+                M_X' (t) = \frac{\theta}{(1 - \theta t)^2} \quad \text{ and } \quad M_X'' (t) = \frac{2\theta^2}{(1 - \theta t)^{3}}
+            \]
+        Hence
+            \[
+                \mathrm{Exp} (X) = \frac{\theta}{(1 - \theta (0))^2} = \theta
+            \]
+        and
+            \[
+                \mathrm{Var} (X) = \frac{2\theta^2}{(1 - \theta (0))^3} - (\theta)^2 = \theta^2 . \tag*{$\triangle$}
+            \]
+    \end{enumerate}
+\end{problem}
+
+\end{document}

@@ -1,0 +1,222 @@
+\input{../../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.2\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.55\textwidth}
+\centering
+\textsc{Solutions In-Class Problems Set} \\
+Chapter A
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.2\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{1}
+
+\subsection{Sample Space}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item If the people are labeled $a$, $b$ and $c$, then
+		\begin{align*}
+		S = \{ \{ a , b \} , \{ a , c \} , \{ b , c \} \} .
+		\end{align*}
+	\item $S = \{ 0 , 1, 2, \ldots \}$ (all non-negative integers). Here since the human population is constantly changing, it is safer to assume that any positive integer is plausible (hopefully not zero, otherwise it would mean the end of our kind...)
+	\item $S = [0, \infty )$ (only the magnitude of the wind speed).\hfill$\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\subsection{Event Space}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item Let $h$ stands for ``head'' and $t$ stands for ``tail''. Then
+		\begin{align*}
+		S = \{ hhh, hht, hth, thh, htt, tht, tth, ttt \} .
+		\end{align*}
+	\item $A = \{ hhh \} \cup \{ hht \}$.
+	\item $B = \{ hhh \} \cup \{ thh \}$.
+	\item $A \cap B = \{ hhh \}$. This means all tosses were head.\hfill$\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	Here is an example of an event space with $4$ events:
+		\begin{align*}
+		\mathcal{A} = \{ \varnothing , \{ \epsdice{1} \} , \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}, S \} .
+		\end{align*}
+	The family $\mathcal{A}$ contains $\varnothing$. Also, $\overline{\varnothing} = S$ which is in $\mathcal{A}$, $\overline{\{ \epsdice{1} \}} = \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}$ which is in $\mathcal{A}$, $\overline{\{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}} = \{ \epsdice{1} \}$ which is in $\mathcal{A}$, and $\overline{S} = \varnothing$ which is in $\mathcal{A}$. Therefore, it satisfies property b). Finally, we can see that 
+		\begin{itemize}
+		\item $\varnothing \cup \{ \epsdice{1} \} = \epsdice{1}$, $\varnothing \cup \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} = \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}$ and $\varnothing \cup S = S$ are all in $\mathcal{A}$.
+		\item $\{ \epsdice{1} \} \cup \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} = S$ and $\{ \epsdice{1} \} \cup S = S$ are all in $\mathcal{A}$.
+		\item $\{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} \cup S = S$ is in $\mathcal{A}$. 
+		\end{itemize}
+	Therefore, it satisfies property c). Since $\mathcal{A}$ satisfies the requirements in the definition of an event space, it is an event space.
+	
+	Suppose that $\mathcal{A}$ contains six events, say
+		\begin{align*}
+		\mathcal{A} = \{ \varnothing , \{ \epsdice{1} \} , \{ \epsdice{2} \} , \{ \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} , \{ \epsdice{1} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \} , S \} .
+		\end{align*}
+	The family $\mathcal{A}$ cannot be an event space because it does not satisfy property c) of the definition of an event space. Indeed, if $A = \{ \epsdice{1} \}$ and $B = \{ \epsdice{2} \}$, then $A, B$ are events, but $A \cup B = \{ \epsdice{1} , \epsdice{2} \}$ is not an event because it does not belong to $\mathcal{A}$. \hfill$\triangle$
+	\end{problem}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item Since $A$ and $B$ are events, then $A \cup B$ is also an event (by b) in the definition). Since $A \cup B$ is an event and $C$ is an event, then $(A \cup B) \cup C$ is also an event (again by b) in the definition). 
+	\item Applying de Morgan's laws, we have $A \cap B = \overline{\overline{A} \cup \overline{B}}$. Since $A$ and $B$ are events, then $\overline{A} \cup \overline{B}$ is also an event (by b) and c) in the definition). Applying b) from the definition, we see that $\overline{ \overline{A} \cup \overline{B}}$ is an event. Therefore, $A \cap B$ is an event. \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\subsection{Axioms of a Probability}
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item We have $A = \{ (t, h) , (t, t) \} = \{ (t, h) \} \cup \{ (t, t \}$. Since $\{ (t, h) \} \cap \{ (t, t) \} = \varnothing$, from the properties of a probability measure, we have
+		\begin{align*}
+		P (A) = P (\{ (t, h) \}) + P (\{ (t, t) \}) = \frac{2}{9} + \frac{4}{9} = \frac{2}{3} .
+		\end{align*}
+	\item We have $A = \{ (h, t) , (t, h) , (t, t) \}$. Using the properties of a probability measure twice, we get
+		\begin{align*}
+		P (A) = P (\{ (h, t) \}) + P (\{ (t, h) \}) + P (\{ (t, t) \}) = \frac{2}{9} + \frac{2}{9} + \frac{4}{9} = \frac{8}{9} . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item We have
+		\begin{align*}
+		(A \cup B) \cap C = (A \cap C) \cup (B \cap C) = \varnothing \cup \varnothing = \varnothing .
+		\end{align*}
+	Therefore, $A \cup B$ and $C$ are mutually exclusive and
+		\begin{align*}
+		P (A \cup B \cup C) = P (A \cup B ) + P (C) .
+		\end{align*}
+	Since $A$ and $B$ are mutually exclusive, we have $P (A \cup B) = P (A) + P (B)$. Therefore,
+		\begin{align*}
+		P (A \cup B \cup C) = P (A) + P (B) + P (C) .
+		\end{align*}
+	\item We have $B = A \cup (B \cap \overline{A})$. Therefore
+		\begin{align*}
+		A \cap (B \cap \overline{A}) = A \cap \overline{A} \cap B = \varnothing \cap B = \varnothing
+		\end{align*}
+	so that $A$ and $B \cap \overline{A}$ are mutually exclusive. From the properties of a probability measure, we have
+		\begin{align*}
+		P (B) = P (A) + P (B \cap \overline{A}) .
+		\end{align*}
+	Since $P (B \cap \overline{A}) \geq 0$, then 
+		\begin{align*}
+		P (A) \leq P (A) + P (B \cap \overline{A}) = P (B) . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+	We can rewrite $A \cup B$ as
+		\begin{align*}
+		A \cup B = (A \cap \overline{B}) \cup (A \cap B) \cup (\overline{A} \cap B ) .
+		\end{align*}
+	The three sets on the right hand-side are all mutually exclusive, so from b) in the Definition of a probability measure, we have
+		\begin{align*}
+		P (A \cup B) = P(A \cap \overline{B}) + P (A\cap B) + P (\overline{A} \cap B ) .
+		\end{align*}
+	However, $A = (A \cap \overline{B}) \cup (A \cap B)$ with $A \cap \overline{B} \cap A \cap B = \varnothing$, so that
+		\begin{align*}
+		P (A) = P (A \cap \overline{B}) + P (A \cap B)
+		\end{align*}
+	and similarly,
+		\begin{align*}
+		P (B) = P (\overline{A} \cap B) + P (A \cap B) .
+		\end{align*}
+	So, adding the last two quantities together and subtracting $P (A \cap B)$, we get
+		\begin{align*}
+		P (A) + P (B) - P (A \cap B) & = P (A \cap \overline{B}) + P (\overline{A} \cap B) + 2 P (A \cap B) - P (A \cap B) \\
+		&= P (A \cap \overline{B}) + P (\overline{A} \cap B) - P (A \cap B) . \tag*{$\triangle$}
+		\end{align*}		
+	\end{problem}
+
+	\begin{problem}
+	Let $P : \mathcal{A} \ra \mR$ be a probability measure. In particular, we have $P (S) = 1$. From Definition \ref{T:ProbBMinusA}, we also have $P (\varnothing ) = 0$. It remains to show that $P (A) = p$ and $P (\overline{A}) = 1 - p$, for some $0 \leq p \leq 1$. 
+	
+	Set $p = P (A)$ which is a number between $0$ and $1$ because $P (A)$ is between $0$ and $1$. Since $A \cap \overline{A} = \varnothing$, we have $P (A) + P (\overline{A}) = 1$ and therefore $P (\overline{A}) = 1 - p$. This completes the proof. \hfill$\triangle$
+	\end{problem}
+	
+	\begin{problem}
+	We will show that $P$ satisfies the three conditions of a probability measure.
+	\begin{enumerate}[label=\alph*)]
+	\item Let $A \subset S$. Since $|A| \leq |S| = N$, then $P (A) = |A| / N \leq 1$.
+	\item We have $|S| = N$, so that $P (S) = N / N = 1$.
+	\item Let $A \subset S$ and $B \subset S$ such that $A \cap B = \varnothing$. Since $A$ and $B$ are disjoint, we have $|A \cup B| = |A| + |B|$. Therefore,
+		\begin{align*}
+		P (A \cup B) = \frac{|A \cup B|}{N} = \frac{|A|}{N} + \frac{|B|}{N} = P (A) + P (B) .
+		\end{align*}
+	\end{enumerate}
+	Therefore, the three conditions in the definition of a probability measure are satisfied and $P$ as defined is indeed a probability measure.\hfill$\triangle$
+	\end{problem}
+	
+	\subsection{Computing Probabilities in the Finite Case}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\Circled{\arabic*}]
+	\item The sample space $S$ has $36$ outcomes. The outcome is a pair of faces from a regular $6$-faced die. For example $(\epsdice{1} , \epsdice{2})$ belongs to $S$.
+	\item Assuming each outcome are equally likely, we have that each atomic event has probability $1/36$ of occuring.
+	\item Let $A$ denote the event ``the sum of the upturned faces equals $7$''. Then we have
+		\begin{align*}
+		A = \{ (\epsdice{1} , \epsdice{6}) , (\epsdice{2} , \epsdice{5}) , (\epsdice{3} , \epsdice{4}) , (\epsdice{4} , \epsdice{3}) , (\epsdice{5} , \epsdice{2}) , (\epsdice{6} , \epsdice{1}) \} .
+		\end{align*}
+	We have $|A| = 6$ and therefore $P (A) = \frac{6}{36} = \frac{1}{6}$. \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\Circled{\arabic*}]
+	\item If $o$ stands for the color orange and $b$ stands for the color blue, then the outcomes of $S$ are strings formed from the letters $o$ and $b$. For example, $oob$ is a possible outcome and it means the first and second balls are orange and the third ball is blue. The sample space is then
+		\begin{align*}
+		S = \{ ooo, oob, obo, boo, obb, bob, bbo, bbb \}
+		\end{align*}
+	which means $|S| = 8$.
+	\item The probability of getting an orange ball is $6/11$ and of getting a blue ball is $5/11$. Therefore,
+		\begin{align*}
+		P (\{ ooo \}) = \frac{216}{1331} , \quad  P (\{ oob \}) = P ( \{ obo \}) = P (\{ boo \}) = \frac{180}{1331}, \\
+		 P (\{ obb \}) = P (\{ bob \}) = P (\{ bbo \}) = \frac{150}{1331} , \quad P (\{ bbb \}) = \frac{125}{1331} .
+		\end{align*}
+	\item Let $A$ denote the event ``one ball is orange and two balls are blue''. Then, we have $A = \{ obb , bob, bbo \}$. Therefore, we get
+		\begin{align*}
+		P (A) = P (\{ obb \}) + P (\{ bob \}) + P (\{ bbo \}) = 3 \times \frac{150}{1331} = \frac{450}{1331} \approx 0.3381 . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\Circled{\arabic*}]
+	\item Let $d_1$, $d_2$ be the defective systems and let $n_1$, $n_2$, $n_3$, $n_4$ be the non defective systems. An example of a possible outcome is $\{ d_1 , n_2 \}$ which means one of the systems selected is defective and the other is not. Let $S$ be the sample space. Then there are $\binom{6}{2} = 15$ combinations of two systems out of the six. Therefore, $|S| = 15$.
+	\item Each system are equally likely, so $P (A) = \frac{1}{15}$, where $A$ is an atomic event. Hence, for any event $A$, we have $P (A) = |A| / 15$.
+	\item Let $A$ be the event ``one of the two systems is defective''. There are $2$ defective system and then $4$ non defective systems. Therefore, $|A| = 2 \times 4 = 8$ possible outcomes in $A$ and 
+		\begin{align*}
+		P (A) = \frac{8}{15} . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}
+	\end{problem}
+	
+	\subsection{Probability Space for Infinite Sample Spaces}
+	
+	\begin{problem}
+	The event $B$ can be interpreted in the following way: at least one toss lands heads. Let $A_n := \cup_{i = 1}^n B_i$. It is easier to compute the probability of the complement $\overline{A}_n$. The event $\overline{A}_n$ can be interpreted as ``all tosses lands tails''. Since there is $n$ tosses and each of them has a probability $1/2$ of landing tails, we see that $P (\overline{A}_n) = (1/2)^n$. Therefore, $P (A_n) = 1 - (1/2)^n$. Since $A_n \subset A_{n + 1}$ and $B = \cup_{n = 1}^\infty A_n$, using the continuity of probability measures, we see that
+		\begin{align*}
+		P (B) = \lim_{n \ra \infty} P (A_n) = \lim_{n \ra \infty} 1 - (1/2)^n = 1 . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+
+	\begin{problem}
+	By definition $B_1 = A_1$ and $B_i = A_{i} \cap \overline{B}_{i - 1}$, for $i \geq 2$. Using the property that if $C$ and $D$ are two subsets of a bigger set $S$, then $C \cap D \subset C$, we see that $B_i \subset A_i$ for every $i \geq 1$. If an outcome $x$ is in $\cup_{i = 1}^\infty B_i$, then it should be in at least one $B_i$. But $B_i \subset A_i$, so the outcome $x$ should be in $A_i$. Therefore the outcome should be in $\cup_{i = 1}^\infty A_i$.
+	
+	On the other hand, if an outcome $x$ is in $\cup_{i = 1}^\infty A_i$, then it should be in one $A_i$ for some $i \geq 1$. If $i = 1$, then $A_1 = B_1$ and $x$ belongs to $B_1$. In this case, $x$ belongs to $\cup_{i = 1}^\infty B_i$. Assume $i \geq 2$. Then Either $x$ belongs to $A_{i-1}$ or $x$ belongs to $A_{i} \cap \overline{A}_{i-1}$ because $A_{i-1} \subset A_{i}$. If $x$ belongs to $A_{i} \cap \overline{A}_{i=1}$, then $x$ belongs to $B_{i}$ and so $x$ belongs to $\cup_{i = 1}^\infty B_i$ in this case. Otherwise, $x$ belongs to $A_{i-1}$. If $i -1 = 1$, then we're done because $x$ belongs to $B_1$. Otherwise, split again in two cases: either $x$ belongs to $A_{i - 2}$ or $x$ belongs to $A_{i - 1} \cap \overline{A}_{i -2}$. If $x$ belongs to $A_{i - 1} \cap \overline{A}_{i - 2}$, then $x$ belongs to $B_{i - 1}$ and therefore in $\cup_{i = 1}^\infty B_i$. Otherwise, $x$ belongs to $A_{i - 2}$. If $i - 2 = 1$, then we are done because $A_{i - 2} = B_1$. Otherwise, split again in two cases: either $x$ belongs to $A_{i - 3}$ or $x$ belongs to $A_{i - 2} \cap \overline{A}_{i - 3}$. This process will eventually terminate because $i$ is a finite integer. Therefore, the outcome $x$ will be in some $B_j$, for some $j \geq 1$ and this means it will belong to $\cup_{j = 1}^\infty B_j$. \hfill$\triangle$
+	\end{problem}
+
+\end{document}

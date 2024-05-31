@@ -1,0 +1,124 @@
+\input{../../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Problems Set} \\
+Appendix S
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{19}
+
+\subsection{Terminology}
+
+\begin{problem}
+Let $x \in A$. Then either $x = 1$ or $x = 2$. When $x = 1$, we see that $1 \in B$, so $x \in B$. When $x = 2$, we see that $2 \in B$, so that $x \in B$. Therefore, $\forall x \in A$, $x \in B$ and $A \subset B$.
+\end{problem}
+
+\begin{problem}
+The power set of $U$ is 
+\begin{align*}
+2^U &= \{ \varnothing , \{ 1 \} , \{ 2 \} , \{ 3 \} , \{4 \} , \{ 1 , 2\} , \{ 1 , 3\} , \{ 1 , 4 \} , \{ 2 , 3\} , \{ 2, 4\} , \{ 3 , 4 \} , \\
+& \phantom{=} \, \, \, \,  \{ 1 , 2, 3 \} , \{ 1 , 2, 4 \} , \{ 1 , 3 , 4, \} , \{ 2 , 3, 4, \} , U \} .
+\end{align*}
+Counting the number of subsets in the power set will give the total number of subsets of $U$. There are 16 items in the power set $2^U$ and $16 = 2^4$.
+
+In general, define a subset $A$ of $U$ as a function $f_A : U \ra \{ 0 , 1\}$ in the following way:
+    \begin{align*}
+    f_A (x) = \left\{ \begin{matrix}
+    1 & x \in A \\
+    0 & x \not\in A .\end{matrix} \right. 
+    \end{align*} 
+Then the number of subsets of $U$ will be determined by the number of functions from $U$ into $\{ 0 , 1\}$. There are $2^{\#U}$ such functions because for each element $x \in U$, you have two possible choice for $f_A (x)$.
+\end{problem}
+
+\begin{problem}
+By definition of $\varnothing \subset A$, we have to show that if $x \in \varnothing$, then $x \in A$. However, the assumption is always false and therefore the implication $x \in \varnothing \Rightarrow x \in A$ is always true. Thus $\varnothing \subset A$.
+\end{problem}
+
+\begin{problem}
+Let $x \in A$. Since $A \subset B$, then $x \in B$. Now, since $B \subset C$, then $x \in C$. The element $x$ was arbitrarily chosen, so $A \subset C$.
+\end{problem}
+
+\subsection{Operations With Sets}
+
+\begin{problem}
+Let $A$ and $B$ be two subsets of a universal set $U$.
+    \begin{enumerate}[label=\alph*)]
+        \item Let $x \in A \cap B$. By definition of intersection, we then have $x \in A$ and $x \in B$. In particular, we have $x \in A$. Since $x$ was arbitrary, then $A \cap B \subset A$.
+        \item Let $x \in A$. Then the disjunction statement ``$x \in A$ or $x \in B$'' is true because $x \in A$ is assume to be true. Therefore, $x \in A \cup B$ by definition of the union of two sets. Since $x$ was arbitrary, then $A \subset A \cup B$.
+        \item Assume that $A \subset B$. 
+        We start by showing that $A \cup B \subset B$. If $x \in A \cup B$, then $x \in A$ or $x \in B$ by definition of union. Two cases:
+            \begin{itemize}
+            \item If $x \in A$, then $x \in B$ because $A \subset B$.
+            \item If $x \in B$, then $x \in B$ (tautology).
+            \end{itemize}
+        In both cases, we obtain that $x \in B$. Since $x$ was arbitrary, we have $A \cup B \subset B$. We now show that $B \subset A \cup B$. From part b), we have $B \subset B \cup A$. Since $B \cup A = A \cup B$, we obtain $B \subset A \cup B$.
+
+        Since $A \cup B \subset B$ and $B \subset A \cup B$, we have $A \cup B = B$.
+        \item Assume that $A \subset B$. Let $x \in A \cap B$. Then $x \in A$ and $x \in B$. In particular $x \in A$. So $A \cap B \subset A$. Let $x \in A$. Then $x \in B$ also because $A \subset B$. Therefore $x \in A$ and $x \in B$ and so $x \in A \cap B$. So $A \subset A \cap B$. Since $A \cap B \subset A$ and $A \subset A \cap B$, we get $A \cap B = A$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $A$ and $B$ be two subsets of a universal set $U$.
+    \begin{enumerate}[label=\alph*)]
+        \item We have to show that $A \cup \overline{A} \subset U$ and $U \subset A \cup \overline{A}$. 
+
+        Let $x \in A \cup \overline{A}$. There are two cases because of the definition of union:
+            \begin{itemize}
+                \item If $x \in A$, then $x \in U$ because $A \subset U$.
+                \item If $x \in \overline{A}$, then $x \in U$ because $\overline{A} \subset U$.
+            \end{itemize}
+        Each case implies that $x \in U$. Therefore, $A \cup \overline{A} \subset U$.
+
+        Let $x \in U$. Then $x \in A$ or $x \not\in A$ which implies that $x \in A \cup \overline{A}$. Therefore $U \subset A \cup \overline{A}$. 
+        \item Assume that $A \subset B$. Let $x \in \overline{B}$. We will argue by contradiction. Suppose that $x \in A$. By assumption, this implies that $x \in B$. But $x \in \overline{B}$. In other words, $x \in B$ and $x \not\in B$. This is not possible and therefore $x \in \overline{A}$. [\textit{Note: You can also take the contrapositive for a direct proof! The contrapositive of $A \subset B$ is $x \not\in B \Rightarrow x \not\in A$ which is equivalent to $x \in \overline{B} \Rightarrow x \in \overline{A}$.}]
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+Since $\varnothing \subset A \cap B$, we only need to prove that $A \cap B \subset \varnothing$. We will argue by contradiction. For $A \cap B$ to not be a subset of $\varnothing$, it must contain at least one element. So, assume that $x \in A \cap B$. This implies that $x \in A$ and $x \in B$. By definition of $A$, $x$ is an odd integer. By definition of $B$, $x$ is also an even integer. But an integer can't be odd and even at the same time by Example L.10 and this is a contradiction. Therefore, $A \cap B \subset \varnothing$.
+
+Since $\varnothing \subset A \cap B$ and $A \cap B \subset \varnothing$, we conclude that $A \cap B = \varnothing$.
+\end{problem}
+
+\subsection{Important Laws For Set Algebra}
+
+\begin{problem}
+Let $A$, $B$, and $C$ be subsets of a universal set $U$.
+    \begin{enumerate}[label=\alph*)]
+        \item We have
+            \begin{align*}
+            x \in A \cap B & \iff x \in A \text{ and } x \in B \quad \text{[Definition of $A \cap B$]}\\
+            & \iff x \in B \text{ and } x \in A \quad \text{[Order of words don't matter]} \\
+            & \iff x \in B \cap A \quad \text{[Definition of $B \cap A$]}
+            \end{align*}
+        \item We start by showing that $A \cup (B \cap C) \subset (A \cup B) \cap (A \cup C)$. Let $x \in A \cup (B \cap C)$. Then by definition of the union, we have $x \in A$ or $x \in B \cap C$. The fact $x \in B \cap C$ implies that $x \in B$ and $x \in C$. In particular, $x \in B$. Combined with $x \in A$, we obtain $x \in A$ or $x \in B$. Similarly, we obtain $x \in A$ or $x \in C$. We can then create the conjunction of ``$x \in A$ or $x \in B$'' with ``$x \in A$ or $x \in C$'', that is $(x \in A \vee x \in B) \wedge (x \in A \vee x \in C)$. Using the definition of union, the last statement is rewritten as $(x \in A \cup B) \wedge (x \in A \cup C)$. From the definition of intersection, we can rewrite the last statement as $x \in (A \cup B) \cap (A \cup C)$. 
+
+        To show that $(A \cup B) \cap (A \cup C) \subset A \cup (B \cap C)$ is similar. We just start from the end of the previous paragraph and make our way back to the first sentence of the paragraph (so read the last paragraph from the last sentence to the first sentence to obtain the proof). 
+
+        Therefore, we just proved equality between the two sets.
+        \item We have
+            \begin{align*}
+             x \in \overline{A \cup B} & \iff x \not\in A \cup B \\
+             & \iff x \not\in A \wedge x \not\in B \quad \text{[Negation of $A \cup B$]} \\
+             & \iff x \in \overline{A} \wedge x \in \overline{B} \quad \text{[Definition of complement]} \\
+             & \iff x \in \overline{A} \cap \overline{B} \quad \text{[Definition of intersection]}.
+             \end{align*}
+        Therefore, $\overline{A \cup B} = \overline{A} \cap \overline{B}$.
+    \end{enumerate}
+\end{problem}
+
+\end{document}

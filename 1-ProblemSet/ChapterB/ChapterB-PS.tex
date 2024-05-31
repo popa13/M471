@@ -1,0 +1,102 @@
+\input{../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Problems Set} \\
+Chapter B
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{2}
+
+\subsection{Conditional Probabilities}
+	
+	\begin{problem}
+	Let $(S, \mathcal{A} , P )$ be a probability space. Suppose two events $A$ and $B$ are given such that $P (A) = 0.5$, $P(B) = 0.3$, and $P (A \cap B) = 0.1$. Find
+		\begin{enumerate}[label=\alph*)]
+		\begin{multicols}{3}
+		\item $P(A|B)$.
+		\item $P (A | A \cup B)$.
+		\item $P (A \cap B | A \cup B )$.
+		\end{multicols}
+		\end{enumerate}			
+	\end{problem}
+
+	\begin{problem}
+	A balanced die is tossed once. What is the probability the die lands on a $1$, given that an odd number was obtained?
+	\end{problem}
+
+	\begin{problem}
+	Two fair dice are rolled. What is the probability that at least one lands on 6 given that the dice land on different numbers?
+	\end{problem}
+
+	\begin{problem}
+	Let $(S , \mathcal{A} , P)$ be a probability space. Suppose that two events $A$ and $B$ are given such that $P (A) > 0$, $P (B) > 0$. Prove that if $P (A) < P (A | B)$, then $P (B) < P (B | A)$.
+	\end{problem}
+	
+	\begin{problem}
+	Suppose that $A \subset B$ and that $P (A) > 0$ and $P (B) > 0$. Show that $P (B | A) = 1$ and $P (A | B) = P (A) / P (B)$.
+	\end{problem}
+	
+	\begin{problem}
+	If $A$ and $B$ are mutually exclusive events and $P (B) > 0$, show that
+	\begin{align*}
+	P (A | A \cup B) = \frac{P (A)}{P (A) + P (B)} .
+	\end{align*}
+	\end{problem}
+	
+	\begin{problem}
+	Let $(S, \mathcal{A}, P )$ be a probability space. If $A, B$ are events with $P (A) > 0$ and $P (B) > 0$, then show that
+		\begin{align*}
+		\frac{P (A|B)}{P (\overline{A} | B)} = \frac{P (A)}{P (\overline{A})} \frac{P (B|A)}{P (B|\overline{A})} .
+		\end{align*}
+	\end{problem}
+	
+	\subsection{Bayes' Formula}
+	
+	\begin{problem}
+	A laboratory blood test is 95\% effective in detecting a certain disease when it is, in fact, present. However, the test also yields a ``false positive'' result for 1\% of the healthy people tested\footnote{That is, if a healthy person is tested, then, with probability 0.01, the test result will imply the person has the disease.}. If 0.5\% of the population actually have the disease, what is the probability a person has the disease given that the test result is positive?
+	\end{problem}
+
+	\begin{problem}
+	A total of 46\% of the voters in a certain city classify themselves as Independents, whereas 30\% classify themselves as Liberals and 24\% as Conservative. In a recent local election, 35\% of the Independents, 62\% of the Liberals, and 58\% of the Conservatives voted. A voter is chosen at random. Given that this person voted in the local election, what is the probability that the person is a) an Independent? b) a Liberal? c) a Conservative?
+	\end{problem}
+	
+	\begin{problem}
+	When a dice $x$ is tossed it lands on \epsdice{2} with probability $1/2$ and all the other outcomes are equally likely to happen. When a dice $y$ is tossed, it lands on \epsdice{3} with probability $1/2$ and all the other outcomes are equally likely to happen. Suppose that one of these dice is randomly chosen and then tossed. What is the probability that dice $x$ was tossed, if the die landed on \epsdice{2}?
+	\end{problem}
+	
+	\subsection{Independent Events}
+	
+	\begin{problem}
+	Three brands of coffee, $x$, $y$, and $z$, are to be ranked according to taste by a judge. Define the following events. $A$: ``Brand $x$ is preferred to $y$, $B$: ``Brand $x$ is ranked best'', $C$: ``Brand $x$ is ranked second best'' and $D$: ``Brand $x$ is ranked third best''. If the judge actually has no taste preference and randomly assigns ranks to the brands, is event $A$ independent of (a) event $B$? (b) event C? (c) event $D$?
+	\end{problem}
+	
+	\begin{problem}
+	Cards are dealt, one at a time, from a standard 52-card deck. If $A_i$ denotes the event ``the $i$-th card dealt is a spade''. Are $A_1$ and $A_2$ independent?
+	\end{problem}	
+
+	\begin{problem}
+	A system composed of $5$ separate components is said to be a parallel system if it functions when at least one of the components functions. For such a system, if component $i$, independent of other components, functions with probability $p_i$, $i = 1, 2, \ldots , 5$, what is the probability that the system functions?
+	\end{problem}
+	
+	\begin{problem}
+	Let $(S , \mathcal{A} , P )$ be a probability space. Prove that 
+		\begin{enumerate}[label=\alph*)]
+		\item If $A$ and $B$ are independent events with $0 < P (A), P (B) < 1$, then $A$ and $\overline{B}$ are independent.
+		\item If $A$ and $B$ are independent events with $0 < P (A) , P (B) < 1$, then $\overline{A}$ and $\overline{B}$ are independent.
+		\end{enumerate}
+	\end{problem}
+
+\end{document}

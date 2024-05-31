@@ -1,0 +1,278 @@
+
+\chapter{Moments}
+
+In this chapter, we assume that a probability space $(S, \mathcal{A}, P)$ is given.
+
+\section{Moments}
+
+\begin{definition}
+If $X$ is a random variable, then the $k$-th moment, with $k \geq 0$ an integer, is given by
+    \[
+        M_k := \mathrm{Exp} (X^k ) ,
+    \]
+if the expectation exists.
+\end{definition}
+
+When $X$ is a continuous random variable with pdf $f_X$, then
+    \[
+        M_k = \int_{-\infty}^\infty x^k f_X (x) \, dx .
+    \]
+
+\begin{example}
+If $X \sim U (a, b)$, then
+    \[
+        M_k = \int_a^b x^k \, dx = \frac{b^{k + 1} - a^{k + 1}}{k + 1} . \tag*{$\triangle$}
+    \]
+\end{example}
+
+\begin{definition}
+If $X$ is a random variable with mean $\mu_X$, then the $k$-th centered moment, with $k \geq 0$ an integer is given by
+    \[
+        CM_k := \mathrm{Exp} ( (X - \mu_X)^k) ,
+    \]
+if the expected value exists.
+\end{definition}
+
+The variance of $X$ is the second centered moment of a random variable. Notice also that the $\mathrm{Var} (X)$ can be rewritten as a polynomial expression involving only $M_k$:
+    \[
+        \mathrm{Var} (X) = \mathrm{Exp} (X^2) - (\mathrm{Exp} (X))^2 = M_2 - (M_1)^2 .
+    \]
+
+\section{Moment Generating Function}
+
+Notice that, if all the moments of a continuous random variable $X$ exist, then
+    \[
+        \sum_{k = 0}^\infty \frac{t^k}{k!} \mathrm{Exp} (X^k) ,
+    \]
+may exists for a certain value of $t > 0$ (and therefore for any value less than $t$). If this happens, then
+    \[
+        \sum_{k = 0}^\infty \frac{t^k}{k!} \mathrm{Exp} (X^k) = \int_{-\infty}^\infty \sum_{k = 0}^\infty \frac{t^k x^k}{k!} f_X (x) \, dx = \int_{-\infty}^\infty e^{tx} f_X (x) \, dx = \mathrm{Exp} (e^{tX}) .
+    \]
+The expectation on the right-hand side is called the \textbf{moment generating function} of $X$ and is denoted by $M_X (t)$. 
+
+\begin{example}
+If $X$ has the exponential distribution with parameter $\lambda$, then $f_X (x) = \lambda e^{-\lambda x}$ for $x \geq 0$ so that
+    \[
+        M_X (t) = \int_0^\infty e^{tx} \lambda e^{-\lambda x} \, dx .
+    \]
+If $t < \lambda$, then $(t - \lambda ) x < 0$ for any $x > 0$. Therefore, the above integral does exists with $t < \lambda$ and
+    \[
+        M_X (t) = \frac{\lambda}{\lambda - t} .
+    \]
+When $t > \lambda$, then
+    \[
+        M_X (t) = \infty .
+    \] 
+The moment generating function $M_X$ only exists when $t < \lambda$. \hfill $\triangle$
+\end{example}
+
+\begin{example}
+Ìf $X$ has the normal distribution with mean $0$ and variance $1$, then
+    \[
+        M_X (t) = \int_{-\infty}^\infty e^{tx} \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} x^2} \, dx = e^{\frac{1}{2} t^2} .
+    \]
+Using the fact that $e^t = 1 + t + t^2/2 + t^3/3! + \ldots$, we obtain
+    \[
+        M_X (t) = 1 + \frac{1}{2} t^2 + \frac{1}{8} t^4 + \frac{1}{8 \cdot 3!} t^6 + \ldots . \tag*{$\triangle$} 
+    \]
+\end{example}
+
+The moment generating function is really useful to find the moments of a random variable.
+
+\begin{theorem}\label{T:MomentsAndMomentGeneratingFunction}
+If $M_X (t)$ exists in a neighborhood of $0$, then, for $k = 1 , 2 , \ldots$
+    \[
+        \mathrm{Exp} (X^k) = M_X^{(k)} (0).
+    \]
+\end{theorem}
+
+\begin{example}
+Let $X$ be a random variable with the exponentital distribution of parameter $\lambda >0$. Compute $M_3$. 
+\end{example}
+
+\begin{sol*}
+From the previous examples, we have $M_X (t) = \frac{\lambda}{\lambda - t}$, for $t < \lambda$. We have
+    \[
+        M_X'(t) = \frac{\lambda}{(\lambda-t)^2}, \quad M_X'' (t) = \frac{2 \lambda}{(\lambda - t)^3} \quad \text{ and } \quad M_X^{(3)} (t) = \frac{6\lambda}{(\lambda - t)^4} .
+    \]
+Therefore, 
+    \[
+        M_3 = M_X^{(3)} (0) = \frac{6\lambda}{(\lambda - 0)^4} = 6 \lambda^{-3} . \tag*{$\triangle$}
+    \]
+\end{sol*}
+
+\begin{theorem}\label{Thm:MomentGeneratingOfSum}
+If $X$ and $Y$ are independent random variables, then $X + Y$ has moment generating function
+    \[
+        M_{X + Y} (t) = M_X (t) M_Y (t) .
+    \]
+\end{theorem}
+\begin{proof}
+Since $X$ and $Y$ are independent, we have $f_{X, Y} (x, y) = f_X (x) f_Y (y)$. Hence, 
+    \begin{align*}
+        M_{X + Y} (t) = \mathrm{Exp} (e^{t (X + Y)}) &= \int_{-\infty}^\infty \int_{-\infty}^\infty e^{t (x + y)} f_{X, Y} (x, y) \, dx dy \\ 
+        &= \int_{-\infty}^\infty \int_{-\infty}^\infty e^{tx} f_X (x) e^{ty} f_Y (y) \, dx dy \\ 
+        &= \mathrm{Exp} (e^{tX}) \mathrm{Exp} (e^{tY}) . \qedhere
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+Let $X$ be a continuous random variable. Assume the generating function $M_X$ satisfies $M_X (t) = \mathrm{Exp} (e^{tX})$ for all $t$ with $-\delta < t \leq \delta$ and for some $\delta > 0$. Then
+    \begin{enumerate}[label=\alph*)]
+         \item There is a unique distribution with moment generating function $M_X$.
+         \item Furthermore, under these conditions, we have that $\mathrm{Exp} (X^k) < \infty$ for any $k = 1, 2, \ldots$ and
+            \[
+                M_X (t) = \sum_{k = 0}^\infty \frac{t^k}{k!} \mathrm{Exp} (X^k ) \quad |t| < \delta .
+            \]
+     \end{enumerate} 
+\end{theorem}
+
+\begin{example}
+Let $X$ and $Y$ be independent random variables, $X \sim N (\mu_X , \sigma_X )$ and $Y \sim N (\mu_Y , \sigma_Y )$. Show that their sum $Z = X + Y$ has the normal distribution with parameters $\mu_X + \mu_Y$ and $\sigma_X^2 + \sigma_Y^2$.
+\end{example}
+
+\begin{sol*}
+Let $z = (x - \mu_X )/ \sigma_X$, then
+    \begin{align*}
+        M_X (t) &= \int_{-\infty}^\infty e^{tx} \frac{1}{\sqrt{2\pi \sigma_X^2}} e^{-\frac{1}{2\sigma_X^2} (x - \mu_X)^2} \, dx \\ 
+        &= \int_{-\infty}^\infty e^{t (\sigma_X z + \mu_X)} \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} z^2} \, dz \\ 
+        &= e^{t \mu_X} \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}} e^{t \sigma_X z} e^{-\frac{1}{2} z^2} \, dz \\ 
+        &= e^{t \mu_X + \frac{1}{2} t^2 \sigma_X^2} \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} (z - t \sigma_X)^2} \, dz
+    \end{align*}
+and hence $M_X (t) = \exp (t \mu_X + \frac{1}{2} t^2 \sigma_X^2 )$. Similarly, we have $M_Y (t) = \exp (t \mu_Y + \frac{1}{2} t^2 \sigma_Y^2 )$. Therefore, by Theorem \ref{Thm:MomentGeneratingOfSum},
+    \[
+        M_{X + Y} (t) = M_X (t) M_Y (t) = \exp \Big(t (\mu_X + \mu_Y) + \frac{1}{2} t^2 (\sigma_X^2 + \sigma_Y^2 )\Big) .
+    \]
+By uniqueness of the moment generating function, we see that 
+    \begin{equation}
+        X + Y \sim N (\mu_x + \mu_Y , \sigma_X^2 + \sigma_Y^2 ).  \tag*{$\triangle$}
+    \end{equation}
+\end{sol*}
+
+\begin{comment}
+
+\section{Problems Set}
+
+\subsection*{Moments}
+
+\begin{problem}
+If $X$ is uniformly distributed on $(a, b)$, show that
+    \[
+        \mathrm{Exp} (X^k) = \frac{b^{k + 1} - a^{k + 1}}{(b - a) (k + 1)} \quad \text{ for } k = 1, 2, \ldots .
+    \]
+\end{problem}
+
+\subsection*{Moment Generating Function}
+
+\begin{problem}
+If $X$ has the normal distribution with mean $0$ and variance $1$, find $\mathrm{E} (X^3)$. 
+\end{problem}
+
+\begin{problem}
+Show that, if $X$ has a normal distribution, then so does $aX + b$, for any $a, b \in \mR$ with $a \neq 0$.
+\end{problem}
+
+%\begin{problem}
+%Identify the distribution of the random variables with the following moment-generating functions:
+%   \begin{enumerate}[label=\alph*)]
+%   \item $M (t) = (1 - 4t)^{-2}$.
+%   \item $M (t) = 1/ (1 - 3.2t)$.
+%   \item $M (t) = e^{-5t + 6t^2}$. 
+%   \end{enumerate}
+%\end{problem}
+
+\begin{problem}
+Suppose that the waiting time for the first customer to enter a retail shop after 9:00\textsc{am} is a random variable $X$ with an exponential density function given by
+    \[
+        f(x) = \left\{ \begin{matrix} (1/\theta ) e^{-x/\theta} & x > 0 , \\ 
+        0 & \text{ elsewhere.} \end{matrix} \right.
+    \]
+    \begin{enumerate}[label=\alph*)]
+    \item Find the moment-generating function of $X$.
+    \item Use the answer from part (a) to find $\mathrm{Exp} (X)$ and $\mathrm{Var} (X)$.
+    \end{enumerate}
+\end{problem}
+
+
+
+\section{Solutions to Problems Set}
+\setcounter{problem}{0} 
+
+\subsection*{Moments}
+
+\begin{problem}
+From the definition of the $k$-th moment, we compute
+    \[
+        \mathrm{Exp} (X^k) = \int_{-\infty}^\infty x^k f_X (x) \, dx = \int_a^b \frac{x^k}{b - a} \, dx .
+    \]
+After integrating $x^k$, we obtain the answer:
+    \[
+        \mathrm{Exp} (X^k) = \frac{b^{k + 1} - a^{k + 1}}{(k + 1) (b - a)} . \tag*{$\triangle$}
+    \]
+\end{problem}
+
+\subsection*{Moment Generating Function}
+
+\begin{problem}
+The moment generating function of the normal distribution is
+    \[
+        M_X (t) = e^{\mu_X t + \frac{1}{2}\sigma_X^2 t^2} .
+    \]
+Since $\mu_X = 0$ and $\sigma_X^2 = 1$, we then get $M_X (t) = e^{t^2/2}$. From Theorem \ref{T:MomentsAndMomentGeneratingFunction}, we know that
+    \[
+        \mathrm{Exp} (X^3 ) = M_X^{(3)} (0) .
+    \]
+We have
+    \[
+        M_X^{(3)} (t) = e^{t^2/2} t (t^2 + 3) \quad \Rightarrow \quad \mathrm{Exp} (X^3) = 0 .\tag*{$\triangle$}
+    \]
+\end{problem}
+
+\begin{problem}
+We will identify the moment generating function of $aX + b$. From the definition of the moment generating function, we have
+    \[  
+        M_{aX + b} (t) = \mathrm{Exp} (e^{t(aX + b)}) = e^{tb} \mathrm{Exp} (e^{taX}) = e^{tb} M_X (at ) .
+    \]
+Since $X \sim N (\mu_X , \sigma_X )$, we know that $M_X (t) = e^{\mu_X t + \frac{1}{2} \sigma_X^2 t^2}$. Substituting this into the equation for $M_{aX + b} (t)$, we find that
+    \[
+        M_{aX + b} (t) = e^{tb} e^{\mu_X at + \frac{1}{2} \sigma_X^2 a^2 t^2} = e^{(b + \mu_X a) t + \frac{1}{2} \sigma_X^2 a^2 t^2} .
+    \]
+The moment generating function of $aX + b$ is then the moment generating function of a normal distribution with average $b + \mu_X a$ and variance $\sigma_X^2 a^2$. Hence, $aX + b \sim N (b + \mu_X a , \sigma_X^2 a^2 )$. \hfill $\triangle$
+\end{problem}
+
+%\begin{problem}
+%Identify the distribution of the random variables with the following moment-generating functions:
+%   \begin{enumerate}[label=\alph*)]
+%   \item $M (t) = (1 - 4t)^{-2}$.
+%   \item $M (t) = 1/ (1 - 3.2t)$.
+%   \item $M (t) = e^{-5t + 6t^2}$. 
+%   \end{enumerate}
+%\end{problem}
+
+\begin{problem}
+    \begin{enumerate}[label=\alph*)]
+        \item Since $X$ is an exponential distribution and $\lambda = 1/\theta$, we find that
+            \[
+                M_X (t) = \frac{1/\theta}{1/\theta - t} = \frac{1}{1 - \theta t} , 
+            \]
+        for $t < 1/\theta$.
+        \item We know that
+            \[
+                \mathrm{Exp} (X) = M'_X (0) \quad \text{ and } \quad \mathrm{Var} (X) = \mathrm{Exp} (X^2) - (\mathrm{Exp} (X))^2 = M''_X (0) - (M'_X(0))^2 .
+            \]
+        We compute
+            \[
+                M_X' (t) = \frac{\theta}{(1 - \theta t)^2} \quad \text{ and } \quad M_X'' (t) = \frac{2\theta^2}{(1 - \theta t)^{3}}
+            \]
+        Hence
+            \[
+                \mathrm{Exp} (X) = \frac{\theta}{(1 - \theta (0))^2} = \theta
+            \]
+        and
+            \[
+                \mathrm{Var} (X) = \frac{2\theta^2}{(1 - \theta (0))^3} - (\theta)^2 = \theta^2 . \tag*{$\triangle$}
+            \]
+    \end{enumerate}
+\end{problem}
+
+\end{comment}

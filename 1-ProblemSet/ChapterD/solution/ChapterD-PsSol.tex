@@ -1,0 +1,287 @@
+\input{../../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Problems Set} \\
+Chapter D
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{4}
+
+\subsection{Distribution Function}
+
+\begin{problem}
+
+Let $\alpha$ be a number between $0$ and $1$. If $x_1 \leq x_2$, then
+    \[
+        F(x_1) = \alpha F_1(x_1) + (1 - \alpha ) F_2 (x_2) \leq \alpha F_1 (x_2) + (1 - \alpha ) F_2 (x) = F (x_2) .
+    \]
+Therefore, $F$ is inscreasing. We also have
+    \[
+        \lim_{x \ra \infty} F(x) = \lim_{x \ra \infty} \alpha F_1 (x) + (1 - \alpha ) F_2 (x) = \alpha \lim_{x \ra \infty} F_1 (x) + (1 - \alpha ) \lim_{x \ra \infty} F_2 (x) = \alpha (1) + (1 - \alpha ) (1) = 1 .
+    \]
+Therefore, $F$ is distribution function. \hfill $\square$
+\end{problem}
+
+\begin{problem}
+The values of $Y$ are always positive, so if $y < 0$, then $F_Y(y) = 0$. If $y \geq 0$, then $Y = X$ and therefore $F_Y (y) = F_X (y)$. Therefore, $F_Y = \max \{ 0 , F_X \}$. 
+\end{problem}
+
+\begin{problem}
+The total integral should be $1$. We have
+    \[
+        \int_{-\infty}^\infty e^{-|t|} \, dt = 2
+    \]
+so that
+    \[
+        2c = 1 \quad \Rightarrow \quad c = 1/2 . \tag*{$\square$}
+    \]
+\end{problem}
+
+\subsection{Continuous Random Variable}
+
+\begin{problem}
+For $x < 0$, we can differentiate and get
+    \[
+        f_X (x) = \frac{d}{dx} F_X (x) = \frac{d}{dx} \Big( \frac{1}{2 (1 + x^2 ) }\Big) = \frac{-x}{(1 + x^2)^2} .
+    \]
+For $x > 0$, we can differentiate and get
+    \[
+        f_X (x) = \frac{d}{dx} F_X (x) = \frac{d}{dx} \Big( \frac{1 + 2x^2}{2 (1 + x^2)} \Big) = \frac{x}{(1 + x^2)^2} .
+    \]
+At $x = 0$, $f_X(0)$ is not defined. \hfill $\square$
+\end{problem}
+
+\begin{problem}\label{Prob:FindDistroFunction}
+When $x < -1$, then $F_X (x) = 0$ because $f_X (x) = 0$. When $-1 \leq x < 1$, then
+    \[
+        F_X (x) = \int_{-1}^x \frac{2}{\pi (1 + t^2)} \, dt = \frac{2}{\pi} \arctan (x) + 1/2
+    \]
+When $x \geq 1$, then
+    \[
+        F_X (x) = \frac{2}{\pi} \arctan (1) + \frac{1}{2} = 1 .
+    \]
+Hence
+    \[
+        F_X (x) = \left\lbrace \begin{matrix} 0 & x < -1 \\ 
+        \frac{2}{\pi} \arctan (x) + \frac{1}{2} & -1 \leq x \leq 1 \\ 
+        1 & x > 1 . \end{matrix} \right. \tag*{$\square$}
+    \]
+\end{problem}
+
+\begin{problem}\label{Prob:FindDistroFunction2}
+We must have $\lim_{x \ra \infty} F_X (x) = 1$, and so
+    \[
+        c\int_0^1 x (x - 1) \, dx = 1 \iff -\frac{c}{6} = 1 .
+    \]
+Hence we must have $c = -6$. \hfill $\square$
+\end{problem}
+
+\subsection{Functions of Random Variables}
+
+\begin{problem}
+When $Y = g (X)$ and $g$ is increasing, then we use the formula
+    \[
+        f_Y (y) = f_X (g^{-1} (y)) \frac{d}{dy} (g^{-1} (y)) .
+    \]
+Since $X$ has the exponential distribution,
+    \[
+        f_Y (y) = \lambda e^{-\lambda g^{-1} (y)} \frac{d}{dy} (g^{-1} (y)) .
+    \]
+When $g$ is decreasing, then
+    \[
+        f_Y (y) = - \lambda e^{-\lambda g^{-1} (y)} \frac{d}{dy} (g^{-1} (y)) .
+    \]
+
+    \begin{enumerate}[label=\alph*)]
+        \item We have $g^{-1} (y) = (y - 5)/2$. Since $g$ is increasing, with $\frac{d}{dy} (g^{-1} (y)) = 1/2$, we obtain
+            \[
+                f_Y (y) = \frac{\lambda}{2} e^{-\frac{\lambda}{2} (y - 5)} .
+            \]
+        \item The inverse is found in the following way. Set $y = (1 + x)^{-1}$ and then
+            \[
+                y (1 + x) = 1 \iff y + yx = 1 \iff x = \frac{1 - y}{y} .
+            \]
+        Therefore $g^{-1} (y) = (1 - y)/y$. Since $g$ is decreasing, with $\frac{d}{dy} (g^{-1} (y)) = -1/(1-y)^2$, we obtain
+            \[
+                f_Y (y) = \frac{\lambda e^{-\frac{\lambda (1 - y)}{y}} (1 - y)}{y}. \tag*{$\square$}
+            \]
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+Since the range of $F$ is between $0$ and $1$, then $\im Y \in [0, 1]$ with each number between $0$ and $1$ being attained because of the continuity of $F$.
+
+Since $F$ is an increasing function, we can apply the formula to find the density function of $Y$. For $y \in [0, 1]$, we have
+    \[
+        f_Y (y) = f_X (F^{-1} (y)) \frac{d}{dy} (F^{-1} (y)) .
+    \]
+Since $X$ is a continuous random variable, we have 
+    \[
+        F(x) = \int_{-\infty}^x f_X (t) \, dt .
+    \]
+A formula for the derivative of the inverse in terms of the initial function $F$ is
+    \[
+        \frac{d}{dy} (F^{-1} (y)) = \frac{1}{F' (F^{-1} (y))} .
+    \]
+Since $F' (x) = f_X (x)$, we therefore obtain
+    \[
+        f_Y (y) = \frac{f_X (F^{-1} (y))}{f_X (F^{-1} (y))} = 1 .
+    \]
+Therefore, the density function of $Y$ is $1$ identically on $[0, 1]$. Thus, $Y$ has a uniform distribution on $[0, 1]$. \hfill $\square$
+\end{problem}
+
+\begin{problem}
+Set $g (x) = \frac{3x}{1 - x}$. Then, $g' (x) = \frac{1}{(1 - x)^2}$. The derivative is always positive, so $g$ is increasing. The density function of $Y$ is then given by the following formula:
+    \[
+        f_Y (y) = f_X (g^{-1} (y)) \frac{d}{dy} (g^{-1} (y)) .
+    \]
+After some calculations, we obtain
+    \[
+        g^{-1} (y) = \frac{y}{y + 3} \quad \text{ and } \quad \frac{d}{dy} (g^{-1} (y)) = \frac{3}{(3 + y)^2} .
+    \]
+Hence,
+    \[
+        f_Y (y) = f_X \Big( \frac{y}{y + 3} \Big) \frac{3}{(3 + y)^2} .
+    \]
+When $-3 < y < 0$, then $\frac{y}{y + 3} < 0$ because $y + 3 > 0$. Therefore $f_X (y/(y + 3)) = 0$. 
+
+If $y \geq 0$, then $0 \leq \frac{y}{y + 3} \leq 1$, because $y \leq y + 3$ and $y + 3$ is positive. Therefore, $f_X (y/(y +3)) = 1$ and then
+    \[
+        f_Y (y) = \frac{3}{(3 + y)^2} ,
+     \]
+when $y \geq 0$.
+
+If $y < -3$, then $y < y + 3$ implies that $1 > \frac{y + 3}{y}$ and therefore $\frac{y}{y + 3} > 1$. Therefore, $f_Y (y) = 0$. 
+
+Hence, we get
+    \[
+        f_Y (y) = \left\lbrace \begin{matrix} 0 & y < 0 \\ 
+        \frac{3}{(3 + y)^2} & y \geq 0 .
+        \end{matrix} \right.
+    \]
+
+We can now find the distribution of $Y$. When $y < 0$, $F_Y (y)= 0$ because $f_Y (y) = 0$. When $y \geq 0$, then
+    \[
+        F_Y (y) = \int_0^y \frac{3}{(3 + t)^2} \, dt = \left. \Big( \frac{-3}{3 + t} \Big) \right|_0^y = 1 - \frac{3}{3 + y} .
+    \]
+Notice that $F_Y (y) = \frac{y}{y + 3} = g^{-1} (y)$, when $y \geq 0$. \hfill $\square$
+\end{problem}
+
+\subsection{Expectation of Continuous Random Variables}
+
+\begin{problem}
+The expectation is
+    \begin{align*}
+        \mathrm{Exp} (X) &= \int_{-\infty}^\infty x f_X (x) \, dx \\ 
+        &= \int_{-1}^1 \frac{2x}{\pi (1 + x^2 )} \, dx \\ 
+        &= 0
+    \end{align*}
+because the function $\frac{2x}{\pi (1 + x^2 )}$ is an odd function. The expected value of $X$ is therefore $0$. \hfill $\square$ 
+\end{problem}
+
+\begin{problem}
+The expectation is
+    \[
+        \int_{-\infty}^\infty x f_X (x) \, dx = \int_0^1 -6 x^2 (x - 1) \, dx = \frac{1}{2} . 
+    \]
+The variance is
+    \[
+        \mathrm{Exp} (X^2) - (\mathrm{Exp} (X))^2 = \int_{-0}^1 -6 x^3 (x -1) \, \ dx - \frac{1}{4} = \frac{3}{10} - \frac{1}{4} = \frac{1}{20} .\tag*{$\square$}
+    \]
+\end{problem}
+
+\subsection{Other Examples of Continuous Random Variables}
+
+\begin{problem}
+    \begin{enumerate}[label=\alph*)]
+        \item We have $Z^2 < 1$ if and only if $-1 < Z < 1$. Therefore, 
+            \[
+                P (Z^2 < 1) = P (-1 < Z < 1 ) = P (Z < 1) - P (Z \leq -1) = P (Z \leq 1 ) - P (Z \leq -1).
+            \]
+        Using the table, 
+            \[
+                P (Z^2 < 1) = 0.84134 - 0.15866 = 0.68268 .
+            \]
+        \item Similar calculations:
+            \[
+                P (Z^2 < 3.84146) = P (Z < 1.96) - P (Z < -1.96) = 0.975 - 0.0025 = 0.950 . \tag*{$\square$}
+            \]
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+Define $Z = \frac{X - \mu}{0.3}$, so that $Z \sim N (0, 1)$. We want to know for which $\mu$, $P (X > 8) = 0.01$. Using $Z$, we want to find $\mu$ such that
+    \[
+        P \Big( Z > \frac{8 - \mu}{0.3} \Big) = 0.01  \iff P \Big( Z \leq \frac{8 - \mu}{0.3} \Big) = 0.99
+    \]
+The $z$-score corresponding to a probability of $0.1$ is $z = 2.325$. Therefore
+    \[
+        \frac{8 - \mu}{0.3} = 2.325 \iff \mu = 7.3025 . \tag*{$\square$}
+    \]
+\end{problem}
+
+\begin{problem}
+This is a little trick from Calculus IV. Let $I$ denote the integral we want to compute. Consider 
+    \[
+        I^2 = \Big( \int_{-\infty}^\infty e^{-x^2} dx \Big) \Big( \int_{-\infty}^\infty e^{-y^2} \, dy \Big) = \int_{-\infty}^\infty \int_{-\infty}^\infty e^{-x^2 - y^2} \, dy dx .
+    \]
+Let $R = \{ (x, y) \, : \, -\infty < x < \infty , -\infty < y < \infty \}$. Using polar coordinates, we see that $R = \{ (r, \theta ) \, : \, 0 \leq r < \infty , 0 \leq \theta \leq 2\pi \}$. Therefore,
+    \[
+        I^2 = \iint_R e^{-x^2 - y^2} \, dA = \int_0^{2\pi} \int_0^\infty r e^{-r^2} \, dr d\theta 
+    \]
+Using $u = r^2$, we see that
+    \[
+        \int_0^\infty re^{-r^2} \, dr = \frac{1}{2} \int_0^\infty e^{-u} \, du = \frac{1}{2} 
+    \]
+and hence
+    \[
+        I^2 = \pi \quad \Longrightarrow \quad I = \sqrt{\pi} . \tag*{$\square$}
+    \]
+\end{problem}
+
+\begin{problem}
+Here, we have $g (x) = e^{2x}$. Since it is an increasing function with $g^{-1} (y) = \frac{1}{2} \ln y$, using the formula, the density function of $Y$ is
+    \[
+        f_Y (y) = \frac{e^{-\frac{1}{4} (\ln (y))^2}}{2 \sqrt{2\pi} y} \quad (\text{for } y > 0) .
+    \]
+Therefore, the expected value is
+    \[
+        \mathrm{Exp} (Y) = \int_{-\infty}^\infty y f_Y (y) \, dy = \frac{1}{2 \sqrt{2\pi}} \int_0^\infty e^{-( \frac{\ln (y)}{2})^2} \, dy .
+    \]
+Let $u = \ln (y) / 2$, so that $du = \frac{1}{2y} \, dy$. This means
+    \[
+        \mathrm{Exp} (Y) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{-u^2}e^{2u} \, du = \frac{e}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{- (u - 1)^2} \, du = e . \tag*{$\square$}
+    \]
+\end{problem}
+
+\begin{problem}
+If $X$ has the exponential distribution, then
+    \[
+        F_X (x) = \int_0^x \lambda e^{-\lambda t} \, dt = 1 - e^{-\lambda x} \quad (x > 0 ) .
+    \]
+Since $a, b > 0$, notice that
+    \[
+        \{ X > a + b \} \cap \{ X > a \} = \{ X > a + b \} .
+    \]
+Therefore, by definition of the conditional probability,
+    \[
+        P (X > a + b | X > a ) = \frac{P (X > a + b)}{P (X > a )} = \frac{1 - (1 - e^{-\lambda (a + b)})}{1 - (1 - e^{-\lambda a})} = e^{-\lambda b} = P (X > b ) . \tag*{$\square$}
+    \]
+\end{problem}
+
+
+
+\end{document}

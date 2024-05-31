@@ -1,0 +1,77 @@
+\input{../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Problems Set} \\
+Appendix S
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{19}
+
+\subsection{Terminology}
+
+\begin{problem}
+Let $U = \{1 , 2, 3, 4, 5 \}$, $A = \{ 1 , 2 \}$, and $B = \{ 1 , 2, 3\}$. Show that $A \subset B$.
+\end{problem}
+
+\begin{problem}
+Let $U = \{ 1 , 2, 3, 4\}$. Show that $U$ has $2^4$ subsets. \underline{Bonus:} In general, show that if $U$ has a finite number of elements, then $U$ has $2^{(\#U)}$ subsets.
+\end{problem}
+
+\begin{problem}
+Show that if $A$ is a set, then $\varnothing \subset A$.
+\end{problem}
+
+\begin{problem}
+Let $A$, $B$, and $C$ be subsets of a universal set $U$. Show that if $A \subset B$ and $B \subset C$, then $A \subset C$.
+\end{problem}
+
+\subsection{Operations With Sets}
+
+\begin{problem}
+Let $A$ and $B$ be two subsets of a universal set $U$.
+    \begin{enumerate}[label=\alph*)]
+        \item Show that $A \cap B \subset A$.
+        \item Show that $A \subset A \cup B$.
+        \item Show that if $A \subset B$, then $A \cup B = B$.
+        \item Show that if $A \subset B$, then $A \cap B = A$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $A$ and $B$ be two subsets of a universal set $U$.
+    \begin{enumerate}[label=\alph*)]
+        \item Show that $A \cup \overline{A} = U$.
+        \item Show that if $A \subset B$, then $\overline{B} \subset \overline{A}$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $A = \{ n \, : \, n \text{ is an odd integer}\}$ and let $B = \{ n \, : \, n \text{ is an even integer}\}$. Show that $A \cap B = \varnothing$. \textit{[Hint: To prove $A \cap B \subset \varnothing$, use the method of proof by contradiction.]}
+\end{problem}
+
+\subsection{Important Laws For Set Algebra}
+
+\begin{problem}
+Let $A$, $B$, and $C$ be subsets of a universal set $U$.
+    \begin{enumerate}[label=\alph*)]
+        \item Prove that $A \cap B = B \cap A$.
+        \item Prove that $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+        \item $\overline{A \cup B} = \overline{A} \cap \overline{B}$.
+    \end{enumerate}
+\end{problem}
+
+
+\end{document}

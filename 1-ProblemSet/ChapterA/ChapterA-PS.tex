@@ -1,0 +1,130 @@
+\input{../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Problems Set} \\
+Chapter A
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{1}
+
+ \subsection{Sample Space}
+
+	\begin{problem}
+	Write down the sample space for each of the following experiments and write if it is finite, discrete, or continuous.
+		\begin{enumerate}[label=\alph*)]
+		\item Number of committees of $2$ people taken from a group of $3$ people.
+		\item Number of people at the beach every day.
+		\item The magnitude of the wind speed on a given day.
+		\end{enumerate}
+	\end{problem}
+	
+	\subsection{Event Space}
+	
+	\begin{problem}
+	Suppose three 2-sided fair coins are flipped. 
+		\begin{enumerate}[label=\alph*)]
+		\item Describe the sample space $S$ of this experiment.
+		\item Let $A = \{ \text{the first two tosses are head} \}$. Express $A$ in terms of atomic events.
+		\item Let $B = \{ \text{ the last two tosses are head} \}$. Express $A$ in terms of atomic events.
+		\item Find $A \cap B$ and interpret it.
+		\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	Let $S = \{ \epsdice{1} , \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}$ be the sample space from the experiment of tossing a $6$-faced die. Construct an event space with exactly $4$ events. Can you construct an event space with $6$ events?
+	\end{problem}
+	
+	\begin{problem} % This one
+	Let $S$ be the sample space and let $\mathcal{A}$ be an event space for $S$.
+		\begin{enumerate}[label=\alph*)]
+		\item If $A$, $B$ and $C$ are events, show that $A \cup B \cup C$ is an event.
+		\item If $A$ and $B$ are events, then show that $A \cap B$ is an event. \textit{[Hint: Use de Morgan's laws to rewrite $A \cap B$.]}
+		\end{enumerate}
+	\end{problem}
+	
+	\subsection{Axioms of Probability}
+	\begin{problem}
+	 An unfair coin is tossed two times. So $S = \{ (h, h) , (h, t) , (t, t) , (t, h) \}$ and assume $\mathcal{A}$ is all the subsets of $S$. Assume that a probability measure $P$ is defined by
+		\begin{align*}
+		P ( \{ (h, h) \} ) = \frac{1}{9} , P ( \{ (h, t) \} ) = P ( \{ (t, h) \} = \frac{2}{9} , P ( \{ (t, t) \}) = \frac{4}{9} .
+		\end{align*}
+		\begin{enumerate}[label=\alph*)]
+		\item Let $A = \{ \text{The result of the first toss is tail} \}$. Find $P (A)$.
+		\item Let $A = \{ \text{At least one of the tosses is tail} \}$. Find $P (A)$.
+		\end{enumerate}
+	\end{problem}
+	 
+	\begin{problem} % This one
+	Let $(S, \mathcal{A} , P )$ be a probability space. Show the following assertions:
+		\begin{enumerate}[label=\alph*)]
+		\item If $A$, $B$, and $C$ are events such that $A \cap B = A \cap C = B \cap C = \varnothing$, then $P (A \cup B \cup C ) = P (A ) + P (B) + P (C)$.
+		\item If $A$ and $B$ are events with $A \subset B$, then $P (A) \leq P (B)$.
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+	Let $(S, \mathcal{A}, P )$ be a probability space. If $A$ and $B$ are two events, then show that
+	\begin{align*}
+	P (A \cup B) = P (A) + P (B) - P (A \cap B) .
+	\end{align*}
+	\end{problem}
+	
+	\begin{problem}
+	Let $S$ be a non-empty set and let $A$ be a non-empty subset of $S$ such that $A$ is not all of $S$. If $\mathcal{A} = \{ \varnothing , A , \overline{A} , S \}$, then show that all probability measures on $\mathcal{A}$ have the form
+	\begin{align*}
+	P (\varnothing ) = 0 & & P (A ) = p \\
+	P (\overline{A}) = 1 - p && P (S) = 1 
+	\end{align*}
+	for some number $p$ satisfying $0 \leq p \leq 1$.
+	\end{problem}
+	
+	\begin{problem}
+	Let $S = \{ s_1 , s_2 , \ldots , s_N \}$ be a sample space with exactly $N$ outcomes, and let $\mathcal{A}$ be the family of all subsets of $S$. Show that the function $P : \mathcal{A} \ra \mR$ defined by
+	\begin{align*}
+	P (A) = \frac{|A|}{N} \quad (A \text{ is an event})
+	\end{align*}
+	is a probability measure.
+	\end{problem}
+	
+	\subsection{Computing Probabilities in the Finite Case}
+	
+	\begin{problem}
+	If two dice are rolled, what is the probability that the sum of the upturned faces will equal $7$?
+	\end{problem}
+	
+	\begin{problem}
+	If $3$ balls are ``randomly drawn'' from a bowl containing $6$ orange balls and $5$ blue balls, what is the probability that one of the drawn balls is orange and the other two blue?
+	\end{problem}
+
+	\begin{problem} % This one
+	A boxcar contains six complex electronic systems. Two of the six are to be randomly selected for thorough testing and then classified as defective or not defective. Two of the six systems are defective. Find the probability that one of the two systems selected will be defective.
+	\end{problem}
+	
+	\subsection{Probability Space For Infinite Sample Spaces}
+	
+	\begin{problem}
+	Suppose we toss a fair coin infinitely many times. Let $B_i$ denote the event ``the $i$-th toss lands heads''. Interpret the event $B = \cup_{i = 1}^\infty B_i$ and find $P (B)$. \textit{[Hint: Use the continuity of probability measures.]}
+	\end{problem}
+
+	\begin{problem} % This one
+	Let $B_1$, $B_2$, $\ldots$ be the list of events defined in the proof of Theorem 1. Show that
+	\begin{align*}
+	\bigcup_{i = 1}^\infty A_i = \bigcup_{i = 1}^\infty B_i .
+	\end{align*}
+	\end{problem}
+
+
+\end{document}

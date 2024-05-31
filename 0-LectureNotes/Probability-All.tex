@@ -1,0 +1,137 @@
+\input{templateAllNotes.tex}
+
+\renewcommand{\contentsname}{Blablabla}
+
+\begin{document}
+
+\vspace*{4cm}
+
+\noindent\hrulefill
+\begin{center}
+\begin{center}
+\begin{minipage}{0.6\textwidth}
+\begin{Huge}
+\textsc{University of Hawai'i}
+\end{Huge}
+\end{minipage}
+\begin{minipage}{0.12\textwidth}
+\includegraphics[scale=0.05]{../../../manoaseal_transparent.png}
+\end{minipage}
+\end{center}
+\noindent\hrulefill
+
+\vspace*{2cm}
+
+{\Huge \textsc{Probability (M471)}} 
+
+\vspace*{2cm}
+
+\vspace*{0.5cm}
+
+{\Large \textsc{Lecture Notes}}
+
+\vspace*{2cm}
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Fall 2023}
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage 
+
+\phantom{This page was intentionally left blank}
+
+\thispagestyle{empty}
+
+\newpage 
+
+\begin{center}
+\Huge{\ul{\textsc{A Note to the Reader}}}\addcontentsline{toc}{chapter}{A Note to the Reader}
+\end{center}
+
+\vspace*{1cm}
+
+These notes were written during the Fall 2023 semester while I was teaching the course \textit{Probability} (M471) at the University of Hawai'i at Mānoa. They were inspired by two main resources:
+\begin{itemize}
+\item \textit{Probability: An Introduction} by Geoffrey Grimmett and Dominic Welsh.
+\item \textit{Mathematical Statistics with Applications} by Dennis D. Wackerly, William Mendenhall III, and Richard L. Scheaffer.
+\end{itemize}
+
+I aimed to model these notes on a class I wish I had at the undergraduate level. One thing I wished I had seen in my undergraduate probability class is how closely probability is tied to measure theory. This is why, in Chapter A, I provide a gentle introduction to Probability Space and how it is used to construct a probability measure. I tried to make this encounter with measure theory as friendly as possible and hope I have accomplished that goal.
+
+Chapters B and C introduce the basic concepts of probability and discrete random variables. The last four chapters (D, E, F, G) introduce continuous random variables and their vector-valued analogues. Each chapter concludes with exercises followed by their solutions.
+
+I hope these notes will help readers grasp the essence of probability.
+
+\vspace*{1cm}
+
+\begin{flushright}
+Pierre-Olivier Paris{\'e}\\
+Honolulu, O'ahu, Hawai'i \\
+December 2023 
+\end{flushright}
+
+\vfill 
+
+\includegraphics[scale=1]{CC-BY-SA.png}
+
+\textbf{Creative Commons License (CC BY-SA):}   Probability (M471) \copyright 2023 by Pierre-Olivier Parisé is licensed under CC BY-SA 4.0. To view a copy of this license, visit \url{https://creativecommons.org/licenses/by-sa/4.0/}.
+
+\newpage 
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Contents}
+\tableofcontents
+
+\thispagestyle{empty}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% CHAPTER A %%%%%%%%%%%%%%%%%
+\input{chapA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% CHAPTER B %%%%%%%%%%%%%%%%%
+\input{chapB}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% CHAPTER C %%%%%%%%%%%%%%%%%
+\input{chapC}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% CHAPTER D %%%%%%%%%%%%%%%%%
+\input{chapD}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% CHAPTER E %%%%%%%%%%%%%%%%%
+\input{chapE}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% CHAPTER F %%%%%%%%%%%%%%%%%
+\input{chapF}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% CHAPTER G %%%%%%%%%%%%%%%%%
+\input{chapG}
+
+\newpage 
+\appendix 
+\addcontentsline{toc}{chapter}{Appendix}
+
+\renewcommand{\chapterformat}[1]{%
+	\ul{Appendix {\thechapter}: #1}
+	}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Logic %%%%%%%%%%%%%%%%%%%%%
+\setcounter{chapter}{11}
+\input{appendix-logic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Set Theory %%%%%%%%%%%%%%%%
+\setcounter{chapter}{18}
+\input{appendix-IntroSetTheory}
+
+\end{document}

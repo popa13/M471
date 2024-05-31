@@ -1,0 +1,409 @@
+\chapter{Logic and Proofs}%\addcontentsline{toc}{chapter}{Logic and Proofs}
+
+
+\section{Mathematical Statements}
+
+A \underline{statement} is a sentence (written in words, mathematical symbols, or a combination of the two) that is either true or false.\footnote{Most of the material presented here is from the really good notes retrieved online at \url{https://sites.math.washington.edu/~conroy/m300-general/ConroyTaggartIMR.pdf}. Some passages might entirely be copied or modified slightly from this resource.}
+
+\begin{example}
+\begin{enumerate}[label=\alph*)]
+\item $4 + 11 = 15$. \\This is a statement and it is true.
+\item $x > 5$.\\ This is not a statement. Grammatically, it is a complete sentence, written in mathematical symbols, with a subject ($x$) and a predicate (\textit{is greater than $5$}). The sentence, however, is neither true or false because the value of $x$ is not specified.
+\item If $x = 5$, then $x > 0$. \\This is a statement and it is true.
+\item There exists a positive integer $n$ such that $n > 2$.\\ This is a statement and it is true.
+\item Is the number $20$ an even number? \\This is not a statement. A question is neither true or false.
+\end{enumerate}
+\end{example}
+
+A \underline{proof} is a piece of writing that demonstrates that a particular statement is true. A statement that we prove to be true is often called a \underline{theorem}. A statement that we assume without proof is an \underline{axiom}. A \underline{definition} is an agreement between the writer (or professor) and the reader (or the student) as to the meaning of a word or phrase. A definition needs no proof.
+
+
+
+\section{Logic and Mathematical Language}
+
+In the section on set theory, you will have the chance to practice the methods of proof presented below.
+
+\subsubsection*{Negation}
+If $P$ is a statement, then it has a \underline{truth value}: true or false. The \underline{negation} of a statement $P$ is defined as \textit{it is not the case that $P$}. The negation of a statement $P$ will be abbreviated by $not\, P$ or $\neg P$.
+
+\begin{example}
+Consider the statement $P$: ``$2$ is an even integer''. The negation of $P$ is ``It is not the case that $2$ is an even integer'' that may be rewritten as ``$2$ is not an even integer''. We may even go further and rewrite $\neg P$ as follows: ``$2$ is an odd integer''. Notice that $P$ is true and $\neg P$ is false.
+\end{example}
+
+\subsubsection*{Conjunction and Disjunction}
+Let's consider two statements $P$ and $Q$.
+
+	\begin{itemize}
+		\item The \underline{conjunction} of $P$ and $Q$ is the statement ``$P$ and $Q$''. It is denoted by $P \wedge Q$ and it is true only when $P$ and $Q$ are true; otherwise it is false.
+		\item The \underline{disjunction} of $P$ and $Q$ is the statement ``$P$ or $Q$''. It is denoted by $P \vee Q$ and it is true when one of the two statements is true.
+	\end{itemize}
+
+We can use a truth table to illustrate the conjunction and disjunction of two statements $P$ and $Q$ as shown below.
+
+\begin{center}
+	\begin{minipage}{0.45\textwidth}
+	\centering
+	\begin{tabular}{c|c|c}
+	$P$ & $Q$ & $P \wedge Q$ \\\hline 
+	$T$ & $T$ & $T$ \\\hline 
+	$T$ & $F$ & $F$ \\\hline 
+	$F$ & $T$ & $F$ \\\hline 
+	$F$ & $F$ & $F$ \\
+	\end{tabular}\vspace*{4pt}
+
+	(a) Truth table for $P \wedge Q$
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+	\centering
+	\begin{tabular}{c|c|c}
+	$P$ & $Q$ & $P \vee Q$ \\\hline 
+	$T$ & $T$ & $T$ \\\hline 
+	$T$ & $F$ & $T$ \\\hline 
+	$F$ & $T$ & $T$ \\\hline 
+	$F$ & $F$ & $F$ \\
+	\end{tabular}\vspace*{4pt}
+
+	(b) Truth table for $P \vee Q$
+	\end{minipage}
+\end{center}
+
+\vspace*{12pt}
+
+\begin{example}
+\begin{enumerate}[label=\alph*)]
+\item Consider the statement $P$: ``$2$ is a positive integer'' and the statement $Q$: ``$-4$ is a negative integer''. The statement $P \wedge Q$ is true because $P$ and $Q$ are true. But $P \wedge (\neg Q)$ is not true because $\neg Q$: ``$-4$ is not a negative integer'' is false.
+\item Consider the same statements from part a). The statement $P \vee Q$ is true because the integer $2$ is a positive integer and only one of the statements $P$, $Q$ needs to be true. The statement $(\neg P) \vee Q$ is also true because the statement $Q$ is true ($-4$ is a negative number). But the statement $(\neg P) \vee (\neg Q)$ is not true because $\neg P$ and $\neg Q$ are both false.
+\end{enumerate}
+\end{example}
+
+We can take the negation of a conjunction and of a disjunction.
+
+\begin{example}
+A friend tells you the conditions to come to his party. He tells you that you must wear green clothes only AND bring a one-page explanation of why you are at his party. A person that wants to go to your friend's party must satisfies \textit{both} conditions. Anyone who is wearing a non-green piece of clothe will not be allowed at the party. Also, anyone who did not write the one-page essay will not be allowed at the party. Therefore, anyone who does not wear a green outfit or anyone who did not write the one-page essay will not come to the party. 
+\end{example}
+
+\underline{Conclusion:} The negation of $P \wedge Q$ is $(\neg P) \vee (\neg Q)$.
+
+\begin{example}
+Your friend decides to be more welcoming. He tells you the conditions to come to his party remains the same, but only one of them must be meet. In other words, you may wear green clothes only OR bring a one-page explanation of why you are at his party. A person that wants to go to your friend's party must satisfy one of the two conditions. But if the person is not dressed in green clothes and does not bring the one-page essay, then unfortunately, that person will not be allowed to join the party. In other words, if both conditions are not respected by a person, then that person will not be allowed to join the party.
+\end{example}
+
+\underline{Conclusion:} The negation of $P \vee Q$ is $(\neg P) \wedge (\neg Q)$.
+
+\subsubsection*{Conditional}
+
+A lot of statements we will encounter are of the form ``If $P$, then $Q$''. These statements are called \underline{conditional statements}. We will use the following notation ``$P \Rightarrow Q$'' to denote a conditional statement.
+
+The truth value of the statement $P \Rightarrow Q$ depends on the truth values of $P$ and $Q$.
+
+\begin{example}
+We think of $P \Rightarrow Q$ as an agreement. Joe makes a deal with his parents. Let $P$: ``Joe did the dishes after dinner'' and $Q$: ``Joe got \$5''. The agreement is
+	\begin{align*}
+	P \Rightarrow Q : \, \text{If Joe did the dishes, then he got \$5.}
+	\end{align*}
+Joe is not required to do the dishes (it is a compulsory act for his love for his family, but also for his love for money). In the case that Joe did the dishes ($P$ is true) and got paid ($Q$ is true), the agreement is met ($P \Rightarrow Q$ is true). In the case that Joe didn't do the dishes ($P$ is false) and didn't get paid ($Q$ is false), the agreement is met ($P \Rightarrow Q$ is true). Since Joe is not required to wash the dishes, his parents may choose to give him \$5 for some other reason. That is, in the case Joe did not do the dishes ($P$ is false) and got \$5 anyway ($Q$ is true), the agreement is still met ($P \Rightarrow Q$ is true). The only instance in which the agreement is not met ($P \Rightarrow Q$ is false) is in the case that Joe did wash the dishes ($P$ is true), but did not get the money from his parents ($Q$ is false).
+\end{example}
+
+To summarize, the statement $P \Rightarrow Q$ is true unless $P$ is true and $Q$ is false, like it is shown in the table below.
+
+	\begin{center}
+		\begin{tabular}{c|c|c}
+		$P$ & $Q$ & $P \Rightarrow Q$ \\\hline 
+		$T$ & $T$ & $T$ \\\hline 
+		$T$ & $F$ & $T$ \\\hline 
+		$F$ & $T$ & $F$ \\\hline 
+		$F$ & $F$ & $T$ \\
+		\end{tabular}\vspace*{4pt}
+
+		Truth table for the conditional
+	\end{center}
+
+To explain the negation of the conditional, we use Joe's story from the previous example. Joe claims that his parents broke their verbal contract, while the parents deny Joe's claim. In other words, Joe's parents say that $P \Rightarrow Q$ is true, while Joe says that $\neg (P \Rightarrow Q)$ is true. If you were Joe's lawyer, what evidence would you have to provide to win the case? You would need to show that Joe washed the dishes and did not get paid. That is, you would need to show that $P \wedge (\neg Q)$ is true.
+
+	\underline{Conclusion:} The negation of the conditional statement $P \Rightarrow Q$ is the statement $P \wedge (\neg Q)$.
+
+\subsubsection*{Converse and Contrapositive}
+
+\begin{definition}
+The \underline{converse} of $P \Rightarrow Q$ is the statement $Q \Rightarrow P$. The \underline{contrapositive} of $P \Rightarrow Q$ is the statement $(\neg Q) \Rightarrow (\neg P)$.
+\end{definition}
+
+\begin{example}
+Consider the statements $P$: ``Valérie's cat is hungry'' and $Q$: ``Valérie's cat meows''. 
+	\begin{itemize}
+	\item The implication $P \Rightarrow Q$ reads as ``If Valérie's cat is hungry, then the cat meows''. 
+	\item The converse $Q \Rightarrow P$ of $P \Rightarrow Q$ reads as ``If Valérie's cat meows, then the cat is hungry''. Notice that in this contexte, $P \Rightarrow Q$ does not have the same truth value of $Q \Rightarrow P$. For instance, the cat might moews because it wants to be pet. 
+	\item The contrapositive of $P \Rightarrow Q$ reads as ``If Valérie's cat does not meow, then the cat is not hungry''. You can check that $P \Rightarrow Q$ has the same truth value of $(\neg Q) \Rightarrow (\neg P)$.
+	\end{itemize}
+\end{example}
+
+\subsubsection*{Equivalent statement}
+
+\begin{definition}
+The statement $P$ if and only if $Q$, written $P \iff Q$, is readily the statement
+	\begin{align*}
+	(P \Rightarrow Q) \wedge (Q \Rightarrow P) .
+	\end{align*}
+\end{definition}
+
+\subsubsection*{Quantifiers}
+
+Suppose $n$ is an integer and $P(n)$ is a statement about $n$. 
+	\begin{itemize}
+	\item If $P (n)$ is true for at least one integer $n$, then we say ``There exists $n$ such that $P (n)$''. This type of statement is called an \underline{existence statement} and the symbol $\exists$ is used as a shortcut for the ``there exists'' part.
+	\item If $P(n)$ is true no matter what value $n$ takes, then we say ``For all $n$, $P (n)$''. This type of statement is called a \underline{universal statement} and the symbol $\forall$ is used as a shortcut for the ``For all'' part.
+	\end{itemize}
+These statements are called \underline{quantified statements}.
+
+\begin{example} Assume throughout this example that $n$ is an integer.
+	\begin{enumerate}[label=\alph*)]
+		\item ``There exists $n$ such that $n > 0$''. In this statement, $P (n)$ is ``$n > 0$. The statement $P (10)$ is true because $10 > 0$, therefore the statement ``$\exists n$ such that $n > 0$'' is true because $P (n)$ is true for at least one integer $n$.
+		\item ``For all $n$, $n > 0$''. The statement $P (-1)$ is false since $-1$ is not greater than $0$. Therefore, the statement ``$\forall n$, $P (n)$'' is false because $P(n)$ is \textit{not} true for every integer $n$.
+		\item ``$\exists n$ such that $|n| < 0$''. This statement is false because there is no integer $n$ with $|n| < 0$; the absolute value turns every integer into a positive or zero integer.
+	\end{enumerate}
+\end{example}
+
+Here are the ways to negate a quantified statement:
+\begin{itemize}
+	\item The negation of ``$\exists n$ such that $P (n)$'' is ``$\forall n$, $\neg (P (n))$''.
+	\item The negation of ``$\forall n$, $P(n)$'' is ``$\exists n$ such that $\neg (P (n))$``.
+\end{itemize}
+
+
+
+
+\section{Methods of Proof}
+
+We will cover some methods to prove mathematical statements. The two we will cover are direct proofs of a conditional statement and proofs by contradiction.
+
+
+\subsubsection*{Direct Proof}
+There are many ways to proof a conditional statement. The method covered is called ``direct proof''. If one of the other ways is needed later on in the semester, then I will explain it to you on the spot. This is an agreement between you and me ;).
+
+The ``direct proof'' method works as followed. We assume the hypothesis (the statement just after the ``if'') and use definitions, logic, and previously proved results to reach the desired conclusion (the statement after the ``then'').
+
+\begin{example}
+Prove the following statement: If $a$ and $b$ are even integers, then $a + b$ is an even integer.
+\end{example}
+
+\begin{sol*}
+Suppose that $a$ and $b$ are even integers. In other words, this means $a$ and $b$ are multiples of $2$: There exists an integer $n$ such that $a = 2 n$ and there exists an integer $m$ such that $b = 2 m$. Then
+	\begin{align*}
+	a + b = 2n + 2m = 2 (n + m) .
+	\end{align*}
+This implies that $a + b$ is a multiple of $2$ and therefore it is an even integer. \hfill $\triangle$
+\end{sol*}
+
+\subsubsection*{Proof by Contradiction}
+In a proof using the method called \underline{contradiction}, the fact that a statement and its negation have opposite truth values is used. Therefore, to prove that $P$ is true, we suppose instead that the statement $\neg P$ is true and apply logic, definitions, and previous results to arrive at a conclusion known to be false. Then this will imply $\neg P$ must be false and thus $P$ must be true.
+
+\begin{example}\label{Ex:NoIntIsOddAndEven}
+No integer is both even and odd.
+\end{example}
+
+\begin{sol*}
+Suppose that there is an integer $n$ that is both even and odd (the negation of the statement ``$\forall n$, $n$ is neither even or odd'', which is equivalent to the statement in the example). Since $n$ is assumed even, $n = 2k$ for some integer $k$. But $n$ is also assumed odd, so $n= 2l + 1$. Therefore, since $n = n$, we have 
+	\begin{align*}
+	2k = 2l + 1 \Rightarrow 2k - 2l = 1 \Rightarrow 2 (k - l) = 1 .
+	\end{align*}
+Since $k - l$ is an integer, the last equation means that $1$ is a multiple of $2$ (or that $1$ is divisible by $2$), which is clearly false! Therefore the assumption that there is an integer $n$ that is both even and odd must be false and it turns out that no integer is both even and odd. \hfill $\triangle$
+\end{sol*} 
+
+\subsubsection*{Proof of An Equivalent Statement}
+
+To prove the statement ``$P \iff Q$'', it must be shown that $P \Rightarrow Q$ is true \textit{and} $Q \Rightarrow P$ is true.
+
+\subsubsection*{Proof of An Existential Statement}
+
+To prove a statement of the form ``there exists an $n$ such that $P (n)$'', the technique used is ``construction''. This means the object $n$ will be found and be demonstrated that $P (n)$ is true for this choice of $n$.
+
+\subsubsection*{Proof of A Universal Statement}
+
+The proof of a statement of the form ``for all objects $n$, $P (n)$'' is rather more subtle. It is really hard to deal with all objects $n$ at once. Instead, we think of an equivalent way to interpret a universal statement. In fact, the statement ``for all objects $n$, $P (n)$`` is equivalent to the statement ``If $n$ is such an object, then $P (n)$''. For example, the statement ``For all integers $n$, $|n| \geq 0$'' has the same meaning as ``If $n$ is an integer, then $|n| \geq 0$''.
+
+Therefore, to prove a universal statement, we first select a single \textit{arbitrary} object and proved that the conclusion is true for that object. It is really important that the object chosen was arbitrary.
+
+\begin{example}
+Prove the following statement: For all odd integers $n$ and $m$, $nm$ is odd.
+\end{example}
+
+\begin{sol*}
+Suppose that $n$ is an odd integer and that $m$ is an odd integer. This means there exist integers $k$ and $l$ such that $n = 2k + 1$ and $m = 2l + 1$. Then
+	\begin{align*}
+	nm = (2k + 1) (2l + 1) = 4kl + 2k + 2l + 1 = 2 (2kl + k + l) + 1 .
+	\end{align*}
+Therefore, the product $nm$ takes the form of an odd integer. \hfill $\triangle$
+\end{sol*}
+
+
+\begin{comment}
+\section{Problems Set}
+
+\subsection*{Mathematical Statements}
+
+ \begin{problem}
+ Are the following sentences statements? If it is, say if it is true or false. If it is not, explain briefly why.
+ 	\begin{enumerate}[label=\alph*)]
+ 	\item $|-12| = -12$.
+ 	\item $x < 0$.
+ 	\item Is that an odd integer?
+ 	\item If $a= 2$ and $b = 4$, then $a + b = 6$.
+ 	\end{enumerate}
+ \end{problem}
+
+ \subsection*{Logic and Mathematical Language}
+
+ \begin{problem}
+Give the converse and the contrapositive of the following conditional statements.
+ 	\begin{enumerate}[label=\alph*)]
+ 		\item If it is Saturday, then Angela sleeps in.
+ 		\item If it rains outside, then I use my umbrella.
+ 		\item If I surf, then the waves are bigger than 4 feet high.
+ 	\end{enumerate}
+ \end{problem}
+
+ \begin{problem}
+ Write useful negations of the following statements in English. You can use symbols to simplify the statement.
+ 	\begin{enumerate}[label=\alph*)]
+ 		\item It is raining and Charlie is cold.
+ 		\item If it is raining, then Charlie is cold.
+ 		\item For every real number $x$, there exists a real number $y$ such that $x  +y = 0$.
+ 		\item $|a| > 0$ if and only if $a \neq 0$.
+ 	\end{enumerate}
+ \end{problem}
+
+ \begin{problem}
+ 	\begin{enumerate}[label=\alph*)]
+ 		\item  By constructing the truth table of $P \Rightarrow Q$ and $Q \Rightarrow P$, show when a conditional statement and its converse do not have the same truth values.
+ 		\item By constructing the truth table of $P \Rightarrow Q$ and $(\neg Q) \Rightarrow (\neg P)$, show a conditional statement and its contrapositive always have the same truth values.
+ 	\end{enumerate}
+ \end{problem}
+
+ \subsection*{Methods of Proof}
+
+ \begin{problem}
+ Suppose that $a$ and $b$ are integers. Prove each of the following.
+ 	\begin{enumerate}[label=\alph*)]
+ 		\item If $a$ and $b$ are both odd, then $a + b$ is even.
+ 		\item If $a$ is even and $b$ is odd, then $a + b$ is odd.
+ 	\end{enumerate}
+ \end{problem}
+
+ \begin{problem}
+ A rational number is a number $q$ that can be put in the form of a fraction, that is there exist two integers $n$ and $m$ such that $q = n / m$. Show that $\sqrt{2}$ is not rational.
+ \end{problem}
+
+ \begin{problem}
+ Prove that there exist integers $m$ and $n$ such that $2m + 3n = 12$.
+ \end{problem}
+
+
+\section{Solutions to Problems Set}
+\setcounter{problem}{0} 
+
+\subsection*{Mathematical Statements}
+
+ \begin{problem}
+\begin{enumerate}[label=\alph*)]
+\item Yes it is a statement. The statement is false since $|-12| = 12$ (absolute value turns negative numbers into positive numbers).
+\item No, this is not a statement. The value of $x$ is not specify, so there is no truth value that can be associated to this statement.
+\item No, this is not a statement. A question is not a statement.
+\item Yes, this is a statement. It is true, because assuming that $a = 2$ and $b = 4$, we have $a + b = 2 + 4 = 6$.
+\end{enumerate}
+ \end{problem}
+
+ \subsection*{Logic and Mathematical Language}
+
+ \begin{problem}
+ \begin{enumerate}[label=\alph*)]
+ \item \textbf{Converse:} If Angela sleeps in, then it is a Saturday. \\
+ \textbf{Contrapositive:} If Angela does not sleep in, then it is not Saturday.
+ \item \textbf{Converse:} If I use my umbrella, then it rains outside. \\
+ \textbf{Contrapositive:} If I don't use my umbrella, then it does not rain outside.
+ \item \textbf{Converse:} If the waves are bigger than 4 foot high, then I surf.\\ 
+ \textbf{Contrapositive:} If the waves are not bigger than 4 foot high, then I don't surf.
+ \end{enumerate}
+ \end{problem}
+
+ \begin{problem}
+ \begin{enumerate}[label=\alph*)]
+ \item The negation is ``It is not the case that it is raining and Charlie is cold.''. The negation of a statement $P \wedge Q$, is $(\neg P) \vee (\neg Q)$. So, letting $P$: ``It is raining'' and $Q$: ``Charlie is cold'', a useful reformulation of the negation is ``it is not raining or Charlie is not cold''.
+ \item The negation is ``It is not the case that if is raining, then Charlie is cold''. The negation of a statement $P \Rightarrow Q$ is $P \wedge (\neg Q)$. So, a useful reformulation of the negation is ``It is raining and Charlie is not cold''.
+ \item Let's simplify the statement using mathematical symbols. We can equivalently and compactly rewrite the statement as `` $\forall x$ real, $\exists y$ real such that $x + y = 0$''. The negation is then ``It is not the case that $\forall x$ real, $\exists y$ real such that $x + y = 0$''. The negation of a universal statement ``$\forall x$, $P (x)$'' is ``$\exists x$, $\neg P(x)$''. Let $P (x)$: ``$\exists y$ real such that $x + y = 0$''. Then we can rewrite the negation of the statement as ``$\exists x$ real such that $\neg P (x)$'' or
+ 	\begin{center}
+ 	$\exists x$ real such that it is not the case that there exists $y$ real such that $x + y = 0$.
+ 	\end{center}
+ The negation of an existential ``$\exists y$, $Q(y)$'' is ``$\forall y$, $\neg Q(y)$. For a fixed $x$, let $Q (y)$: ``$x + y = 0$''. Then we can rewrite the negation of ``$\exists y$ real such that $x + y = 0$'' as ``$\forall y$ real, $\neg Q (y)$'', or ``$\forall y$ real, $x + y \neq 0$''. Therefore, the negation of the whole statement is
+ 	\begin{center}
+ 	$\exists x$ real such that $\forall y$ real, $x + y \neq 0$ .
+ 	\end{center}
+\end{enumerate}
+ \end{problem}
+
+ \begin{problem}
+ 	\begin{enumerate}[label=\alph*)]
+ 		\item Here the truth table of $P \Rightarrow Q$ and $Q \Rightarrow P$ combined. 
+ 		\begin{center}
+ 		\begin{tabular}{c|c|c|c}
+ 		$P$ & $Q$ & $P \Rightarrow Q$ & $Q \Rightarrow P$ \\\hline 
+ 		$T$ & $T$ & $T$ & $T$ \\\hline 
+ 		$T$ & $F$ & $F$ & $T$  \\\hline 
+ 		$F$ & $T$ & $T$ & $F$ \\\hline 
+ 		$F$ & $F$ & $T$ & $T$ \\
+ 		\end{tabular}
+ 		\end{center}
+ 		We see the truth value differs in the second and first rows.
+ 		\item Here the truth table of $P \Rightarrow Q$ and $\neg Q \Rightarrow \neg P$ combined. 
+ 		\begin{center}
+ 		\begin{tabular}{c|c|c|c|c|c}
+ 		$P$ & $\neg P$ & $Q$ & $\neg Q$ & $P \Rightarrow Q$ & $\neg Q \Rightarrow \neg P$ \\\hline
+ 		$T$ & $F$ & $T$ & $F$ & $T$ & $T$ \\\hline 
+ 		$T$ & $F$ & $F$ & $T$ & $F$ & $F$  \\\hline 
+ 		$F$ & $T$ & $T$ & $F$ & $T$ & $T$ \\\hline 
+ 		$F$ & $T$ & $F$ & $T$ & $T$ & $T$ \\
+ 		\end{tabular}
+ 		\end{center}
+ 		We see that the truth value in every rows are the same.
+ 	\end{enumerate}
+ \end{problem}
+
+ \subsection*{Methods of Proof}
+
+ \begin{problem}
+ 	\begin{enumerate}[label=\alph*)]
+ 		\item Assume that $a$ and $b$ are odd integers. By definition, we have $a = 2k + 1$ and $b = 2l + 1$, where $k$ and $l$ are integers. Therefore
+ 			\begin{align*}
+ 			a + b = 2k + 1 + 2l + 1 = 2 (k + l + 1) .
+ 			\end{align*}
+ 		The last equation expresses $a + b$ as a multiple of $2$, so $a + b$ is even.
+ 		\item Assume that $a$ is even and that $b$ is odd. By the definitions, we have $a = 2k$ and $b = 2l + 1$, for some integers $k$ and $l$. Therefore
+ 			\begin{align*}
+ 			a + b = 2k + 2l + 1 = 2 (k + l) + 1 .
+ 			\end{align*}
+ 		The last equation shows that $a + b$ is an odd number.
+ 	\end{enumerate}
+ \end{problem}
+
+ \begin{problem}
+ We will prove this by contradiction. Assume that $\sqrt{2}$ is a rational number, meaning there are two integers $p$ and $q$ such that $\sqrt{2} = p /q$. We may simplify the fraction $p/q$ so that $p$ and $q$ have no common divisors. 
+
+ Multiplying by $q$ and squaring both sides of the equation $\sqrt{2} = p/q$ gives us the following equation
+ 	\begin{align*}
+ 	2q^2 = p^2 .
+ 	\end{align*}
+ This means $p^2$ is even, so that $p$ is even. \textit{[If $p$ was odd, then we know that $p^2 = (p)(p)$ whould be odd, a contradiction with the fact that $p^2$ is even.]}.
+
+ Write $p = 2k$, for some integer $k$. Replacing the new expression of $p$ is the last equation and after simplifying, we obtain
+ 	\begin{align*}
+ 	q^2 = 2k^2 .
+ 	\end{align*}
+ Therefore, $q^2$ is even, so that $q$ is even. But if $p$ and $q$ are even, they share a common divisor, that is $2$. But we assumed that $p$ and $q$ have no common divisors and this is a contradiction. 
+
+ Therefore, $\sqrt{2}$ is not a rational number.
+ \end{problem}
+
+ \begin{problem}
+ Set $m = 3$ and $n = 2$, so that $(2)(3) + (3)(2) = 6 + 6 = 12$.
+ \end{problem}
+
+\end{comment}

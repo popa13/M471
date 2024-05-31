@@ -1,0 +1,128 @@
+\input{../../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Problems Set Solutions} \\
+Appendix L
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{12}
+
+ \subsection[~~Mathematical Statements]{Mathematical Statements}
+
+ \begin{problem}
+\begin{enumerate}[label=\alph*)]
+\item Yes it is a statement. The statement is false since $|-12| = 12$ (absolute value turns negative numbers into positive numbers).
+\item No, this is not a statement. The value of $x$ is not specify, so there is no truth value that can be associated to this statement.
+\item No, this is not a statement. A question is not a statement.
+\item Yes, this is a statement. It is true, because assuming that $a = 2$ and $b = 4$, we have $a + b = 2 + 4 = 6$.
+\end{enumerate}
+ \end{problem}
+
+ \subsection[~~Logic and Mathematical Language]{Logic and Mathematical Language}
+
+  \begin{problem}
+ \begin{enumerate}[label=\alph*)]
+ \item \textbf{Converse:} If Angela sleeps in, then it is a Saturday. \\
+ \textbf{Contrapositive:} If Angela does not sleep in, then it is not Saturday.
+ \item \textbf{Converse:} If I use my umbrella, then it rains outside. \\
+ \textbf{Contrapositive:} If I don't use my umbrella, then it does not rain outside.
+ \item \textbf{Converse:} If the waves are bigger than 4 foot high, then I surf.\\ 
+ \textbf{Contrapositive:} If the waves are not bigger than 4 foot high, then I don't surf.
+ \end{enumerate}
+ \end{problem}
+
+ \begin{problem}
+ \begin{enumerate}[label=\alph*)]
+ \item The negation is ``It is not the case that it is raining and Charlie is cold.''. The negation of a statement $P \wedge Q$, is $(\neg P) \vee (\neg Q)$. So, letting $P$: ``It is raining'' and $Q$: ``Charlie is cold'', a useful reformulation of the negation is ``it is not raining or Charlie is not cold''.
+ \item The negation is ``It is not the case that if is raining, then Charlie is cold''. The negation of a statement $P \Rightarrow Q$ is $P \wedge (\neg Q)$. So, a useful reformulation of the negation is ``It is raining and Charlie is not cold''.
+ \item Let's simplify the statement using mathematical symbols. We can equivalently and compactly rewrite the statement as `` $\forall x$ real, $\exists y$ real such that $x + y = 0$''. The negation is then ``It is not the case that $\forall x$ real, $\exists y$ real such that $x + y = 0$''. The negation of a universal statement ``$\forall x$, $P (x)$'' is ``$\exists x$, $\neg P(x)$''. Let $P (x)$: ``$\exists y$ real such that $x + y = 0$''. Then we can rewrite the negation of the statement as ``$\exists x$ real such that $\neg P (x)$'' or
+ 	\begin{center}
+ 	$\exists x$ real such that it is not the case that there exists $y$ real such that $x + y = 0$.
+ 	\end{center}
+ The negation of an existential ``$\exists y$, $Q(y)$'' is ``$\forall y$, $\neg Q(y)$. For a fixed $x$, let $Q (y)$: ``$x + y = 0$''. Then we can rewrite the negation of ``$\exists y$ real such that $x + y = 0$'' as ``$\forall y$ real, $\neg Q (y)$'', or ``$\forall y$ real, $x + y \neq 0$''. Therefore, the negation of the whole statement is
+ 	\begin{center}
+ 	$\exists x$ real such that $\forall y$ real, $x + y \neq 0$ .
+ 	\end{center}
+\end{enumerate}
+ \end{problem}
+
+ \begin{problem}
+ 	\begin{enumerate}[label=\alph*)]
+ 		\item Here the truth table of $P \Rightarrow Q$ and $Q \Rightarrow P$ combined. 
+ 		\begin{center}
+ 		\begin{tabular}{c|c|c|c}
+ 		$P$ & $Q$ & $P \Rightarrow Q$ & $Q \Rightarrow P$ \\\hline 
+ 		$T$ & $T$ & $T$ & $T$ \\\hline 
+ 		$T$ & $F$ & $F$ & $T$  \\\hline 
+ 		$F$ & $T$ & $T$ & $F$ \\\hline 
+ 		$F$ & $F$ & $T$ & $T$ \\
+ 		\end{tabular}
+ 		\end{center}
+ 		We see the truth value differs in the second and first rows.
+ 		\item Here the truth table of $P \Rightarrow Q$ and $\neg Q \Rightarrow \neg P$ combined. 
+ 		\begin{center}
+ 		\begin{tabular}{c|c|c|c|c|c}
+ 		$P$ & $\neg P$ & $Q$ & $\neg Q$ & $P \Rightarrow Q$ & $\neg Q \Rightarrow \neg P$ \\\hline
+ 		$T$ & $F$ & $T$ & $F$ & $T$ & $T$ \\\hline 
+ 		$T$ & $F$ & $F$ & $T$ & $F$ & $F$  \\\hline 
+ 		$F$ & $T$ & $T$ & $F$ & $T$ & $T$ \\\hline 
+ 		$F$ & $T$ & $F$ & $T$ & $T$ & $T$ \\
+ 		\end{tabular}
+ 		\end{center}
+ 		We see that the truth value in every rows are the same.
+ 	\end{enumerate}
+ \end{problem}
+
+ \subsection[~~Methods of Proof]{Methods of Proof}
+
+ \begin{problem}
+ 	\begin{enumerate}[label=\alph*)]
+ 		\item Assume that $a$ and $b$ are odd integers. By definition, we have $a = 2k + 1$ and $b = 2l + 1$, where $k$ and $l$ are integers. Therefore
+ 			\begin{align*}
+ 			a + b = 2k + 1 + 2l + 1 = 2 (k + l + 1) .
+ 			\end{align*}
+ 		The last equation expresses $a + b$ as a multiple of $2$, so $a + b$ is even.
+ 		\item Assume that $a$ is even and that $b$ is odd. By the definitions, we have $a = 2k$ and $b = 2l + 1$, for some integers $k$ and $l$. Therefore
+ 			\begin{align*}
+ 			a + b = 2k + 2l + 1 = 2 (k + l) + 1 .
+ 			\end{align*}
+ 		The last equation shows that $a + b$ is an odd number.
+ 	\end{enumerate}
+ \end{problem}
+
+ \begin{problem}
+ We will prove this by contradiction. Assume that $\sqrt{2}$ is a rational number, meaning there are two integers $p$ and $q$ such that $\sqrt{2} = p /q$. We may simplify the fraction $p/q$ so that $p$ and $q$ have no common divisors. 
+
+ Multiplying by $q$ and squaring both sides of the equation $\sqrt{2} = p/q$ gives us the following equation
+ 	\begin{align*}
+ 	2q^2 = p^2 .
+ 	\end{align*}
+ This means $p^2$ is even, so that $p$ is even. \textit{[If $p$ was odd, then we know that $p^2 = (p)(p)$ whould be odd, a contradiction with the fact that $p^2$ is even.]}.
+
+ Write $p = 2k$, for some integer $k$. Replacing the new expression of $p$ is the last equation and after simplifying, we obtain
+ 	\begin{align*}
+ 	q^2 = 2k^2 .
+ 	\end{align*}
+ Therefore, $q^2$ is even, so that $q$ is even. But if $p$ and $q$ are even, they share a common divisor, that is $2$. But we assumed that $p$ and $q$ have no common divisors and this is a contradiction. 
+
+ Therefore, $\sqrt{2}$ is not a rational number.
+ \end{problem}
+
+ \begin{problem}
+ Set $m = 3$ and $n = 2$, so that $(2)(3) + (3)(2) = 6 + 6 = 12$.
+ \end{problem}
+
+\end{document}

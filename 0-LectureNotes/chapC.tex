@@ -1,0 +1,995 @@
+\chapter{Random Variables}
+
+In the definitions and theorems in this chapter, we assume a probability space $(S, \mathcal{A}, P)$ is given.
+
+\section{Discrete Random Variables}
+Loosely speaking, a \underline{discrete random variable} is a map $X : S \rightarrow \mR$.
+
+\begin{example}\label{Ex:TossCoinThreeTimes}
+Suppose a fair coin is tossed $3$ times in a row. Then our sample space $S$ are all the possible triplets of letters $t$ or $h$ (for tail and head respectively). The event space is $\mathcal{A} = 2^S$, and every outcome have an equal probability, so that $P (A) = 1/8$ for every atomic event $A$.
+
+Let $X$ denotes ``the number of heads appearing'', then $X$ is a discrete random variable. 
+
+The possible values of $X$, called the \underline{image} of $X$, is $\mathrm{im} X = \{ 0 , 1, 2, 3 \}$. 
+\end{example}
+
+\begin{definition}\label{D:DiscreteRandomVariable}
+A \underline{discrete random variable} $X$ on a probability space $(S, \mathcal{A} , P)$ is defined to be a mapping $X : S \ra \mR$ such that
+    \begin{enumerate}[label=\alph*)]
+        \item the set $\im X$ is a countable subset of $\mR$;
+        \item $X^{-1} (\{ x \}) := \{ s \in S \, : \, X (s) = x \}$ is an event for every $x \in \mR$.
+    \end{enumerate}
+\end{definition}
+\underline{\textbf{Note:}} 
+\begin{itemize}
+        \item To simplify the notation, we will use the notation $\{ X = x \}$ to denote the set $X^{-1} (\{ x \})$.
+        \item We also generalize this notation to include pre-images of intervals. For $x \in \mR$, 
+            $$
+            \{ X \leq x \} := \{ s \in S \, : \, X(s) \leq x \} 
+            $$
+        and similarly for $\{ X \geq x \}$.
+\end{itemize}
+
+\vspace*{16pt}
+
+\begin{example}
+Let $(S , \mathcal{A} , P)$ be a probability space in which
+    \begin{align*}
+    S = \{ 1 , 2, 3, 4, 5, 6 \}, \quad \mathcal{A} = \{ \varnothing , \{ 2, 4, 6\} , \{1, 3, 5\} , S \} .
+    \end{align*} 
+Let $U$ and $V$ be defined by
+    \begin{align*}
+    U (s) = s , \quad V(s) = \left\{ \begin{matrix} 1 & \text{if } s \text{ is even,} \\ 0 & \text{if } s \text{ is odd} \end{matrix} \right.
+    \end{align*}
+for $s \in S$. 
+\begin{enumerate}[label=\alph*)]
+    \item Is $U$ a discrete random variable?
+    \item Is $V$ a discrete random variable?
+\end{enumerate}
+\end{example}
+
+\begin{sol*}
+\begin{enumerate}[label=\alph*)]
+\item The set $\im U = \{ 1 , 2, 3, 4, 5, 6, \}$, which is discrete. The problem is the set $U^{-1} (\{ u \})$ for some real values of $u$. If $u = 1$, then $U^{-1} (\{ 1 \} ) = \{ 1 \}$ which is not in the event space. Therefore, $U^{-1} (\{ 1 \})$ is not an event and $U$ is not a discrete random variable.
+\item The set $\im V = \{ 0 , 1 \}$, which is discrete. If $v \neq 0, 1$, then $V^{-1} (\{ v \}) = \varnothing$ because there is no $s$ such that $V (s) = v$. If $v = 0$, then $V^{-1} (\{ 0 \}) = \{ 1 ,3, 5 \}$ which is an event from the event space. If $v = 1$, then $V^{-1} (\{ 1\}) = \{ 2, 4, 6 \}$ which is an event from the event space. Therefore, $V$ is a discrete random variable.
+\end{enumerate}
+\end{sol*}
+
+
+\vspace*{16pt}
+
+\begin{theorem}
+If $X$ and $Y$ are two discrete random variable, then the mapping $Z : S \ra \mR$ defined by $Z(s) = X(s) + Y (s)$ is a discrete random variable.
+\end{theorem}
+\begin{proof}
+First, since $X$ and $Y$ are discrete random variable, then $\im Z$ will be discrete necessarily. Let $z \in \mR$. If $\{ Z = z \} = \varnothing$ and since $\varnothing$ is an event, $\{ Z = z \}$ is an event. So assume that $\{ Z = z \} \neq \varnothing$. We can show that 
+    $$
+    \{ Z = z \} = \{ s \in S \, : \, X(s) + Y(s) = z\} = \bigcup_{y \in \im Y } \Big( \{ X = z - y \} \cap \{ Y = y \} \Big) .
+    $$
+Since $\im Y$ is discrete, the union on the left hand side is an infinite union of countable sets. We know that $\{ X = z - y \}$ and $\{ Y = y \}$ are events, for any choices of $y$ and $z$. Therefore $\{ X = z - y \} \cap \{ Y = y \}$ is an event. Since the union of countably many events is still an event, we conclude that $\{ Z = z \}$ is an event.
+\end{proof}
+
+\section{Probability Mass Functions}
+Since the values of $X$ depends on data from a probability space, it is possible to assign a probability to each element in $\im X$. For instance, in Example \ref{Ex:TossCoinThreeTimes}, the values of the discrete random variable $X$ : ``Number of heads observed after $3$ tosses'' can be assigned the following probabilities:
+    \begin{align*}
+    P (\{X = 1\}) := P (\{ s \in S \, : \, X(s) = 1 \}) &= P (\{ htt, tht, tth\}) = \frac{3}{8} .
+    \end{align*}
+Similar calculations will give the probabilities of the other values of $X$ (see the next example). The notations will be simplified a little bit as followed:
+    \begin{itemize}
+        \item $P (X = x)$ for $P (X^{-1} \{ x \})$.
+        \item Also, we will write $P (X \leq x)$ for $P (\{ X \leq x \})$.
+    \end{itemize}
+
+
+
+\begin{definition}
+Let $X$ be a discrete random variable. The \underline{probability mass function} (abbreviated \underline{pmf}) $p_X$ of $X$ is the function defined by
+    \begin{align*}
+    p_X (x) = P ( X = x) .
+    \end{align*} 
+\end{definition}
+
+\begin{example}
+In Example \ref{Ex:TossCoinThreeTimes}, the pmf is
+    \begin{align*}
+    p_X (0) = \frac{1}{8} , \quad p_X (1) = \frac{3}{8} = p_X (2) , \, and \quad p_X (3) = \frac{1}{8} .
+    \end{align*}
+Notice that $p_X (0) + p_X (1) + p_X (2) + p_X (3) = 1$.
+\end{example}
+
+\underline{\textbf{Note:}}
+    \begin{itemize}
+    \item For a discrete random variable $X$, $\im X$ is countable, so we can write $\im X = \{ x_1 , x_2 , \ldots \}$ in a list. 
+    \item Also, for any $x \not \in \im X$, we have $p_X(x) = 0$. 
+    \item In this case, we see that
+        \begin{align*}
+        \sum_{i = 1}^\infty p_X (x_i) = \sum_{x \in \im X} p_X (x) = P (S) = 1 .
+        \end{align*} 
+    \end{itemize}
+
+\begin{theorem}
+Let $T = \{ t_1, t_2, \ldots , t_N \}$ be a set of distinct real numbers and let $\{ \pi_1 , \pi_2 , \ldots , \pi_N \}$ be a collection of real numbers satisfying
+    \begin{align*}
+    \pi_j \geq 0, \quad \forall j , \, \text{ and } \quad \sum_{j = 1}^N \pi_j = 1 .
+    \end{align*} 
+Then there exists a probability space $(T, \mathcal{B}, Q)$ and a discrete random variable $X : T \ra \mR$ such that the pmf of $X$ is given by
+    \begin{align*}
+    p_X (s) = \left\{ \begin{matrix}
+    \pi_j,  & s = s_j \\
+    0, & s \neq s_j .
+    \end{matrix} \right.
+    \end{align*} 
+\end{theorem}
+\begin{proof}
+Define $\mathcal{B} = 2^T$ and define the probability measure $Q$ to be $Q (\{ A \}) = \sum_{j = 1}^n \pi_{i_j}$ for $A = \{ t_{i_1} , t_{i_2}, \ldots , t_{i_n}\}$. Then $(T, \mathcal{B} , Q )$ is a probability space from the assumptions on the numbers $\pi_j$ and the fact that $T$ is finite. Now, let $X : T \ra \mR$ be $X (t) = t$. Then, we have $\im X = T$, $p_X(x) = 0$ if $x \not \in T$ and if $x \in \im X$, say $x = t_j$ for some $j$, then
+    \begin{equation*}
+    p_X (x) = P (X = t_j) = P (\{ t_j \}) = \pi_j .\qedhere
+    \end{equation*} .
+\end{proof}
+
+\underline{\textbf{Note:}} With this theorem, it is enough to say ``Let $X$ be a random variable taking the values $t_j$ with probability $\pi_j$, for $j = 1, 2, 3, \ldots , N$'' and forget about the probability space.
+
+\begin{example}
+Let $S = \{ 0, 1 , 2, \ldots \}$ and let $X : S \ra \mR$ be a discrete random variable with $\im X = \{0,  1 , 2, 3, 4 , \ldots \}$. Define the function $p : \mR \ra \mR$ by $p (x) = c 2^x / x!$, for $x = 0, 1, 2, \ldots$, and $p(x) = 0$ for $x \neq 0, 1, 2, \ldots$. 
+    \begin{enumerate}[label=\alph*)]
+    \item For what value of $c$ is the function $p$ a pmf?
+    \item Find $P (X = 0)$.
+    \item Find $P (X > 2)$.
+    \end{enumerate}
+\end{example}
+
+\begin{sol*}
+\begin{enumerate}[label=\alph*)]
+\item We must have $\displaystyle\sum_{x \in \im X} p (x) = 1$. But
+    \begin{align*}
+    \sum_{x = 0}^\infty \frac{2^x}{x!} = e^2
+    \end{align*} 
+and therefore
+    \begin{align*}
+    1 = \sum_{x = 0}^\infty p(x) = c e^{2} \quad \Rightarrow \quad c = e^{-2} .
+    \end{align*} 
+\item We have $P (X = 0) = p(0) = e^{-2} 2^0 / 0! = e^{-2} \approx 0.1353$.
+\item We have $P (X > 2) = 1 - P (X \leq 2)$. But,
+    \begin{align*}
+    P (X \leq 2) = P (X = 0) + P (X = 1) + P (X = 2) = e^{-2} \Big( \frac{2^0}{0!} + \frac{2^1}{1!} + \frac{2^2}{2!} \Big) \approx 0.6767
+    \end{align*} 
+and therefore $P (X > 2) = 1 - 0.6767 = 0.3233$. \hfill $\triangle$
+\end{enumerate}
+\end{sol*}
+
+\section{Functions of Discrete Random Variables}
+Let $X$ be a discrete random variable and let $g : \mR \ra \mR$ be a function. Then we can show that the function $Y : S \ra \mR$ defined by
+    \begin{align*}
+    Y(s) = g (X(s))  
+    \end{align*} 
+is a discrete random variable\footnote{Trick: $\im Y$ is discrete because $\im X$ is. Also, if $x \in \mR$, then $Y^{-1} (\{ x \}) = X^{-1} ( g^{-1} (\{ x \})) = X^{-1} (\im X \cap g^{-1} (\{ x \})) \cup X^{-1} (\overline{\im X} \cap g^{-1}(\{ x \}) ) = X^{-1} (\im X \cap g^{-1} (\{ x \})) \cup \varnothing = X^{-1} (\im X \cap g^{-1} (\{x \}) ) = \cup_{a \in A} X^{-1} (\{ a \} )$, where $A = \im X \cap X^{-1} (\{ x \})$ is a countable set.}. We usually write $Y = g (X)$.
+
+\begin{example}
+Let $X$ be a discrete random variable.
+    \begin{enumerate}[label=\alph*)]
+        \item Let $g(x) = ax + b$. Then $Y = g (X) = aX + b$. In this case, we have
+            \begin{align*}
+            P (Y = y) = P (aX + b = y) = P (X = (y-b)/a) = p_X( (y-b)/a) .
+            \end{align*} 
+        \item Let $g(x) = x^2$. Then $Y = g(X) = X^2$. In this case, for $y > 0$, 
+            \begin{align*}
+            P (Y = y) = P (X^2 = y) = P ( \{ s \, : \, X(s) &= \sqrt{y} \} \cup \{ s \, : \, X (s) = -\sqrt{y} \} ) \\
+            &= P (X = \sqrt{y}) + P (X = -\sqrt{y}) \\
+            &= p_X (\sqrt{y}) + p_X (-\sqrt{y}) .
+            \end{align*}
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+Let $X$ be a discrete random variable and $g : \mR \ra \mR$ be a function. Then the pmf of $Y$ is
+    \begin{align*}
+    p_Y (y) = \sum_{x \in g^{-1} (y)} P (X = x) 
+    \end{align*} 
+for $y \in \mR$.
+\end{theorem}
+\begin{proof}
+By definition, for a given $y \in \im Y$, we have
+    \begin{align*}
+    p_Y (y) = P(Y = y) = P (g (X) = y) .
+    \end{align*}
+But, 
+    $$
+    \{ s \in S \, : \,  g (X (s)) = y \} = \{ x \in \im X \, : \, g (x) = y \} = g^{-1} (\{ y \}) \cap \im X.
+    $$
+Since $\overline{\im X}$ (the complement of $\im X$) does not contribute to the value of the probability, we can therefore write
+    \begin{equation*}
+    p_Y (y) = P ( \{ x \in \im X \, : \, g (x) = y \}) = P (g^{-1} (\{ y \}) \cap \im X) = \sum_{x \in g^{-1} (y)} P (X = x) . \qedhere
+    \end{equation*}
+\end{proof}
+
+\section{Expectation and Variance}
+
+\subsubsection*{Expected Value}
+
+\begin{example}
+Consider a fair $6$-faced die and the following game. After tossing the die, if the face lands on an even number, then you win 2 US dollars. But if the face lands on an even number, then you loose 1 US dollar. Would you like to play this game?
+\end{example} 
+
+\begin{sol*}
+Each outcome from $\{ \epsdice{1} , \epsdice{3} , \epsdice{5} \}$ will result in a lost of $1$ dollar and each outcome from the set $\{ \epsdice{2} , \epsdice{4} , \epsdice{6} \}$ will result in a win of $2$ dollars. Therefore, out of the six possibilities, we will win on average:
+\[
+    \frac{-1 + 2 - 1 + 2 - 1 + 2}{6} = \frac{(2) (3)}{6} + \frac{(-1)(3)}{6} = (2) \Big( \frac{1}{2} \Big) + (-1) \Big( \frac{1}{2} \Big) = \frac{1}{2} .
+\]
+
+If we let $S = \{ \epsdice{1} , \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}$ and $P (A) = \frac{1}{6}$ for every atomic event $A$ and if $X$ is defined in the following way: 
+    \begin{align*}
+    X(s) = \left\{ \begin{matrix} 
+    2 & \text{ if } s \text{ is even,} \\
+    -1 & \text{ if } s \text{ is odd.}
+    \end{matrix} \right.
+    \end{align*}
+Then, the above calculations can be rewritten in the following way:
+    \begin{align*}
+    2 P (X = 2) + (-1) P (X= -1) . \tag*{$\triangle$}
+    \end{align*} 
+\end{sol*}
+
+The above expression is called the expected value, mean or expectation of the discrete random variable $X$.
+
+\begin{definition}\label{D:ExpectationDiscreteRandomVariable}
+If $X$ is a discrete random variable, then the \underline{expectation} or \underline{mean} of $X$ is denoted by $\mathrm{Exp} (X)$ or by $\mu_X$ and defined by
+    \begin{align*}
+    \mathrm{Exp} (X) = \sum_{x \in \im X} x P (X = x)
+    \end{align*} 
+whenever this sum converges absolutely, meaning $\sum_{x \in \im X} |x P (X = x)| < \infty$.
+\end{definition}
+
+\underline{\textbf{Note:}} Using the pmf of $X$, the expected value can be rewritten as
+    \begin{align*}
+    \mathrm{Exp} (X) = \sum_{x \in \im X} x p_X (x) .
+    \end{align*} 
+Also, when the context is clear, we will denote the expectation of $X$ simply by $\mu$.
+
+\vspace*{16pt}
+
+\begin{theorem}\label{thm:lawSubconsciousStatistician}
+If $X$ is a discrete random variable and $g : \mR \ra \mR$, then
+    \begin{align*}
+    \mathrm{Exp} (g (X)) = \sum_{x \in \im X} g (x) P (X = x) ,
+    \end{align*} 
+whenever the sum converges absolutely.
+\end{theorem}
+\begin{proof}
+From the definition of the expected value, we have
+    \begin{align*}
+    \mathrm{Exp} (g(X)) &= \sum_{y \in \im g (X)} y P (g (X) = y) \\
+    &= \sum_{y \in \im g (X)} y \sum_{x \in \im X : g(x) = y} P (X = x) \\
+    &= \sum_{y \in \im g (X)} \sum_{x \in \im X : g(x) = y} g (x) P (X = x) \\
+    &= \sum_{x \in \im X} g (x) P (X = x) . \qedhere
+    \end{align*}
+\end{proof}
+
+An application of the previous theorem to the expectation gives the following result.
+
+\begin{corollary}
+Let $X$ be a discrete random variable and let $a, b \in \mR$.
+\begin{enumerate}[label=\alph*)]
+\item If $P (X \geq 0) = 1$ and $\mathrm{Exp} (X) = 0$, then $P (X = 0) = 1$.
+\item $\mathrm{Exp} (aX + b) = a \mathrm{Exp} (X) + b$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+\begin{enumerate}[label=\alph*)]
+\item Assume that $P (X \geq 0 ) = 1$ and $\mathrm{Exp} (X) = 0$. Notice that 
+    $$
+    P (X < 0) = 1 - P (X \geq 0) = 0.
+    $$
+Therefore, the values of $X$ should all be positive or zero. By definition of $\mathrm{Exp} (X)$, we have that $\sum_{x \in \im X} x P (X = x) = 0$. Since every $x \in \im X$ is positive, we must have $x P (X = x) = 0$ for $x > 0$ and therefore $P (X = x) = 0$ in this case. Now, 
+    \begin{align*}
+    1 = P (X \geq 0) = P (X = 0) + P (X > 0) = P (X = 0) + 0 \quad \Rightarrow \quad P (X = 0) = 1 .
+    \end{align*} 
+\item This is a consequence of Theorem \ref{thm:lawSubconsciousStatistician}.\qedhere
+\end{enumerate}
+\end{proof}
+
+\subsubsection*{Variance}
+
+Another important statistics of a discrete random variable to know about is the variance.
+
+\begin{definition}
+The \underline{variance} of a discrete random variable $X$, denoted by $\mathrm{var} (X)$ is defined by
+    \begin{align*}
+    \mathrm{var} (X) = \mathrm{Exp} \big( [X - \mu ]^2 \big) ,
+    \end{align*} 
+where $\mu := \mathrm{Exp} (X)$.
+\end{definition}
+
+\underline{\textbf{Note:}} The \underline{standard deviation} of a random variable is $\sqrt{\mathrm{var} (X)}$, usually denoted by $\sigma_X$. 
+
+Here is an easier expression to compute the variance of a discrete random variable.
+
+\begin{theorem}\label{Thm:FormulatVariance}
+Let $X$ be a discrete random variable. Then,
+    \begin{align*}
+    \mathrm{var} (X) = \mathrm{Exp} (X^2) - \mu^2 ,
+    \end{align*} 
+where $\mu := \mathrm{Exp} (X)$.
+\end{theorem}
+\begin{proof}
+Let $\mu := \mathrm{Exp} (X)$. From Theorem \ref{thm:lawSubconsciousStatistician} with $g(x) = (x - \mu)^2$, we have
+    \begin{align*}
+    \mathrm{var} (X) &= \sum_{x \in \im X} g (x) P (X = x) = \sum_{x \in \im X} (x - \mu)^2 P (X = x) \\
+    &= \sum_{x \in \im X} \big( x^2 - 2 x \mu + \mu^2 \big) P (X = x) \\
+    &= \sum_{x \in \im X} x^2 P (X = x) - 2 \mu \sum_{x \in \im X} x P (X = x) + \mu^2 P (X = x) \\
+    &= \sum_{x \in \im X} x^2 P (X = x) - 2 \mu \sum_{x \in \im X} x P (X = x) + \mu^2 \sum_{x \in \im X} P (X = x) \\
+    &= \mathrm{Exp} (X^2) - 2 \mu^2 + \mu^2 = \mathrm{Exp} (X^2) - \mu^2 \qedhere
+    \end{align*} 
+\end{proof}
+
+\begin{example}
+The manager of an industrial plant is planning to buy a new machine of either type $a$ or type $b$. If $t$ denotes the number of hours of daily operation, the number of daily repairs $Y_1$ required to maintain a machine of type $a$ is a random variable with mean and variance both equal to $t/10$. The number of daily repairs $Y_2$ for a machine of type $b$ is a random variable with mean and variance both equal to $3t/25$. The daily cost of operating $a$ is $C_a (t) = 10t + 30Y_1^2$; for $b$ it is $C_b(t) = 8t + 30 Y_2^2$. Assume that the repairs take negligible time and that each night the machines are tuned so that they operate essentially like new machines at the start of the next day. Which machine minimizes the expected daily cost if a workday consists of
+    \begin{enumerate}[label=\alph*)]
+    \item 10 hours.
+    \item 20 hours.
+    \end{enumerate}
+\end{example}
+\begin{sol*}
+Using linearity, the expected value of the discrete random variable $C_a(t)$ is
+\[
+    \mathrm{Exp} (C_a (t)) = \mathrm{Exp} (10t) + \mathrm{Exp} (30 Y_1^2) = 10t + 30 \mathrm{Exp} (Y_1^2) .
+\]
+From Theorem \ref{Thm:FormulatVariance}, we have
+\[
+    \mathrm{var} (Y_1) = \mathrm{Exp} (Y_1^2) - \mu_1^2 \quad \Rightarrow \quad \mathrm{Exp} (Y_1^2) = \mathrm{var} (Y_1) + \mu_1^2 ,
+\]
+where $\mu_1 = \mathrm{Exp} (Y_1)$. Plugging in the values of $\mathrm{var} (Y_1)$ and $\mathrm{Exp} (Y_1)$ into the above equation, we get
+\[
+    \mathrm{Exp} (Y_1^2) = \frac{t}{10} + \frac{t^2}{100},
+\]
+and hence
+\[
+    \mathrm{Exp} (C_a (t)) = 10t + 30 \Big( \frac{t}{10} + \frac{t^2}{100} \Big) = 13 t + 0.3 t^2 .
+\]
+
+Similar calculations give
+\[
+    \mathrm{Exp} (C_b (t)) = 11.6t + 0.432 t^2 .
+\]
+\begin{enumerate}[label=\alph*)]
+    \item In this scenario, $t = 10$. Therefore, $\mathrm{Exp} (C_a) = 160$ and $\mathrm{Exp} (C_b) = 159.2$. Machine $b$ will be less expensive to run.
+    \item In this scenario, $t = 20$. Therefore, $\mathrm{Exp} (C_a) = 380$ and $\mathrm{Exp} (C_b) = 404.8$. Machine $a$ will be less expensive to run. \hfill $\triangle$
+\end{enumerate}
+\end{sol*}
+
+\section{Conditional Expectation and the Partition Theorem}
+
+When a condition is added, then the additional information will influence the probability $P (X = x)$ and therefore directly the expectation of $X$. We therefore introduce the conditional expectation.
+
+\begin{definition}
+Let $X$ be a discrete random variable and $B$ be an event with $P (B) > 0$. The \underline{conditional expectation} of $X$ given $B$ is denoted by $E (X | B)$ and is defined by
+    \begin{align*}
+    E (X | B) = \sum_{x \in \im X} x P (X =x | B) ,
+    \end{align*} 
+whenever this sum converges absolutely.
+\end{definition}
+
+We therefore have an analogous result to the Partition Theorem, but for the conditional expectation.
+
+\begin{theorem}
+Let $X$ be a discrete random variable and $B_1$, $B_2$, $\ldots$ be mutually exclusive events such that $\cup_{i = 1}^\infty B_i = S$ and $P (B_i) > 0$ for each $i$. Then
+    \begin{align*}
+    E (X) = \sum_{i = 1}^\infty E (X |B_i) P (B_i) ,
+    \end{align*} 
+whenever the sum converges absolutely.
+\end{theorem}
+\begin{proof}
+We can partition $S$ as $S = \cup_{i = 1}^\infty B_i$, where $B_i \cap B_j = \varnothing$, when $i \neq j$. Therefore,
+    \begin{align*}
+    E (X) = \sum_{x \in \im X} x P (X = x) &= \sum_{x \in \im X} x \Big( \sum_{j = 1}^\infty P (X = x | B_j ) P (B_j) \Big) \\
+    &= \sum_{j = 1}^\infty \sum_{x \in X} x P (X = x | B_j) P (B_j) \\
+    &= \sum_{j = 1}^\infty E (X | B_j) P (B_j) . \qedhere
+    \end{align*}
+\end{proof}
+
+\section{Examples of Discrete Random Variables}
+
+Let $X$ be a discrete random variable. 
+
+\subsubsection*{Bernouilli distribution}
+A discrete random variable $X$ has the \underline{Bernouilli distribution} with parameter $p \in [0, 1]$ if $\im X = \{ 0 , 1 \}$ and
+    \begin{align*}
+    P (X = 1) = p \quad \text{ and } \quad P (X = 0) = 1 - p .
+    \end{align*} 
+
+\underline{Used Scenarios:} The Bernouilli distribution is usually used to model experiment in which the outcome is ``success'' or ``failure''.
+
+\subsubsection*{Binomial Distribution}
+
+Let $n$ be an integer and $q \in [0, 1]$. $X$ has the \underline{binomial distribution} with parameters $n$ and $q$ if $\im X = \{ 0 , 1, 2, \ldots , n \}$ and
+    \begin{align*}
+    P (X = k) = \frac{n!}{k! (n - k)!} q^k (1 - q)^{n - k} , \quad k = 0, 1, 2, \ldots , n .
+    \end{align*} 
+\underline{Used Scenarios:} Experiments where the goal is to obtain a certain number of successes in $n$ trials.
+
+\begin{example}
+There are $n = 6$ machines to test if they are working properly or not. According to a recent survey, a machine is working properly in $75\%$ of the time. What is the probability that $4$ machines are working properly.
+\end{example}
+
+\begin{sol*}
+We have $q = 0.75$ and $n = 6$. Let $X$ be the discrete random variable given the number of machines that are working properly. Then $X \sim Bi (6, 0.75)$. Therefore,
+    \begin{align*}
+    P (X = 4) = \binom{6}{4} (0.75)^4 (0.25)^{2} = \frac{6!}{4! 2!} (0.75)^4 (0.25)^2 \approx 0.2966 . \tag*{$\triangle$}
+    \end{align*} .
+\end{sol*}
+
+\subsubsection*{Poisson Distribution}
+
+Let $\lambda > 0$. $X$ has the \underline{Poisson distribution} if $\im X = \{ 0 , 1, 2, \ldots \}$ and
+    \begin{align*}
+    p_X (k) = \frac{1}{k!} \lambda^k e^{-\lambda} , \quad k = 0, 1, 2, \ldots .
+    \end{align*}
+\underline{Used Scenarios:} Experiments where the goal is to obtain a certain number of successes in $n$ trials, with $n$ large.
+
+\underline{\textbf{Note:}} The parameter $\lambda$ usually refers to the expected number of successes in an experiment.% (justified later when we introduce expectation of discrete random variables).
+
+\begin{example}
+Consider an experiment that consists of counting the number of $\alpha$-particles given off in a $1$-second interval by $1$ gram of radioactive material. If we know from past experience that, on the average, $3.2$ such $\alpha$-particles are given off, what is a good approximation to the probability that no more than $2$ $\alpha$-particles will appear?
+\end{example}
+
+\begin{sol*}
+We think of a the surface of the material as a composition of a high number $n$ of particular, that has $3.2/n$ chance of given off. We therefore can approximate the desire probability by a Poisson distribution with parameter $\lambda = n q = 3.2$. Then,
+    \begin{align*}
+    P (X \leq 2) = P (X = 0) + P (X = 1) + P (X = 2) = \frac{e^{-3.2} 3.2^0}{0!} + \frac{e^{-3.2} 3.2^1}{1!} + \frac{e^{-3.2} 3.2^2}{2!} \approx 0.3799 . \tag*{$\triangle$}
+    \end{align*} 
+\end{sol*}
+
+\begin{theorem}
+Let $X$ be a discrete random variable which follows a binomial distribution with parameters $n$ and $q$ and let $\lambda = nq$. Then
+    \begin{align*}
+    p_X (k) \approx \frac{1}{k!} \lambda^k e^{-\lambda} , \quad k = 0 , 1, 2, \ldots ,
+    \end{align*}
+when $n$ is large enough and $q$ is small enough.
+\end{theorem}
+
+\subsubsection*{Negative Binomial Distribution}
+
+Let $q \in (0, 1)$ and $n \geq 0$ be an integer. Then $X$ has the \underline{negative binomial distribution} with parameters $q$ and $n$ if $\im X = \{n , n + 1 , n + 2 , \ldots \}$ and
+    \begin{align*}
+    p_X (k) = \frac{(k-1)!}{(n-1)!(k-n)!} q^{n} (1 - q)^{k - n} , \quad k = n , n + 1 , n + 2, \ldots 
+    \end{align*}
+\underline{Used-case Scenarios:} Experiments where the goal is to find the probability of having the $n$-th success after $k$ trials.
+
+\begin{example}
+A geological study indicates that an exploratory oil well drilled in a particular region should strike oil with probability $0.2$. Find the probability that the third oil strike comes on the fifth well drilled.
+\end{example}
+
+\begin{sol*}
+Let $X$ be the number of strikes needed to obtain a third oil strike. In this case, we have $q = 0.2$ and $n = 3$. We are searching for $P (X = 5)$. Then
+    \begin{align*}
+    P (X = 5) = \frac{4!}{2! 2!} (0.2)^3 (0.8)^2 = 0.03072 . \tag*{$\triangle$}
+    \end{align*} .
+\end{sol*}
+
+\subsubsection*{Geometric Distribution}
+
+Let $q \in (0, 1)$. Then $X$ has the \underline{geometric distribution} with parameter $q$ if $\im X = \{ 1 , 2, \ldots \}$ and
+    \begin{align*}
+    p_X (k) = (1 - q)^{k - 1} q , \quad k = 1 , 2, 3, \ldots .
+    \end{align*} 
+\underline{Used-case Scenarios:} Experiments where the goal is to find the probability of the first success to occur within $k$ tries.
+
+\begin{example}
+An urn contains $10$ red balls and $20$ blue balls. Some balls are randomly selected, one at a time, until a red one is obtained. If we assume that each selected ball is replaced before the next one is drawn, what is the probability that
+    \begin{enumerate}[label=\alph*)]
+    \item exactly $3$ draws are needed?
+    \item at least $6$ draws are needed. 
+    \end{enumerate}
+\end{example}
+
+\begin{sol*}
+Let $X$ be the discrete random variable counting the number of time needed to get a red ball. The random variable $X$ follows a geometric distribution with parameter $q$, giving the probability of selecting a red ball.
+
+Since the ball is replaced in the urn, the probability of selecting a red ball is always the same, that is $1/3$. Therefore, $q = 1/3$.
+\begin{enumerate}[label=\alph*)]
+    \item Let $k = 3$, so that $P (X = k) = (1 - 1/3)^2 (1/3) = 4 / 27$.
+    \item What is $P (X \geq 6)$? Using the complement, this is $1 - P (X < 6)$. Therefore,
+        \begin{align*}
+        P (X \geq 6) = 1 - P (X = 1) - P (X = 2) - P (X = 3) - P (X = 4) - P (X = 5) \approx 0.8683 . \tag*{$\triangle$}
+        \end{align*}
+\end{enumerate}
+\end{sol*}
+
+\subsubsection*{Summary}
+
+The table below is a summary of the expected value and variance of each of the examples presented in this section.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{||c|c|c||}
+\hline\hline
+Distribution & Expected Value & Variance \\ \hline\hline 
+$B(q)$ & $q$ & $q (1 - q)$ \\ \hline
+$B(n, q)$ & $nq$ & $nq (1 - q)$ \\\hline
+$\mathcal{P} (\lambda )$ & $\lambda$ & $\lambda$ \\\hline 
+$NB (n, q)$ & $n /q$ & $n(1 - q) / q^2$ \\\hline
+$G (q)$ & $1/q$ & $(1 - q) / q^2$ \\\hline \hline
+\end{tabular}
+\caption{Table of Mean and Variance of different distributions}
+\end{table}
+
+\begin{comment}
+
+\section{Problems Set}
+
+\subsection*{Discrete Random Variables}
+    
+    \begin{problem}
+    Let $(S, \mathcal{A}, P)$ be a probability space. If $X$ and $Y$ are discrete random variables, show that the mapping $Z : S \ra \mR$ defined by $Z(s) = X(s)Y(s)$ is a discrete random variable.
+    \end{problem}
+
+    \begin{problem}
+    Let $A$ be an event from a probability space $(S , \mathcal{A}, P)$. Show that the indicator map $1_A$ defined by
+        \begin{align*}
+        1_A (s) := \left\{ \begin{matrix}
+        1 & \text{ if } s \in A \\
+        0 & \text{ if } s \not\in A , \end{matrix}
+        \right.
+        \end{align*} 
+    is a discrete random variable.
+    \end{problem}
+
+    \begin{problem}\label{P:EquivalentEvents}
+    Let $X$ be a discrete random variable. Show that
+        \begin{enumerate}[label=\alph*)]
+        \item the set $\{ X \leq x \}$ is an event, for every $x \in \mR$.
+        \item the set $\{ X < x \}$ is an event, for every $x \in \mR$.
+        \item the set $\{ X \geq x \}$ is an event, for every $x \in \mR$.
+        \item the set $\{ X > x \}$ is an event, for every $x \in \mR$.
+    \end{enumerate}
+    \end{problem}
+
+    \begin{problem}
+    Show that $X$ is a discrete random variable if and only if the following conditions hold:
+        \begin{enumerate}[label=\alph*)]
+        \item $\im X$ is discrete.
+        \item $\forall x \in \mR$, the set $\{ X \leq x \}$ is an event.
+        \end{enumerate}
+    \end{problem}
+
+\subsection*{Probability Mass Functions}
+
+    \begin{problem}
+    A card is drawn randomly from a hat containing $5$ cards of different colors (say 2 red, 2 blue, and 1 yellow). Let $S = \{ r, b, y \}$ be the sample space and $\mathcal{A} = \mathcal{P} (S)$. If the card drawn is red, then the participant looses \$$10$, if it is blue, the participant wins \$$10$, and if it is yellow, the participant wins \$$20$. Let $X$ be the money won by a participant after playing the game. Find the probability mass function of $X$.
+    \end{problem}
+
+    \begin{problem}
+    A problem in a test given to small children asks them to match each of three pictures of animals to the word identifying that animal. If a child assigns the three words at random to the three pictures, find the probability distribution (probability mass function) of $Y$, the number of correct matches.
+    \end{problem}
+
+    \begin{problem}
+    Five balls, numbered $1$, $2$, $3$, $4$, $5$, are placed in an urn. Two balls are randomly selected from the five, and their numbers noted. Find the probability distribution for the following random variables: a) $X$ is the \textit{largest} of the two sampled numbers; b) $X$ is the \textit{sum} of the two sampled numbers.
+    \end{problem}
+
+    \begin{problem}
+    For what value(s) of $c$ is the function $p$, defined by
+        \begin{align*}
+        p (k) = \left\{ \begin{matrix}
+        \frac{c}{k (k + 1)} & \text{, } k = 1 , 2, \ldots \\
+        0 & \text{ otherwise } 
+        \end{matrix}
+        \right.
+        \end{align*}
+    a pmf?
+    \end{problem}
+    
+\subsection*{Functions of Discrete Random Variables}
+    
+    \begin{problem}
+    Let $X$ be a discrete random variable with its distribution (probability mass function) $p_X$ given by the following table
+        \begin{center}
+        \begin{tabular}{c|cccc}
+        $x$ & 1 & 2 & 3 & 4 \\\hline
+        $p_X (x)$ & 0.4 & 0.3 & 0.2 & 0.1
+        \end{tabular}
+        \end{center}
+    Find the image of $Y = X^2 - 1$ and its distribution. 
+    \end{problem}
+
+    \begin{problem}
+    Consider the discrete random variable $X$ from the previous problem. Find the image of $Y = \sin (\frac{\pi}{2} X)$ and its distribution.
+    \end{problem}
+
+\subsection*{Expectation and Variance}
+
+\begin{problem}
+A manufacturing company ships its product in two different sizes of truck trailers. Each shipment is made in a trailer with dimensions $8 ft \times 10 ft \times 30 ft$ or $8ft \times 10ft \times 40ft$. If $30\%$ of its shipments are made by using $30$-foot trailers and $70\%$ by using $40$-foot trailers, find the mean volume shipped per trailer load. (Assume the trailers are always full.)
+\end{problem}
+
+\begin{problem}
+Two construction contracts are to be randomly assigned to one or more of three firms: A, B, C. Any firm may receive both contracts. If each contract will yield a profit of $\$90,000$ for the firm, find the expected profit for firm $A$. If firms $A$ and $B$ are actually owned by the same individual, what is the owner's expected total profit?
+\end{problem}
+
+\begin{problem}
+A single fair die is tossed once. Let $X$ be the number facing up. Find the variance and the standard deviation of $X$.
+\end{problem}
+
+\begin{problem}
+If $X$ is a discrete random variable, show that $\mathrm{var} (aX + b) = a^2 \mathrm{Var} (X)$ for $a, b \in \mR$.
+\end{problem}
+
+\subsection*{Conditional Expectation and the Partition Theorem}
+
+\begin{problem}
+Let $X$ be a discrete random variable and let $g : \mR \ra \mR$ be a function. Using the definition of the conditional expectation, show that if $x$ is a real number such that $P (X = x) > 0$, then $E (g (X) | X = x) = g (x)$. 
+\end{problem}
+
+\subsection*{Examples of Discrete Random Variables}
+
+\begin{problem}
+A meteorologist in Hawaii recorded $X$: ``the number of days of rain during a 30-day period.''. Does $X$ have a binomial distribution?
+\end{problem}
+
+\begin{problem}
+In 2003, the average combined SAT score (math and verbal) for college-bound students in the United-States was 1026. Suppose that approximately 45\% of all high school graduates took this test and that 100 high school graduates are randomly selected from among all high school grads in the United-States. Which of the following discrete random variables has a distribution that can be a binomial distribution? Whenever possible, give the values of $n$ and $q$.
+\begin{enumerate}[label=\alph*)]
+    \item The number of students who took the SAT.
+    \item The scores of the 100 students in the sample.
+    \item The number of students in the sample who scored above average on the SAT.
+    \item The amount of time required by each student to complete the SAT.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+If $X$ has a Binomial distribution, show that $E (X) = nq$ and $\mathrm{Var} (X) = nq (1 - q)$.
+\end{problem}
+
+\section{Solutions to Problems Set}
+\setcounter{problem}{0} 
+
+\subsection*{Discrete Random Variables}
+    
+    \begin{problem}
+    The $\im Z$ is discrete because $\im X$ and $\im Y$ are discrete sets. 
+
+    Let $z \in \mR$. If $\{ Z = z \} = \varnothing$, then $\{ Z = z \}$ is an event because the set $\varnothing$ is always an event. Assume that $\{ Z = z \} \neq \varnothing$. We have to consider two cases.
+        \begin{enumerate}[label=\roman*)]
+            \item \underline{$z = 0$.} In this case, the only way that $Z (s) = 0$ is if $X (s) = 0$ or $Y (s) = 0$. Therefore,
+                \begin{align*}
+                \{ Z = 0 \} = \{ X = 0 \} \cup \{ Y = 0 \} .
+                \end{align*} 
+            Since $\{ X = 0 \}$ and $\{ Y = 0  \}$ are events, we conclude that $\{ Z = 0 \}$ are events (recall that, by assumption, $X$ and $Y$ are discrete random variables). 
+            \item \underline{$z \neq 0$.} In this case, the functions $X$ and $Y$ can't take the value $0$. If $s \in \{ Z = z \}$, then $X(s) Y(s)= Z(s) = z$. Therefore $X(s) = z/ Y(s)$. Let $y = Y (s)$. Then $X(s) = z/y$ and $Y(s) = y$. In other words, $s \in \{ X = z/y\} \cap \{ Y = y \}$. On the other hand, if $s \in \{ X = z/y \} \cap \{ Y = y \}$, then $X(s) = z/y$ and $Y(s) = y$. Therefore, $Z(s) = X(s) Y(s) = (z/y) y = z$ and then $s \in \{ Z = z \}$. In summary, we have just proved that
+            \begin{align*}
+            \{ Z = z \} = \bigcup_{y \in \im Y, y \neq 0} \Big( \{ X = z /y \} \cap \{ Y = y \} \Big) .
+            \end{align*} 
+            For a given $z \in \mR$, $z \neq 0$ and $y \in \im Y$, the event $\{ X = z / y \} \cap \{ Y = y \}$ is an event because $X$ and $Y$ are discrete random variables and $\mathcal{A}$ is an event space. Thus, a countable union of these events will remain an event. Hence, $\{ Z = z \}$ is an event. 
+        \end{enumerate}
+        In each case, $\{ Z = z \}$ is an event. The map $Z$ satisfies condition (a) and (b) in Definition \ref{D:DiscreteRandomVariable} and therefore $Z$ is a discrete random variable. \hfill $\triangle$
+    \end{problem}
+
+    \begin{problem}
+    We have $\im (1_A) = \{ 0, 1 \}$, which is a finite set (therefore discrete). 
+
+    Let $x \in \mR$. We have three cases to consider.
+    \begin{enumerate}
+        \item \underline{$x = 0$.} In this case, $\{ 1_A = 0\} = \overline{A}$. Since $A$ is an event, we know that $\overline{A}$ is also an event. Therefore, $\{ 1_A = 0 \}$ is an event.
+        \item \underline{$x= 1$.} In this case, $\{ 1_A = 1 \} = A$ and $A$ is an event. Hence, $\{ 1_A = 1 \}$ is an event.
+        \item \underline{$x \neq 0$ and $x \neq 1$.} In this case, $\{ 1_A = x \} = \varnothing$ because there is no $s$ such that $1_A (x) = x$ (the only possible values are $0$ and $1$ for $1_A$). Since $\varnothing$ is an event, $\{ 1_A = x \}$ is an event. \hfill $\triangle$
+    \end{enumerate}
+    \end{problem}
+
+    \begin{problem}
+    \begin{enumerate}[label=\alph*)]
+        \item Let $x \in \mR$. If $\{ X \leq x \} = \varnothing$, then $\{ X \leq x \}$ is an event. Assume that $\{ X \leq x \} \neq \varnothing$. Since $X$ is a discrete random variable, the set $\im X$ is discrete. This means there are only a countable values of $\im X$ that can be smaller than the number $x$. List them in decreasing order, say $x_1$, $x_2$, $x_3$, $\ldots$, with $x_i \geq x_j$, when $i \leq j$ and $x_j \leq x$ for any $j$. Therefore, we can write
+            \begin{align*}
+            \{ X \leq x \} = \bigcup_{j = 1}^\infty \{ X = x_j \} .
+            \end{align*} 
+        The map $X$ is a discrete random variable. Therefore, each set $\{ X = x_j \}$ is an event and this implies that $\cup_{j = 1}^\infty \{ X = x_j \}$ is an event. Hence, $\{ X \leq x \}$ is an event.
+        \item Let $x \in \mR$. We can write
+            \begin{align*}
+            \{ X < x \} = \{ X \leq x \} \cap \overline{\{ X = x \} } .
+            \end{align*} 
+        In other words, the set $\{ X < x \}$ is the set of $s \in S$ that belong to $\{ X \leq x \}$ but are not in $\{ X = x \}$. From part a), the set $\{ X \leq x \}$ is an event and from the fact that $X$ is assumed to be a discrete random variable, $\{ X = x \}$ is an event. Therefore, $\{ X \leq x \} \cap \overline{\{ X = x \}}$ is an event and hence $\{ X < x \}$ is an event.
+        \item We have
+            \begin{align*}
+            \{ X \geq x \} = \overline{\{ X < x \}} .
+            \end{align*} 
+        From part b), we know that $\{ X < x \}$ is an event, hence $\{ X \geq x \}$ is also an event.
+        \item We have
+            \begin{align*}
+            \{ X > x \} = \overline{\{ X \leq x \}}.
+            \end{align*} 
+        From part c), we know that $\{ X \leq x \}$ is an event, hence $\{ X > x \}$ is also an event.
+    \end{enumerate}
+    \end{problem}
+
+    \begin{problem}
+    Assume that $X$ is a discrete random variable. Then $\im X$ is discrete and $\{ X = x \}$ is an event for every $x \in \mR$. From Problem 3, part a), the set $\{ X \leq x \}$ is an event. Therefore, conditions a) and b) in the statement are satisfied.
+
+    Assume that the two conditions in the statement are satisfied. Then, in particular, $\im X$ is discrete. Also, for an $x \in \mR$, the set $\{ X > x \}$ is an event because it is the complement of the event $\{ X \leq x \}$. Also, for an $x \in \mR$, we have
+        \begin{align*}
+        \{ X < x \} = \bigcup_{j = 1}^\infty \Big\{ X \leq x - \frac{1}{j} \Big\} .
+        \end{align*} 
+    This is a countable unions of the events $\{ X \leq x - \frac{1}{j} \}$ and therefore $\{ X < x \}$ is an event. But also $\{ X \geq x \}$ is also an event because it is the complement of $\{ X < x \}$. Let $x \in \mR$. We can write
+        \begin{align*}
+        \{X = x \} = \{ X \leq x \} \cap \{ X \geq x \} ,
+        \end{align*} 
+    the intersection of two events! So $\{ X = x \}$ is also an event. Hence $X$ is a discrete random variable.
+    \end{problem}
+
+\subsection*{Probability Mass Functions}
+
+    \begin{problem}
+    The probability measure $P$ on $S$ is given by
+    \begin{align*}
+    P (\{ r \}) = \frac{2}{5} , \, P (\{ b \}) = \frac{2}{5} , \quad P (\{ y \}) = \frac{1}{5} .
+    \end{align*} 
+    The function $X : S \ra \mR$ is given by $X (\{ r \}) = -10$, $X (\{ b \}) = 10$, and $X (\{ y \}) = 20$. Therefore, we have
+        \begin{itemize}
+            \item $p_X (-10) = P (X = -10) = P (\{ r \}) = \frac{2}{5}$.
+            \item $p_X (10) = P (X = 10) = P (\{ b \}) = \frac{2}{5}$.
+            \item $p_X (20) = P (X = 20) = P (\{ y \}) = \frac{1}{5}$.
+            \item $p_X (x) = 0$, for $x \neq -10, 10, 20$.
+        \end{itemize} 
+    \end{problem}
+
+    \begin{problem}
+    A child may or may not identify properly the picture. Let $w_1$, $w_2$, $w_3$ be the words corresponding to the animal in picture $p_1$, $p_2$, $p_3$. A child will identify correctly a picture if the word $w_i$ is put under the picture $p_i$. Therefore, we can identify an outcome as an ordered list of three symbols from $\{ w_1, w_2 , w_3 \}$. For example, $w_1 w_2 w_3$ means that the child identified the animal in picture $p_1$ as $w_1$, in picture $p_2$ as $w_2$, and in picture $p_3$ as $w_3$. Therefore, the sample space is
+        \begin{align*}
+        S = \{ w_1w_2w_3, w_1w_3w_2, w_2w_1w_3, w_3 w_2 w_1, w_3 w_1 w_2, w_2 w_1 w_3 \} .
+        \end{align*} 
+    If we just keep the numbers
+        \begin{align*}
+        S = \{ 123, 132, 213, 321, 312, 231 \} .
+        \end{align*} 
+    Each outcome are equally likely to happen, so with $1/6$ chance.
+
+    Let $Y : S \ra \mR$. Notice that, if the child successfully matches 2 pictures with their words, then the third picture will be also successfully matched. Therefore, the child may correctly identify $0$, $1$, or $3$ of the pictures presented and $\im Y = \{ 0 , 1, 3 \}$. Then, we have $p_Y (y) = 0$ for any $y \neq 0, 1, 3$. For the other values of $y$:
+        \begin{itemize}
+            \item $p_Y (0) = P (Y = 0) = P (\{ 312, 231 \}) = 1/3$.
+            \item $p_Y (1) = P (Y = 1) = P (\{ 132, 213, 312 \}) = \frac{1}{2}$.
+            \item $p_Y (3) = P (Y = 3) = P (\{ 123 \}) = \frac{1}{6}$. 
+        \end{itemize}
+    \end{problem}
+
+    \begin{problem}
+    The sample space is all distinct subsets of two numbers from $\{ 1, 2, 3, 4, 5 \}$. There are $\binom{5}{2} = 10$ possible outcomes and all of the outcome are equally likely to occur. 
+    \begin{enumerate}[label=\alph*)]
+        \item We have $\im X = \{ 2, 3, 4, 5 \}$. The number $1$ is missing because in the two balls selected, if ball \#1 is selected, then the other ball's number is automatically one of $2$, $3$, $4$, $5$. We will present the pmf of $X$ in a table.
+        \begin{center}
+            \begin{tabular}{c|c|c|c|c}
+            $x$ & 2 & 3 & 4 & 5 \\\hline
+            $p_X (x)$ & $1/10$ & $1/5$ & $3/10$ & $2/5$
+            \end{tabular}
+        \end{center}  
+    To compute $p_X (2)$, we first notice that $\{ X = 2 \} = \{ \{ 1, 2 \} \}$ and therefore $P (X = 2) = 1/10$. To compute $p_X (3)$, we first notice that $\{ X = 3 \} = \{ \{ 1 , 3 \} , \{ 2 , 3 \} \}$ and therefore $P (X = 3) = 2/10 = 1/5$. Similar calculations lead to the values of $p_X (4)$ and $p_X (5)$. Notice that $1/10 + 1/5 + 3/10 + 2/5 = 1$. 
+        \item Removing the parenthesis in the set and considering them as unordered list, the outcomes of $S$ can be explicitly enumerated:
+            \begin{align*}
+            S = \{ 12, 13, 14, 15, 23, 24, 25, 34, 35, 45 \} .
+            \end{align*} 
+        Therefore, considering all the outcomes and adding the numbers, we see that $\im X = \{ 3, 4, 5, 6, 7, 8, 9 \}$. We have, more precisely, $X(12) = 3$, $X(13) = 4$, $X(14) = X(23) = 5$, $X(24) = X(15) = 6$, $X(25) = X(34) = 7$, $X(35) = 8$, $X(45) = 9$.
+        Using the same strategy as in a), we find the following values for $p_X$.
+        \begin{center}
+            \begin{tabular}{c|c|c|c|c|c|c|c}
+            $x$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ \hline
+            $p_X (x)$ & $1/10$ & $1/10$ & $1/5$ & $1/5$ & $1/5$ & $1/10$ & $1/10$
+            \end{tabular}
+        \end{center}
+    \end{enumerate}
+    \end{problem}
+
+    \begin{problem}
+    If $p$ is a probability mass function, then we know it should satisfy $\sum_{k = 1}^\infty p(k) = 1$. This gives the following condition:
+        \begin{align*}
+        \sum_{k = 1}^\infty \frac{c}{k (k + 1)} = 1 .
+        \end{align*} 
+    Now, using the trick $\frac{1}{k (k + 1)} = \frac{1}{k} - \frac{1}{k + 1}$, we see that the series $\sum_{k = 1}^\infty  \frac{1}{k (k + 1)}$ is convergent and
+        \begin{align*}
+        \sum_{k = 1}^\infty \frac{1}{k (k + 1)} = \lim_{N \ra \infty} \sum_{k = 1}^N \Big( \frac{1}{k} - \frac{1}{k + 1} \Big) = \lim_{N \ra \infty} 1 - \frac{1}{N + 1} = 1 .
+        \end{align*} 
+    Therefore, using the properties of series, we see that
+    \begin{align*}
+    \sum_{k = 1}^\infty \frac{c}{k (k + 1)} = 1 \iff c \sum_{k = 1}^\infty \frac{1}{k (k + 1)} = 1 \iff c \cdot 1 = 1 \iff c = 1 .
+    \end{align*} 
+    This means the function $p$ is a pmf if and only if $c = 1$. 
+    \end{problem}
+    
+\subsection*{Functions of Discrete Random Variables}
+    
+    \begin{problem}
+    Setting $X = 1$, $X = 2$, $X = 3$, and $X = 4$ in the expression of $Y$, we get $Y = 0, 3, 8, 15$. Therefore, $\im Y = \{ 0, 3, 8, 15 \}$.
+
+    Using Theorem 3, with $g(x) = x^2 - 1$, we have
+        \begin{align*}
+        p_Y (y) = \sum_{x \in g^{-1} (y)} P (X = x ) .
+        \end{align*} 
+    For 
+        \begin{itemize}
+            \item $y = 0$, we have $g^{-1} (0) = \{ x \in \im X \, : \, g(x) = 0 \} = \{ 1 \}$;
+            \item $y = 1$, we have $g^{-1} (3) = \{ x \in \im X \, : \, g(x) = 3 \} = \{ 2 \}$;
+            \item $y = 8$, we have $g^{-1} (8) = \{ x \in \im X \, : \, g (x) = 8 \} = \{ 3 \}$;
+            \item $y = 15$, we have $g^{-1} (15) = \{ x \in \im X \, : \, g (x) = 15 \} = \{ 4 \}$. 
+        \end{itemize}
+    Therefore,
+        \begin{itemize}
+            \item $p_Y (0) = P (X = 1) = 0.4$.
+            \item $p_Y (3) = P (X = 2) = 0.3$.
+            \item $p_Y (8) = P (X = 3) = 0.2$.
+            \item $p_Y (15) = P (X = 4) = 0.1$.
+            \item $p_Y (y) = 0$ for any other values $y$ different from $0, 3, 8, 15$. \hfill $\triangle$
+        \end{itemize}
+    \end{problem}
+
+    \begin{problem}
+    Setting $X = 1, 2, 3, 4$ in the expression of $Y$, we get $Y = 1, 0, -1, 0$ respectively. Therefore, $\im Y = \{ -1, 0, 1 \}$.
+
+    Using Theorem 3 again, but with $g (x) = \sin (\frac{\pi}{2} x )$, we have
+        \begin{align*}
+        p_Y (y) = \sum_{x \in g^{-1} (y)} P (X = x ) .
+        \end{align*} 
+    For
+        \begin{itemize}
+            \item $y = -1$, $g^{-1}(-1) = \{ 3 \}$;
+            \item $y = 0$, $g^{-1} (0) = \{ 2, 4 \}$;
+            \item $y = 1$, $g^{-1} (1) = \{ 1 \}$.
+        \end{itemize}
+    Therefore,
+        \begin{itemize}
+            \item $p_Y (-1) = P (X = 3) = 0.2$.
+            \item $p_Y (0) = P (X = 2) + P (X = 4) = 0.3 + 0.1 = 0.4$.
+            \item $p_Y (1) = P (X = 1) = 0.4$. \hfill $\triangle$
+        \end{itemize}
+    \end{problem}
+
+\subsection*{Expectation and Variance}
+
+\begin{problem}
+Let $t_1$ be the label ``the dimensions of the trailer are $8 \times 10 \times 30$''. and let $t_2$ be the label ``the dimensions of the trailer are $8 \times 10 \times 40$''. Given a trailer, the possible outcome is a trailer of type $t_1$ or of type $t_2$. Therefore, $S = \{ t_1 , t_2 \}$ with $P (\{ t_1 \}) = 0.3$ and $P (\{ t_2 \}) = 0.7$.
+
+Let $X$ be the map giving the volume of a trailer. We have 
+$$
+    X (t_1) = 8 \cdot 10 \cdot 30 = 2400 \quad \text{ and } \quad X (t_2) = 8 \cdot 10 \cdot 40 = 3200 .
+$$
+Therefore, we get
+\[
+    \mathrm{Exp} (X) = X( t_1) P (X = 2400) + X (t_2) P (X = 3200) = (2400) (0.3) + (3200)(0.7) = 2960 .
+\]
+The average volume shipped per trailer load is $2960 \mathrm{ft}^3$. \hfill $\triangle$
+\end{problem}
+
+\begin{problem}
+A firm can be assigned one or two contracts. Therefore, we can generate the set of outcomes as couple of letters taken from $\{ a, b, c \}$. For example $aa$ means $a$ was assigned to the two contracts, but $ab$ or $ba$ means that $a$ and $b$ was assigned to one of the contracts. The sample space $S$ is
+    \begin{align*}
+    S = \{ aa, ab, ba, ac, ca, bb, bc, cb, cc \} .
+    \end{align*}
+Since the firms are assigned a contract at random, each outcome are equally likely to occur, so with $1/9$. 
+
+\begin{enumerate}[label=\alph*)]
+    \item In the first scenario, assume that $X$ is the possible profit made by firm $A$ after the contracts were assigned. Therefore, this means
+        \begin{itemize}
+            \item $X (aa) = 180,000$.
+            \item $X(ab) = X (ba) = X(ac) = X (ca) = 90,000$.
+            \item $X(bb) = X(bc) = X(cb) = X (cc) = 0$.
+        \end{itemize}
+    The expectation is then calculated as followed:
+    \begin{align*}
+        \mathrm{Exp} (X) &= 180,000 P (X = 180,000) + 90,000 P (X = 90,000) + 0 P (X = 0) \\ 
+        &= 180,000 P (\{ aa \}) + 90,000 (P (\{ ab , ba, ac, ca \}) + 0 \\ 
+        &= \frac{180,000}{9} + \frac{90,000 \cdot 4}{9} \\ 
+        &=  20,000 + 40,000 \\
+        &= 60,000
+    \end{align*}
+    \item Let $Y$ be the profit made by firms $A$ and $B$ after the contrasts were assigned. Therefore, this means
+        \begin{itemize}
+            \item $X (aa) = X(bb) = X(ab) = X (ba) = 180,000$.
+            \item $X (ac) = X(ca) = X(bc) = X(cb) = 90,000$.
+            \item $X (cc) = 0$.
+        \end{itemize}
+    The expectation is then calculated as followed:
+        \begin{align*}
+        \mathrm{Exp} (X) &= 180,000 P (X = 180,000) + 90,000 P (X = 90,000) + 0 P (X = 0) \\ 
+        &= 180,000 P (\{ aa, bb, ab, va \}) + 90,000 P (\{ ac, ca, bc, cb \}) \\ 
+        &= \frac{(180,000)(4)}{9} + \frac{(90,000)(4)}{9} \\ 
+        &= 80,000 + 40,000 \\ 
+        &= 120,000 . \tag*{$\triangle$}
+        \end{align*} 
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+We have $\im X = \{ 1, 2, 3, 4, 5, 6 \}$ and each value of $X$ has a chance of $1/6$ to occur. Therefore,
+\[
+    \mathrm{Exp} (X) = \frac{1}{6} + \frac{2}{6} + \frac{3}{6} + \frac{4}{6} + \frac{5}{6} + \frac{6}{6} = \frac{21}{6}  = 3 \tfrac{1}{2} .
+\]
+
+The variance is calculated using formula in the Theorem \ref{Thm:FormulatVariance}. We first have $\im X^2 = \{ 1 , 4, 9, 16, 25, 36 \}$ and
+\[
+    \mathrm{Exp} (X^2) = \frac{1}{6} + \frac{4}{6} + \frac{9}{6} + \frac{16}{6} + \frac{25}{6} + \frac{36}{6} =  \frac{91}{6} = 15 \tfrac{1}{6} . 
+\]
+Therefore,
+\[
+    \mathrm{Var} (X) = \mathrm{Exp} (X^2) - (\mathrm{Exp} (X))^2 = \frac{91}{6} - \frac{21}{6} = \frac{70}{6} = 11 \tfrac{2}{3} .
+\]
+Thus,
+\[
+    \sigma = \sqrt{\mathrm{Var} (X)} = \sqrt{70/6} \approx 3.4157 . \tag*{$\triangle$}
+\]
+\end{problem}
+
+\begin{problem}
+By the formula in Theorem \ref{Thm:FormulatVariance}, we have
+\[
+    \mathrm{Var} (aX + b) = \mathrm{Exp} ( (aX + b)^2) - (\mathrm{Exp} (aX +b))^2 .
+\]
+We have $(aX + b)^2 = a^2 X^2 + 2abX + b^2$ and $\mathrm{Exp} (aX + b) = a \mathrm{Exp} (X) + b$. Therefore,
+\begin{align*}
+\mathrm{Var} (aX + b) &= a^2 \mathrm{Exp} (X^2) + 2 ab \mathrm{Exp} (X) + b^2 - a^2 (\mathrm{Exp} (X))^2 - 2ab \mathrm{Exp} (X) - b^2 \\ 
+&= a^2 \mathrm{Exp} (X^2) - a^2 \mathrm{Exp} (X) \\ 
+&= a^2 \mathrm{Var} (X) . \tag*{$\triangle$}
+\end{align*}
+\end{problem}
+
+\subsection*{Conditional Expectation and the Partition Theorem}
+
+\begin{problem}
+Let $B = \{ X = x \}$. Then, we have
+    \[
+        E (g(X) | B) = \sum_{y \in \im g (X)} y P (g (X) = y | B ) . 
+    \]
+However, if $B$ has occurred, then $X = x$ and the sum over $\im g (X)$ is restricted to the value $y = g (x)$. Hence,
+    \[
+        E (g (X) | B) = g (x) P (g (X) = g(x) | B) = g (x) \frac{ P (\{ g (X) = g (x) \} \cap \{ X = x \} )}{P (X = x)} .
+    \]
+But $\{ g (X) = g (x) \} = \{ X = x \}$ and therefore
+    \[
+        E (g (X) | B) = g (x) \frac{P (X = x)}{P (X = x)} = g (x) . \tag*{$\triangle$}
+    \]
+\end{problem}
+
+\subsection*{Examples of Discrete Random Variables}
+
+\begin{problem}
+The map $X$ has a discrete range, that is $\im X = \{ 0, 1, 2, 3, \ldots , 30 \}$. However it does not have a binomial distribution because the probability that there is rain on a given day varies from day to day. Therefore, the parameter $p$ is not fixed. \hfill $\triangle$
+\end{problem}
+
+\begin{problem}
+\begin{enumerate}[label=\alph*)]
+    \item In this case, if it was explicitly mentioned ``The number of students in a sample of X students who took the SAT", then we could model the distribution of $X$ on the binomial distribution with $n= 100$ and $q = 0.45$. Unfortunately, it is not mentioned and therefore we can't model the distribution with a binomial distribution.
+    \item It can't be model by a binomial distribution because there is not enough information to find the parameter $q$. We will see later that the distribution of the scores of the 100 students can be model by a normal distribution.
+    \item If $X_j$ is the random variable ``The student labeled $j$ scored above average on the SAT'', then $X$: ``the number of students in the sample who scored above average on the SAT'', which is equal to $X_1 + X_2 + \ldots + X_{100}$, has a binomial distribution. In this case, $n = 100$ and the value of $q$ is not possible to find. We would need more information to compute an approximate value for $q$. For example, with the additional assumption that the distribution of the student's scores is a Normal distribution, then we can assume that $q = 0.5$, because $P (X > \mu ) = 0.5$ for any normal distribution.  
+    \item It can't be model by a binomial distribution because there is not enough information to find the parameter $q$. We would need additional information on the average time of a student to complete the test. We will see later that the distribution of the random variable will be modeled by a Normal distribution. \hfill $\triangle$
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+By Definition \ref{D:ExpectationDiscreteRandomVariable}, we have
+    \[
+        \mathrm{Exp} (X) = \sum_{k = 0}^n k P (X = k) = \sum_{k = 0}^n k \frac{n!}{k! (n - k)!} q^k (1 - q)^{n - k} . 
+    \]
+The term with $k = 0$ disappears and we enter into the following chain of equalities:
+    \begin{align*}
+    \mathrm{Exp} (X) &= \sum_{k= 1}^n \frac{k n!}{k! (n - k)!} q^k (1 - q)^{n - k} \\ 
+    &= \sum_{k = 0}^{n - 1} \frac{(k + 1) n!}{(k + 1)! (n - k - 1)!} q^{k + 1} (1 - q)^{n - k - 1} \\ 
+    &= n q \sum_{k = 0}^{n-1} \frac{(n - 1)!}{k! (n - 1 - k)!} q^k (1 - q)^{n - k - 1} \\ 
+    &= nq (q + (1 - q))^{n - 1} \\ 
+    &= nq .
+    \end{align*} 
+
+To compute the $\mathrm{Var} (X)$, we use the formula Theorem \ref{Thm:FormulatVariance}. We have $\mathrm{Exp} (X) = n q$ from the previous calculations. We need to compute $\mathrm{Exp} (X^2)$. By the Theorem \ref{thm:lawSubconsciousStatistician} we have
+\begin{align*}
+\mathrm{Exp} (X^2) = \sum_{k = 0}^n k^2 P (X^2 = k^2) = \sum_{k = 0}^n k^2 P (X = k) ,
+\end{align*} 
+where $\{ X^2 = k^2 \} = \{ X = k \}$ because $X$ assumes only non-negative integer values. Therefore,
+\begin{align*}
+\mathrm{Exp} (X^2) &= \sum_{k = 0}^n \frac{k^2 n!}{k! (n - k)!} q^k (1 - q)^{n - k} \\ 
+&= \sum_{k = 1}^n \frac{k^2 n!}{k! (n - k)!} q^k (1 - q)^{n - k} \\ 
+&= nq \sum_{k = 0}^{n-1} \frac{(k+1) (n-1)!}{k! (n-1-k)!} q^k (1 - q)^{n-1-k} \\ 
+&= nq \Big( \sum_{k = 0}^{n-1} \frac{k (n -1)!}{k! (n - 1-k)!} q^k (1 - q)^{n-1-k} + \sum_{k = 0}^{n-1} \frac{(n-1)!}{k! (n - 1 - k)!} q^k (1 - q)^{n-1-k} \Big) \\ 
+&= nq \Big( \sum_{k = 1}^{n-1} \frac{k (n -1)!}{k! (n - 1 - k)!} q^k (1-q)^{n - 1 - k} + 1 \Big) \\ 
+&= nq \Big( (n - 1)q \sum_{k = 0}^{n - 2} \frac{(n - 2)!}{k! (n - 2 - k)!} q^k (1 - q)^{n - 2 - k} + 1 \Big) \\ 
+&= nq \Big( (n - 1)q + 1 ) \\ 
+&= nq (nq - q + 1) \\ 
+&= n^2 q^2 + nq (1 - q) .
+\end{align*} 
+Hence,
+\begin{align*}
+\mathrm{Var} (X) = n^2 q^2 + nq (1 - q) - n^2 q^2 = nq (1 - q) . \tag*{$\triangle$}
+\end{align*} 
+\end{problem}
+
+\end{comment}

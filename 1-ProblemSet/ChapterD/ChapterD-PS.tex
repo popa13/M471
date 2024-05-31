@@ -1,0 +1,134 @@
+\input{../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Problems Set} \\
+Chapter D
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{4}
+
+\subsection{Distribution Function}
+
+\begin{problem}
+Let $F_1$ and $F_2$ be two distribution functions. Show that the function $F(x) = \alpha F_1 (x) + (1 - \alpha ) F_2 (x)$ is a distribution function, for any $\alpha$ satisfying $0 \leq \alpha \leq 1$.
+\end{problem}
+
+\begin{problem}
+Given a random variable $X$, express the distribution function of $Y = \max \{ 0, X \}$ is terms of the distribution function of $X$.
+\end{problem}
+
+\begin{problem}
+For which value of $c$ is the function
+    \[
+        F(x) = c\int_{-\infty}^x e^{-|t|} \, dt \quad (x \in \mR )
+    \]
+a distribution function?
+\end{problem}
+
+\subsection{Continuous Random Variable}
+
+\begin{problem}
+Assume that a continuous random variable $X$ has distribution function
+    \[
+        F(x) = \left\{ \begin{matrix} \displaystyle \frac{1}{2 (1 + x^2)} & -\infty < x \leq 0 \\
+        \displaystyle \frac{1 + 2x^2}{2 (1 + x^2)} & 0 < x < \infty \end{matrix} \right.
+    \]
+Find the density function of $X$. 
+\end{problem}
+
+\begin{problem}\label{Prob:FindDistroFunction}
+Let the density function of a random variable $X$ be given by
+    \[
+        f_X (x) = \left\{ \begin{matrix} \displaystyle \frac{2}{\pi (1 + x^2 )} & -1 \leq x \leq 1 \\
+        0 & \text{elsewhere.} \end{matrix} \right. 
+    \]
+Find the distribution function of $f_X$. 
+\end{problem}
+
+\begin{problem}\label{Prob:FindDistroFunction2}
+A random variable $X$ has density function
+    \[
+        f_X (x) = c x (x - 1) \quad (0 \leq x \leq 1 ) 
+    \]
+and $0$ elsewhere. Determine $c$ so that $F_X$ is a distribution function.
+\end{problem}
+
+\subsection{Functions of Random Variables}
+
+\begin{problem}
+Let $X$ be a random variable with the exponential distribution with parameter $\lambda$. Find the density function of
+    \begin{enumerate}[label=\alph*)]
+        \item $Y = 2X + 5$.
+        \item $Y = (1 + X)^{-1}$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $X$ be a random variable whose distribution function $F$ is a continuous function. Show that the random variable $Y$, defined by $Y = F(X)$, is uniformly distributed on the interval $(0, 1)$.
+\end{problem}
+
+\begin{problem}
+The random variable $X$ is uniformly distributed on the interval $[0, 1]$. Find the distribution and probability density function $Y$, where
+    \[
+        Y = \frac{3X}{1 - X} .
+    \]
+\end{problem}
+
+\subsection{Expectation of Continuous Random Variables}
+
+\begin{problem}
+Find the expectation of the random variable $X$ given in Problem \ref{Prob:FindDistroFunction}.
+\end{problem}
+
+\begin{problem}
+Find the expectation and variance of $X$ given in Problem \ref{Prob:FindDistroFunction2}.
+\end{problem}
+
+\subsection{Other Examples of Continuous Random Variables}
+
+\begin{problem}
+If $Z \sim N (0, 1)$ is a random variable that has the standard normal distribution, what is
+    \begin{enumerate}[label=\alph*)]
+        \item $P (Z^2 < 1 )$?
+        \item $P (Z^2 < 3.84146)$?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+A soft-drink machine can be regulated so that it discharges an average of $\mu$ ounces per cup. If the ounces of fill are normally distributed with stardard deviation $0.3$ ounce, give the setting for $\mu$ so that $8$-ounce cups will overflow only $1\%$ of the time.
+\end{problem}
+
+\begin{problem}
+Prove that
+    \[
+        \int_{-\infty}^\infty e^{-x^2} \, dx = \sqrt{\pi} .
+    \]
+\end{problem}
+
+\begin{problem}
+If $X$ has the normal distribution with mean $0$ and variance $1$, find the mean value of $Y = e^{2X}$.
+\end{problem}
+
+\begin{problem}
+Suppose that $X$ has an exponential distribution with parameter $\lambda$. Show that, if $a > 0$ and $b > 0$, then
+    \[
+        P (X > a + b | X > a) = P (X > b) .
+    \]
+\end{problem}
+
+
+
+\end{document}

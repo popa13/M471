@@ -1,0 +1,260 @@
+\input{../../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Solutions Problems Set} \\
+\textsc{Chapter B}
+\end{minipage}
+\hfill 
+\begin{minipage}{0.33\textwidth}
+\flushright \textsc{Fall 2023}
+\end{minipage}
+
+\hrulefill
+
+\setcounter{section}{2}
+
+\subsection{Conditional Probabilities}
+	
+	\begin{problem}
+	\begin{enumerate}[label=\alph*)]
+	\item $P (A |B) = \frac{P (A \cap B)}{P (B)} = 0.1 / 0.3 = 1/3$.
+	\item We have
+		$$
+		P (A | A \cup B) = \frac{P (A \cap (A \cup B))}{P (A \cup B)} = \frac{P (A)}{P (A \cup B)}.
+		$$
+	But, we have
+		\begin{align*}
+		P (A \cup B) = P (A) + P (B) - P (A \cap B) = 0.5 + 0.3 - 0.1 = 0.7 .
+		\end{align*}
+	Therefore, $P (A | A \cup B) = 0.5 / 0.7 = 5/7$.
+	\item We have
+		\begin{align*}
+		P (A \cap B | A \cup B) = \frac{P ((A \cap B) \cap (A \cup B)}{P (A \cup B)}. 
+		\end{align*}
+	But, $A \cap B \subset A \cup B$, so $(A \cap B) \cap (A \cup B) = A \cap B$. Therefore, 
+		\begin{align*}
+		P (A \cap B | A \cup B) = \frac{0.1}{0.7} = \frac{1}{7} . \tag*{$\triangle$}
+		\end{align*}
+	\end{enumerate}		
+	\end{problem}
+
+	\begin{problem}
+	The sample space is $S = \{ \epsdice{1} , \epsdice{2} , \epsdice{3} , \epsdice{4} , \epsdice{5} , \epsdice{6} \}$ and each single outcome are equally likely. So, $P (A) = 1/6$ for each atomic event $A$. Let $A$ be the event ``dice lands on a $1$'' and $B$ the event ``dice lands on a odd number''. Then we have
+		\begin{align*}
+		P (A |B ) = \frac{P (A \cap B)}{P (B)} = \frac{P (\{ \epsdice{1} \})}{P (\{ \epsdice{1} , \epsdice{3} , \epsdice{5} \})} = \frac{1/6}{1/2} = \frac{1}{3} . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+
+	\begin{problem}
+	The sample space $S$ is all pairs of rolled dice. Every outcome is equally likely, so $P (S) = 1/36$, for every atomic event $A$.
+	
+	Let $A$ denote the event ``at least one die lands on $6$'' and let $B$ denote the event ``both dice landed on different numbers''. We have $P (A) = 11/36$ because $|A| = 11$, $P (B) = 30/36$ because $|B| = 30$ and $P (A \cap B ) = 10 / 36$ because $A \cap B$ is all pairs containing a six except the pair $( \epsdice{6} , \epsdice{6} )$. Therefore,
+		\begin{align*}
+		P (A | B) = \frac{10/36}{30/36} = \frac{1}{3} .
+		\end{align*}
+	We see that $P (A | B) > P (A)$, which means knowing $B$ makes $A$ more likely to happen. \hfill $\triangle$
+	\end{problem}
+
+	\begin{problem}
+	Assume that $P (A) < P (A |B)$. By definition of the conditional probability, we have
+		\begin{align*}
+		P (B |A) = \frac{P (B \cap A)}{P (A)}
+		\end{align*}
+	According to Corollary 1 in the lecture notes, we have $P (B \cap A ) = P (A \cap B) = P (B) P (A | B)$. Therefore, we obtain a new expression for $P (B | A)$:
+		\begin{align}
+		P (B | A) = \frac{P (B) P (A | B)}{P (A)}
+		\end{align} 
+	Now, $P (A) < P (A | B)$ implies that
+		\begin{align}
+		\frac{P (B) P (A | B)}{P (A)} > \frac{P (B) P (A)}{P (A)} = P (B) .
+		\end{align} 
+	Therefore, we obtain $P (B |A) >  P(B)$, or $P (B) < P (B |A)$. \hfill $\triangle$
+	\end{problem}
+	
+	\begin{problem}
+	Assume that $A \subset B$ and $P (A) > 0$, $P (B) > 0$. Since $A \subset B$, we have $A \cap B = A$ and therefore
+		\begin{align*}
+		P (B |A) = \frac{P (B \cap A)}{P (A)} = \frac{P (A)}{P (A)} = 1 .
+		\end{align*}
+	Also, we have
+		\begin{align*}
+		P (A | B) = \frac{P (A \cap B)}{P (A)} = \frac{P (A)}{P (B)}. \tag*{$\triangle$}
+		\end{align*} 
+	\end{problem}
+	
+	\begin{problem}
+	Assume that $A$ and $B$ are mutually exclusive events with $P (B) > 0$. Then we have
+		\begin{align*}
+		P (A | A \cup B) = \frac{P (A \cap (A \cup B))}{P (A \cup B)} .
+		\end{align*}
+	We have $A \cap (A \cup B) = (A \cap A) \cup (A \cap B) = A \cup (A \cap B )$. Since $A$ and $B$ are mutually exclusive, we know that $A \cap B = \varnothing$ and therefore 
+		$$
+		A \cap (A \cup B) = A \cup \varnothing = A.
+		$$
+	Plugging that into the equation for $P (A | A \cup B)$, we obtain
+		\begin{align}
+		P (A | A \cup B) = \frac{P (A)}{P (A \cup B)} .
+		\end{align} 
+	Also, $P (A \cup B) = P (A) + P (B)$ because $A$ and $B$ are mutually exclusive. Replacing in the last equation, we see that
+		\begin{align*}
+		P (A | A \cup B) = \frac{P (A)}{P (A ) + P (B)} . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+	
+	\subsection{Bayes' Formula}
+	
+	\begin{problem}
+	Let $A$ denotes the event ``a person has the desease'' and let $E$ be the event ``the test detects the desease''. From the information in the problem, we have
+		\begin{align*}
+		P (E | A) = 0.95 , \quad P (E | \overline{A}) = 0.01 \quad \text{ and } \quad P (A ) = 0.005 .
+		\end{align*}
+	We are searching for $P (A|E)$. We have
+		\begin{align*}
+		P (A | E) = \frac{P (A \cap E )}{P (E)} = \frac{ P (E | A)P (A)}{P (E)} .
+		\end{align*}
+	To find $P (E)$, we use Bayes' formula:
+		\begin{align*}
+		P (E) = P (E |A) P (A) + P (E | \overline{A}) P (\overline{A}) = 0.95 \cdot 0.005 + 0.01 \cdot 0.995 = 0.0147 .
+		\end{align*}
+	Therefore, we get
+		\begin{align*}
+		P (A | E ) = \frac{ 0.95 \cdot 0.005}{0.0147} \approx 0.3231 . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+
+	\begin{problem}
+	Let $I$ denotes the event ``A voter is independent'', $L$ denotes the event ``A voter is liberal'', and $C$ denotes the event ``A voter is conservative''. We have $P (I) = 0.46$, $P (L ) = 0.30$, and $P (C) = 0.24$.
+	\begin{enumerate}[label=\alph*)]
+	\item Let $B$ denotes the event ``A voter went voting at the local at the local election''. We have
+		\begin{align*}
+		P (I | B) = \frac{P (I \cap B)}{P (B)} = \frac{P (I) P (B | I)}{P (B)} .
+		\end{align*}
+	From the information in the problem, we have $P (B | I ) = 0.35$, $P (B|L) = 0.62$, $P (B|C) = 0.58$. From Bayes' formula with three events, we have
+		\begin{align*}
+		P (B) &= P (B | I ) P (I) + P (B | L )P (L) + P (B | C) P (C) \\
+		&= 0.35 \cdot 0.46 + 0.62 \cdot 0.30 + 0.58 \cdot 0.24 \\
+		&= 	0.4862 
+		\end{align*}
+	and
+		\begin{align*}
+		P (I | B) = \frac{0.46 \cdot 0.35}{0.4862} \approx 0.3311 .
+		\end{align*}
+	\item We have
+		\begin{align*}
+		P (L | B) = \frac{P (L \cap B)}{P (B)} = \frac{P (L) P (B | L)}{P (B)} = \frac{0.30 \cdot 0.62}{0.4862} \approx 0.3826 .
+		\end{align*}
+	\item We have
+		\begin{align*}
+		P (C | B) = \frac{P (C \cap B)}{P (B)} = \frac{P (B) P (B|C)}{P (B)} = \frac{0.24 \cdot 0.58}{0.4862} \approx 0.2863 .
+		\end{align*}
+	[Notice that $P (I |B) + P (L | B) + P (C | B) = 1$ (this comfirms that the mapping $Q (A) = P (A | B)$ is a probability measure.] \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	Let $X$ be the event ``the die $x$ is tossed'' and let $Y$ be the event ``the die $y$ is tossed''. We have $P (X) = P (Y) = 1/2$ because the dice are chosen randomly.
+	
+	Let $A$ be the event ``The die tossed was a \epsdice{2}''. We have $P (A | X) = 1/2$ from the hypothesis and $P (A | Y) = 1/10$ because there is $1/2$ chance that it lands on \epsdice{3}, so $1/10$ chance it lands on any other outcomes. We are looking for $P (X | A)$. We have
+		\begin{align*}
+		P (X | A) = \frac{P (X \cap A)}{P (A)} = \frac{P (X) P (A | X)}{P (A)} .
+		\end{align*}
+	We use Bayes' formula to find that
+		\begin{align*}
+		P (A) = P (X) P (A | X) + P (Y) P (A | Y) = 0.5 \cdot 0.5 + 0.5 \cdot 0.1 = 0.3 .
+		\end{align*}
+	Therefore, 
+		\begin{align*}
+		P (X | A) = \frac{0.5 \cdot 0.5}{0.3} \approx 0.8333 . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+
+\begin{problem}
+	Let $(S, \mathcal{A}, P )$ be a probability space. If $A, B$ are events, then show that
+		\begin{align*}
+		\frac{P (A|B)}{P (\overline{A} | B)} = \frac{P (A)}{P (\overline{A})} \frac{P (B|A)}{P (B|\overline{A})} .
+		\end{align*}
+
+	We have $P (A | B) = \frac{P (A \cap B)}{P (B)}$ and $P (\overline{A} | B) = \frac{P (\overline{A} \cap B)}{P (B)}$. Therefore,
+		\begin{align*}
+		\frac{P (A | B)}{P (\overline{A} | B)} = \frac{P (A \cap B)}{P (\overline{A} \cap B)} .
+		\end{align*}
+	We also have $P (A \cap B) = P (A) P (B |A)$ and $P (\overline{A} \cap B) = P (\overline{A}) P (B | \overline{A})$. Replacing this into the last equation of the quotient, we obtain
+		\begin{align*}
+		\frac{P (A |B)}{P (\overline{A} | B)} = \frac{P (A) P (B | A)}{P (\overline{A}) P (B | \overline{A})} . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+	
+	\subsection{Independent Events}
+	
+	\begin{problem}
+	The sample space is given by the different rankings of the brands: 
+		\begin{align*}
+		S = \{ xyz, xzy, yxz, yzx, zxy, zyx \}
+		\end{align*}
+	where, for example, $xyz$ means brand $x$ is the best and brand $z$ is the worst. For atomic event, the probability to occur is $1/6$.
+	
+	\begin{enumerate}[label=\alph*)]
+	\item We have $A = \{ xyz, xzy, zxy \}$, $B = \{ xyz, xzy \}$, and $A \cap B = \{ xyz , xzy \}$. Therefore,
+		\begin{align*}
+		P (A | B) = \frac{P (A \cap B)}{P (B)} = \frac{1/3}{1/3} = 1 \neq \frac{1}{2} = P (A) .
+		\end{align*}
+	We get $P (A | B) \neq P (A)$ and the events $A$ and $B$ are dependent. Notice that $B \subset A$ and this is why $P (A | B) = 1$.
+	\item We have $C = \{ yxz , zxy \}$ and so $P (C) = 1/3$. We have $A \cap C = \{ zxy \}$ and $P (A \cap C) = \frac{1}{6}$. Since $P (A \cap C) = P (A) P (C)$, the event $A$ and $C$ are independent.
+	
+	\item We have $D = \{ yzx , zyx \}$ and so $P (D) = \frac{1}{3}$. We have $A \cap D = \varnothing$ and so $P (A \cap D ) = 0$. Since $P (A \cap D) \neq P (A) P (D)$, the event $A$ and $D$ are dependent. \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+	
+	\begin{problem}
+	We have $P (A_1) = 1/4$, because there are four suites in a regular deck of 52 cards. However, given $A_1$, we have that $P (A_2 | A_1) = 12 / 51 = 4 / 17$ because there are $12$ spades left and $51$ cards left in total. Also, we have $P (A_2 | \overline{A}_1 ) = \frac{13}{51}$ because there are $13$ spades left if we now that the first card dealt was not a spade and there are $51$ cards left in total. Therefore,
+		\begin{align*}
+		P (A_2) = P (A_1) P (A_2 | A_1) + P (\overline{A}_1) P (A_2 | \overline{A}_1) = \Big( \frac{1}{4} \Big) \Big( \frac{4}{17} \Big) + \Big( \frac{3}{4} \Big) \Big( \frac{13}{51} \Big) = 0.25 .
+		\end{align*}
+	Therefore, we see that $P (A_2) \neq P (A_2 | A_1 )$. This means $A_1$ and $A_2$ are not independent. \hfill $\triangle$
+	\end{problem}
+
+	\begin{problem}
+	Let $A_i$ be the event ``The component $i$ is functional''. From the assumptions, $A_1$, $A_2$, $A_3$, $A_4$, and $A_5$ are independent events. From Problem \ref{Prob:IndependenceOfComplement}, we also know that $\overline{A}_1$, $\overline{A}_2$, $\overline{A}_3$, $\overline{A}_4$, and $\overline{A}_5$ are independent events. Let $A$ be the event ``The system functions''. Then $A = \cup_{i = 1}^5 A_i$. It is easier to compute $P (\overline{A})$ because of the independence. We have $\overline{A} = \cap_{i = 1}^5 \overline{A}_i$ by de Morgan's law. Therefore, by independence, we have
+		\begin{align*}
+		P (\overline{A}) &= P (\overline{A}_1) P (\overline{A}_2) P (\overline{A}_3) P (\overline{A}_4) P (\overline{A}_5) \\
+		&= (1 - p_1) (1 - p_2) (1 - p_3) (1 - p_4) (1 - p_5) . \tag*{$\triangle$}
+		\end{align*}
+	\end{problem}
+	
+	\begin{problem}\label{Prob:IndependenceOfComplement}
+	Let $A$ and $B$ be independent events. 
+	\begin{enumerate}[label=\alph*)]
+	\item We want to show that $P (A | \overline{B}) = P (A)$, so that $A$ and $\overline{B}$ are independent. From the definition of conditional probabilities, we have
+		\begin{align*}
+		P (A | \overline{B}) = \frac{P (A \cap \overline{B})}{P (\overline{B})} .
+		\end{align*} 
+	But, we know from Chapter $A$ that $P (A \cap \overline{B}) = P (A) - P (A \cap B)$. Therefore,
+		\begin{align*}
+		P (A | \overline{B}) = \frac{P (A) - P (A \cap B)}{P (\overline{B})} .
+		\end{align*} 
+	But $A$ and $B$ are independent, which means $P (A \cap B) = P (A) P (B)$ and plugging this in the last equation gives
+		\begin{align*}
+		P (A | \overline{B}) = \frac{P (A) (1 - P (B))}{\overline{B}} .
+		\end{align*} 
+	Using the fact that $P (\overline{B}) = 1 - P (B)$,
+		\begin{align*}
+		P (A) P (\overline{B}) = \frac{P (A) P (\overline{B})}{P (\overline{B})}
+		\end{align*}
+	which simplifies to
+		\begin{align*}
+		P (A | \overline{B})  = P (A)
+		\end{align*}
+	since $P (\overline{B}) > 0$.
+	Therefore, $A$ and $\overline{B}$ are independent. 
+	\item We want to show that $\overline{A}$ and $\overline{B}$ are independent. From Part a), we know that $A$ and $\overline{B}$ are independent. Therefore, using Part a) with the event $\overline{B}$ in place of $A$ and the event $A$ in place of $B$, we deduce $\overline{B}$ and $\overline{A}$ are independent. This is what we wanted to prove. \hfill $\triangle$
+	\end{enumerate}
+	\end{problem}
+
+\end{document}

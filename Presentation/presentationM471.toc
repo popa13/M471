@@ -1,0 +1,8 @@
+\beamer@sectionintoc {1}{Who Am I?}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{My Origins}{2}{0}{1}
+\beamer@subsectionintoc {1}{2}{Background}{6}{0}{1}
+\beamer@subsectionintoc {1}{3}{My Wife}{8}{0}{1}
+\beamer@sectionintoc {2}{Fun French Test}{9}{0}{2}
+\beamer@sectionintoc {3}{Organization of the course}{15}{0}{3}
+\beamer@sectionintoc {4}{Monty Hall Problem}{16}{0}{4}
+\beamer@sectionintoc {5}{Machine Learning and AI}{17}{0}{5}

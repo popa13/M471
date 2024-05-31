@@ -1,0 +1,145 @@
+\input{../templateExo.tex}
+
+\begin{document}
+\hrulefill
+
+\begin{minipage}{0.33\textwidth}
+\textsc{Math 471}
+\end{minipage} \hfill 
+\begin{minipage}{0.32\textwidth}
+\centering
+\textsc{Problems Set} \\
+Chapter C
+\end{minipage}
+ \hfill 
+ \begin{minipage}{0.33\textwidth}
+ \flushright \textsc{Fall 2023}
+ \end{minipage}
+
+\hrulefill
+
+\setcounter{section}{3}
+
+\subsection{Discrete Random Variables}
+    
+    \begin{problem}
+    Let $(S, \mathcal{A}, P)$ be a probability space. If $X$ and $Y$ are discrete random variables, show that the mapping $Z : S \ra \mR$ defined by $Z(s) = X(s)Y(s)$ is a discrete random variable.
+    \end{problem}
+
+    \begin{problem}
+    Let $A$ be an event from a probability space $(S , \mathcal{A}, P)$. Show that the indicator map $1_A$ defined by
+        \begin{align*}
+        1_A (s) := \left\{ \begin{matrix}
+        1 & \text{ if } s \in A \\
+        0 & \text{ if } s \not\in A , \end{matrix}
+        \right.
+        \end{align*} 
+    is a discrete random variable.
+    \end{problem}
+
+    \begin{problem}\label{P:EquivalentEvents}
+    Let $X$ be a discrete random variable. Show that
+        \begin{enumerate}[label=\alph*)]
+        \item the set $\{ X \leq x \}$ is an event, for every $x \in \mR$.
+        \item the set $\{ X < x \}$ is an event, for every $x \in \mR$.
+        \item the set $\{ X \geq x \}$ is an event, for every $x \in \mR$.
+        \item the set $\{ X > x \}$ is an event, for every $x \in \mR$.
+    \end{enumerate}
+    \end{problem}
+
+    \begin{problem}
+    Show that $X$ is a discrete random variable if and only if the following conditions hold:
+        \begin{enumerate}[label=\alph*)]
+        \item $\im X$ is discrete.
+        \item $\forall x \in \mR$, the set $\{ X \leq x \}$ is an event.
+        \end{enumerate}
+    \end{problem}
+
+\subsection{Probability Mass Functions}
+
+    \begin{problem}
+    A card is drawn randomly from a hat containing $5$ cards of different colors (say 2 red, 2 blue, and 1 yellow). Let $S = \{ r, b, y \}$ be the sample space and $\mathcal{A} = \mathcal{P} (S)$. If the card drawn is red, then the participant looses \$$10$, if it is blue, the participant wins \$$10$, and if it is yellow, the participant wins \$$20$. Let $X$ be the money won by a participant after playing the game. Find the probability mass function of $X$.
+    \end{problem}
+
+    \begin{problem}
+    A problem in a test given to small children asks them to match each of three pictures of animals to the word identifying that animal. If a child assigns the three words at random to the three pictures, find the probability distribution (probability mass function) of $Y$, the number of correct matches.
+    \end{problem}
+
+    \begin{problem}
+    Five balls, numbered $1$, $2$, $3$, $4$, $5$, are placed in an urn. Two balls are randomly selected from the five, and their numbers noted. Find the probability distribution for the following random variables: a) $X$ is the \textit{largest} of the two sampled numbers; b) $X$ is the \textit{sum} of the two sampled numbers.
+    \end{problem}
+
+    \begin{problem}
+    For what value(s) of $c$ is the function $p$, defined by
+        \begin{align*}
+        p (k) = \left\{ \begin{matrix}
+        \frac{c}{k (k + 1)} & \text{, } k = 1 , 2, \ldots \\
+        0 & \text{ otherwise } 
+        \end{matrix}
+        \right.
+        \end{align*}
+    a pmf?
+    \end{problem}
+    
+\subsection{Functions of Discrete Random Variables}
+    
+    \begin{problem}
+    Let $X$ be a discrete random variable with its distribution (probability mass function) $p_X$ given by the following table
+        \begin{center}
+        \begin{tabular}{c|cccc}
+        $x$ & 1 & 2 & 3 & 4 \\\hline
+        $p_X (x)$ & 0.4 & 0.3 & 0.2 & 0.1
+        \end{tabular}
+        \end{center}
+    Find the image of $Y = X^2 - 1$ and its distribution. 
+    \end{problem}
+
+    \begin{problem}
+    Consider the discrete random variable $X$ from the previous problem. Find the image of $Y = \sin (\frac{\pi}{2} X)$ and its distribution.
+    \end{problem}
+
+\subsection{Expectation and Variance}
+
+\begin{problem}
+A manufacturing company ships its product in two different sizes of truck trailers. Each shipment is made in a trailer with dimensions $8 ft \times 10 ft \times 30 ft$ or $8ft \times 10ft \times 40ft$. If $30\%$ of its shipments are made by using $30$-foot trailers and $70\%$ by using $40$-foot trailers, find the mean volume shipped per trailer load. (Assume the trailers are always full.)
+\end{problem}
+
+\begin{problem}
+Two construction contracts are to be randomly assigned to one or more of three firms: A, B, C. Any firm may receive both contracts. If each contract will yield a profit of $\$90,000$ for the firm, find the expected profit for firm $A$. If firms $A$ and $B$ are actually owned by the same individual, what is the owner's expected total profit?
+\end{problem}
+
+\begin{problem}
+A single fair die is tossed once. Let $X$ be the number facing up. Find the variance and the standard deviation of $X$.
+\end{problem}
+
+\begin{problem}
+If $X$ is a discrete random variable, show that $\mathrm{var} (aX + b) = a^2 \mathrm{Var} (X)$ for $a, b \in \mR$.
+\end{problem}
+
+\subsection{Conditional Expectation and the Partition Theorem}
+
+\begin{problem}
+Let $X$ be a discrete random variable and let $g : \mR \ra \mR$ be a function. Using the definition of the conditional expectation, show that if $x$ is a real number such that $P (X = x) > 0$, then $E (g (X) | X = x) = g (x)$. 
+\end{problem}
+
+\subsection{Examples of Discrete Random Variables}
+
+\begin{problem}
+A meteorologist in Hawaii recorded $X$: ``the number of days of rain during a 30-day period.''. Does $X$ have a binomial distribution?
+\end{problem}
+
+\begin{problem}
+In 2003, the average combined SAT score (math and verbal) for college-bound students in the United-States was 1026. Suppose that approximately 45\% of all high school graduates took this test and that 100 high school graduates are randomly selected from among all high school grads in the United-States. Which of the following discrete random variables has a distribution that can be a binomial distribution? Whenever possible, give the values of $n$ and $q$.
+\begin{enumerate}[label=\alph*)]
+    \item The number of students who took the SAT.
+    \item The scores of the 100 students in the sample.
+    \item The number of students in the sample who scored above average on the SAT.
+    \item The amount of time required by each student to complete the SAT.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+If $X$ has a Binomial distribution, show that $E (X) = nq$ and $\mathrm{Var} (X) = nq (1 - q)$.
+\end{problem}
+
+\end{document}
