@@ -1,6 +1,8 @@
 # A note to the reader
 This repository is the culmination of the work collected while teaching the course *Probability* (M471) at the University of Hawai'i at Mānoa in the Fall of 2023. I have also created a website for the course https://mathopo.ca/courses-website/math-471/math-471.
 
+![WebsiteImage](screenshot-homepageWebsite.png)
+
 The lecture notes from which I lectured are found in the folder *0-LectureNotes*.
 
 For the problems sets and their solutions, these can be found directly in the folder *1-ProblemSet*.
